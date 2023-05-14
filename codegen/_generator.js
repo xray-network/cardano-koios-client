@@ -33,7 +33,7 @@ const transformRequestBodyTypes = (obj) => {
 }
 
 const methods = `
-import { Axios, GenericAbortSignal } from "axios"
+import { Axios, AxiosResponse, GenericAbortSignal } from "axios"
 import * as KoiosTypes from "./types"
 
 export default (client: Axios) => {
@@ -99,7 +99,7 @@ export default (client: Axios) => {
           extraParams?: string,
           headers?: object,
           signal?: GenericAbortSignal,
-        ): Promise<{ success: KoiosTypes.${name}Response; error: KoiosTypes.IError }> => {
+        ): Promise<{ success: AxiosResponse<KoiosTypes.${name}Response>; error: KoiosTypes.IError }> => {
           return client.${method}(
             \`${path}?${getQueryString()}\${extraParams ? extraParams : ""}\`, ${getPostParams()}
             { signal, headers },

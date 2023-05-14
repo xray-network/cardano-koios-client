@@ -1,4 +1,4 @@
-import { Axios, GenericAbortSignal } from "axios"
+import { Axios, AxiosResponse, GenericAbortSignal } from "axios"
 import * as KoiosTypes from "./types"
 
 export default (client: Axios) => {
@@ -7,14 +7,14 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.TipResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.TipResponse>; error: KoiosTypes.IError }> => {
       return client.get(`/tip?${extraParams ? extraParams : ""}`, { signal, headers })
     },
     Genesis: (
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.GenesisResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.GenesisResponse>; error: KoiosTypes.IError }> => {
       return client.get(`/genesis?${extraParams ? extraParams : ""}`, { signal, headers })
     },
     Totals: (
@@ -22,7 +22,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.TotalsResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.TotalsResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/totals?${params._epoch_no ? "&_epoch_no=" + params._epoch_no : ""}${extraParams ? extraParams : ""}`,
         { signal, headers }
@@ -32,7 +32,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.ParamUpdatesResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.ParamUpdatesResponse>; error: KoiosTypes.IError }> => {
       return client.get(`/param_updates?${extraParams ? extraParams : ""}`, { signal, headers })
     },
     EpochInfo: (
@@ -40,7 +40,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.EpochInfoResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.EpochInfoResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/epoch_info?${params._epoch_no ? "&_epoch_no=" + params._epoch_no : ""}${
           params._include_next_epoch ? "&_include_next_epoch=" + params._include_next_epoch : ""
@@ -53,7 +53,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.EpochParamsResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.EpochParamsResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/epoch_params?${params._epoch_no ? "&_epoch_no=" + params._epoch_no : ""}${extraParams ? extraParams : ""}`,
         { signal, headers }
@@ -64,7 +64,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.EpochBlockProtocolsResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.EpochBlockProtocolsResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/epoch_block_protocols?${params._epoch_no ? "&_epoch_no=" + params._epoch_no : ""}${
           extraParams ? extraParams : ""
@@ -76,7 +76,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.BlocksResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.BlocksResponse>; error: KoiosTypes.IError }> => {
       return client.get(`/blocks?${extraParams ? extraParams : ""}`, { signal, headers })
     },
     BlockInfo: (
@@ -84,7 +84,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.BlockInfoResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.BlockInfoResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/block_info?${extraParams ? extraParams : ""}`,
         { _block_hashes: params._block_hashes },
@@ -96,7 +96,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.BlockTxsResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.BlockTxsResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/block_txs?${extraParams ? extraParams : ""}`,
         { _block_hashes: params._block_hashes },
@@ -108,7 +108,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.TxInfoResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.TxInfoResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/tx_info?${extraParams ? extraParams : ""}`,
         { _tx_hashes: params._tx_hashes },
@@ -120,7 +120,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.TxUtxosResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.TxUtxosResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/tx_utxos?${extraParams ? extraParams : ""}`,
         { _tx_hashes: params._tx_hashes },
@@ -132,7 +132,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.TxMetadataResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.TxMetadataResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/tx_metadata?${extraParams ? extraParams : ""}`,
         { _tx_hashes: params._tx_hashes },
@@ -143,7 +143,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.TxMetalabelsResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.TxMetalabelsResponse>; error: KoiosTypes.IError }> => {
       return client.get(`/tx_metalabels?${extraParams ? extraParams : ""}`, { signal, headers })
     },
     TxStatus: (
@@ -151,7 +151,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.TxStatusResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.TxStatusResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/tx_status?${extraParams ? extraParams : ""}`,
         { _tx_hashes: params._tx_hashes },
@@ -163,7 +163,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AddressInfoResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AddressInfoResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/address_info?${extraParams ? extraParams : ""}`,
         { _addresses: params._addresses },
@@ -175,7 +175,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AddressTxsResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AddressTxsResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/address_txs?${extraParams ? extraParams : ""}`,
         { _addresses: params._addresses, _after_block_height: params._after_block_height },
@@ -187,7 +187,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.CredentialUtxosResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.CredentialUtxosResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/credential_utxos?${extraParams ? extraParams : ""}`,
         { _payment_credentials: params._payment_credentials },
@@ -199,7 +199,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AddressAssetsResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AddressAssetsResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/address_assets?${extraParams ? extraParams : ""}`,
         { _addresses: params._addresses },
@@ -211,7 +211,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.CredentialTxsResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.CredentialTxsResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/credential_txs?${extraParams ? extraParams : ""}`,
         { _payment_credentials: params._payment_credentials, _after_block_height: params._after_block_height },
@@ -222,7 +222,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AccountListResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AccountListResponse>; error: KoiosTypes.IError }> => {
       return client.get(`/account_list?${extraParams ? extraParams : ""}`, { signal, headers })
     },
     AccountInfo: (
@@ -230,7 +230,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AccountInfoResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AccountInfoResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/account_info?${extraParams ? extraParams : ""}`,
         { _stake_addresses: params._stake_addresses },
@@ -242,7 +242,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AccountUtxosResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AccountUtxosResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/account_utxos?${params._stake_address ? "&_stake_address=" + params._stake_address : ""}${
           extraParams ? extraParams : ""
@@ -255,7 +255,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AccountInfoCachedResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AccountInfoCachedResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/account_info_cached?${extraParams ? extraParams : ""}`,
         { _stake_addresses: params._stake_addresses },
@@ -267,7 +267,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AccountRewardsResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AccountRewardsResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/account_rewards?${extraParams ? extraParams : ""}`,
         { _stake_addresses: params._stake_addresses, _epoch_no: params._epoch_no },
@@ -279,7 +279,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AccountUpdatesResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AccountUpdatesResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/account_updates?${extraParams ? extraParams : ""}`,
         { _stake_addresses: params._stake_addresses },
@@ -291,7 +291,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AccountAddressesResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AccountAddressesResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/account_addresses?${extraParams ? extraParams : ""}`,
         { _stake_addresses: params._stake_addresses, _first_only: params._first_only, _empty: params._empty },
@@ -303,7 +303,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AccountAssetsResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AccountAssetsResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/account_assets?${extraParams ? extraParams : ""}`,
         { _stake_addresses: params._stake_addresses },
@@ -315,7 +315,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AccountHistoryResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AccountHistoryResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/account_history?${extraParams ? extraParams : ""}`,
         { _stake_addresses: params._stake_addresses, _epoch_no: params._epoch_no },
@@ -326,14 +326,14 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AssetListResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AssetListResponse>; error: KoiosTypes.IError }> => {
       return client.get(`/asset_list?${extraParams ? extraParams : ""}`, { signal, headers })
     },
     AssetTokenRegistry: (
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AssetTokenRegistryResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AssetTokenRegistryResponse>; error: KoiosTypes.IError }> => {
       return client.get(`/asset_token_registry?${extraParams ? extraParams : ""}`, { signal, headers })
     },
     AssetAddresses: (
@@ -341,7 +341,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AssetAddressesResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AssetAddressesResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/asset_addresses?${params._asset_policy ? "&_asset_policy=" + params._asset_policy : ""}${
           params._asset_name ? "&_asset_name=" + params._asset_name : ""
@@ -354,7 +354,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AssetAddressListResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AssetAddressListResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/asset_address_list?${params._asset_policy ? "&_asset_policy=" + params._asset_policy : ""}${
           params._asset_name ? "&_asset_name=" + params._asset_name : ""
@@ -367,7 +367,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AssetNftAddressResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AssetNftAddressResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/asset_nft_address?${params._asset_policy ? "&_asset_policy=" + params._asset_policy : ""}${
           params._asset_name ? "&_asset_name=" + params._asset_name : ""
@@ -380,7 +380,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AssetInfoResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AssetInfoResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/asset_info?${params._asset_policy ? "&_asset_policy=" + params._asset_policy : ""}${
           params._asset_name ? "&_asset_name=" + params._asset_name : ""
@@ -393,7 +393,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AssetInfoBulkResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AssetInfoBulkResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/asset_info?${extraParams ? extraParams : ""}`,
         { _asset_list: params._asset_list },
@@ -405,7 +405,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AssetHistoryResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AssetHistoryResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/asset_history?${params._asset_policy ? "&_asset_policy=" + params._asset_policy : ""}${
           params._asset_name ? "&_asset_name=" + params._asset_name : ""
@@ -418,7 +418,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.PolicyAssetAddressesResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.PolicyAssetAddressesResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/policy_asset_addresses?${params._asset_policy ? "&_asset_policy=" + params._asset_policy : ""}${
           extraParams ? extraParams : ""
@@ -431,7 +431,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.PolicyAssetInfoResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.PolicyAssetInfoResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/policy_asset_info?${params._asset_policy ? "&_asset_policy=" + params._asset_policy : ""}${
           extraParams ? extraParams : ""
@@ -444,7 +444,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AssetPolicyInfoResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AssetPolicyInfoResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/asset_policy_info?${params._asset_policy ? "&_asset_policy=" + params._asset_policy : ""}${
           extraParams ? extraParams : ""
@@ -457,7 +457,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.PolicyAssetListResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.PolicyAssetListResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/policy_asset_list?${params._asset_policy ? "&_asset_policy=" + params._asset_policy : ""}${
           extraParams ? extraParams : ""
@@ -470,7 +470,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AssetSummaryResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AssetSummaryResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/asset_summary?${params._asset_policy ? "&_asset_policy=" + params._asset_policy : ""}${
           params._asset_name ? "&_asset_name=" + params._asset_name : ""
@@ -483,7 +483,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.AssetTxsResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.AssetTxsResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/asset_txs?${params._asset_policy ? "&_asset_policy=" + params._asset_policy : ""}${
           params._asset_name ? "&_asset_name=" + params._asset_name : ""
@@ -497,7 +497,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.PoolListResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.PoolListResponse>; error: KoiosTypes.IError }> => {
       return client.get(`/pool_list?${extraParams ? extraParams : ""}`, { signal, headers })
     },
     PoolInfo: (
@@ -505,7 +505,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.PoolInfoResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.PoolInfoResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/pool_info?${extraParams ? extraParams : ""}`,
         { _pool_bech32_ids: params._pool_bech32_ids },
@@ -517,7 +517,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.PoolStakeSnapshotResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.PoolStakeSnapshotResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/pool_stake_snapshot?${params._pool_bech32 ? "&_pool_bech32=" + params._pool_bech32 : ""}${
           extraParams ? extraParams : ""
@@ -530,7 +530,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.PoolDelegatorsResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.PoolDelegatorsResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/pool_delegators?${params._pool_bech32 ? "&_pool_bech32=" + params._pool_bech32 : ""}${
           extraParams ? extraParams : ""
@@ -543,7 +543,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.PoolDelegatorsHistoryResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.PoolDelegatorsHistoryResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/pool_delegators_history?${params._pool_bech32 ? "&_pool_bech32=" + params._pool_bech32 : ""}${
           params._epoch_no ? "&_epoch_no=" + params._epoch_no : ""
@@ -556,7 +556,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.PoolBlocksResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.PoolBlocksResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/pool_blocks?${params._pool_bech32 ? "&_pool_bech32=" + params._pool_bech32 : ""}${
           params._epoch_no ? "&_epoch_no=" + params._epoch_no : ""
@@ -569,7 +569,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.PoolHistoryResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.PoolHistoryResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/pool_history?${params._pool_bech32 ? "&_pool_bech32=" + params._pool_bech32 : ""}${
           params._epoch_no ? "&_epoch_no=" + params._epoch_no : ""
@@ -582,7 +582,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.PoolUpdatesResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.PoolUpdatesResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/pool_updates?${params._pool_bech32 ? "&_pool_bech32=" + params._pool_bech32 : ""}${
           extraParams ? extraParams : ""
@@ -594,7 +594,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.PoolRelaysResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.PoolRelaysResponse>; error: KoiosTypes.IError }> => {
       return client.get(`/pool_relays?${extraParams ? extraParams : ""}`, { signal, headers })
     },
     PoolMetadata: (
@@ -602,7 +602,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.PoolMetadataResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.PoolMetadataResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/pool_metadata?${extraParams ? extraParams : ""}`,
         { _pool_bech32_ids: params._pool_bech32_ids },
@@ -613,14 +613,14 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.NativeScriptListResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.NativeScriptListResponse>; error: KoiosTypes.IError }> => {
       return client.get(`/native_script_list?${extraParams ? extraParams : ""}`, { signal, headers })
     },
     PlutusScriptList: (
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.PlutusScriptListResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.PlutusScriptListResponse>; error: KoiosTypes.IError }> => {
       return client.get(`/plutus_script_list?${extraParams ? extraParams : ""}`, { signal, headers })
     },
     ScriptRedeemers: (
@@ -628,7 +628,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.ScriptRedeemersResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.ScriptRedeemersResponse>; error: KoiosTypes.IError }> => {
       return client.get(
         `/script_redeemers?${params._script_hash ? "&_script_hash=" + params._script_hash : ""}${
           extraParams ? extraParams : ""
@@ -641,7 +641,7 @@ export default (client: Axios) => {
       extraParams?: string,
       headers?: object,
       signal?: GenericAbortSignal
-    ): Promise<{ success: KoiosTypes.DatumInfoResponse; error: KoiosTypes.IError }> => {
+    ): Promise<{ success: AxiosResponse<KoiosTypes.DatumInfoResponse>; error: KoiosTypes.IError }> => {
       return client.post(
         `/datum_info?${extraParams ? extraParams : ""}`,
         { _datum_hashes: params._datum_hashes },

@@ -11,8 +11,7 @@ export default class KoiosTinyClient {
     this.client.interceptors.response.use(
       (response: AxiosResponse): any => {
         return {
-          success: response.data,
-          headers: response.headers,
+          success: response,
         }
       },
       (error: AxiosError): { error: KoiosTypes.IError } => {
