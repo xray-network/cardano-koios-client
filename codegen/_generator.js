@@ -18,7 +18,8 @@ const mapTypes = (type) => {
     string: "string",
     boolean: "boolean",
     array: "[]",
-    object: "object",
+    object: "{}",
+    enum: "enum",
     null: "null",
   }
   return types[type] || "any"
@@ -31,6 +32,10 @@ const transformRequestBodyTypes = (obj) => {
     return mapTypes(obj.type)
   }
 }
+
+/*********************************************
+ * Build Methods
+ */
 
 const methods = `
 import { Axios, AxiosResponse, GenericAbortSignal } from "axios"
@@ -113,6 +118,43 @@ export default (client: Axios) => {
 
 fs.writeFileSync("src/methods.ts", prettier.format(methods, prettierOptions))
 
+/*********************************************
+ * Build Types
+ */
+
+const buildAllOf = (schema) => {
+  return ""
+}
+
+const buildInterface = (schema, prop, parentType) => {
+  let type = mapTypes(schema.type || "object")
+  if (schema.allOf) type = "allOf"
+  if (schema.additionalProperties?.oneOf) type = "oneOf"
+  if (schema.enum) type = "enum"
+
+  const printNullable = schema.nullable ? " | null" : ""
+  const printProp = prop ? `${prop}: ` : ""
+
+  switch (type) {
+    case "[]":
+      return `\n${printProp}${buildInterface(schema.items)}[]`
+    case "{}":
+      return `\n${printProp}{\n${Object.keys(schema.properties || {})
+        .map((prop) => buildInterface(schema.properties[prop], prop))
+        .join("")}}${printNullable}`
+    case "allOf":
+      return `\n${printProp} (${schema.allOf.map((i) => buildInterface(i))})${printNullable}`
+    case "oneOf":
+      return `\n${printProp} ${schema.additionalProperties.oneOf
+        .map((i) => mapTypes(i.type))
+        .join(" | ")}${printNullable}`
+    case "enum":
+      return `\n${printProp} ${schema.enum.map((i) => `"${i}"`).join(" | ")}${printNullable}`
+    default:
+      return `\n${printProp} ${type}${printNullable}`
+  }
+}
+
 const types = `
 import { AxiosError } from "axios"
 
@@ -132,16 +174,11 @@ ${schemaJson
         return $1.toUpperCase().replace("_", "")
       }) + postfix
 
+    const { schema } = op.responses["200"].content["application/json"]
+
     return `
-    export type ${name}Response = I${name}[]
-    export interface I${name} {
-      abs_slot: number
-      block_no: number
-      block_time: number
-      epoch_no: number
-      epoch_slot: number
-      hash: string
-    }
+      export type ${name}Response = I${name}[]
+      export interface I${name}${buildInterface(schema.items)}
     `
   })
   .join("\n")}
