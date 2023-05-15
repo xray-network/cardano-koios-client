@@ -3076,7 +3076,33 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/address_txs"
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "tx_hash": {
+                    "type": "string",
+                    "description": "Hash identifier of the transaction",
+                    "example": "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
+                  },
+                  "epoch_no": {
+                    "type": "integer",
+                    "description": "Epoch number of the block",
+                    "example": 321
+                  },
+                  "block_height": {
+                    "type": "integer",
+                    "description": "Block height",
+                    "nullable": true,
+                    "example": 42325043
+                  },
+                  "block_time": {
+                    "type": "integer",
+                    "description": "UNIX timestamp of the block",
+                    "example": 1506635091
+                  }
+                }
+              }
             }
           }
         }
