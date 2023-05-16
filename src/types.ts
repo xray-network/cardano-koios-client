@@ -1,12 +1,5 @@
 import { AxiosError } from "axios"
 
-export interface IError {
-  type: "error" | "no-response" | "bad-request"
-  message: string
-  name: string
-  error: AxiosError
-}
-
 /**
  * Query Chain Tip
  * Get the tip info about the latest block seen by chain

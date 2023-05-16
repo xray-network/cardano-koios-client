@@ -6,6 +6,8 @@
     "dist"
   ],
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "build": "tsc --build",
     "prepare": "curl \"https://api.koios.rest/koiosapi.yaml\" > codegen/koiosapi.yaml && node codegen/_prepare.js",

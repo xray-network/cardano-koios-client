@@ -14,14 +14,9 @@ export default class KoiosTinyClient {
           success: response,
         }
       },
-      (error: AxiosError): { error: KoiosTypes.IError } => {
+      (error: AxiosError): { error: AxiosError } => {
         return {
-          error: {
-            type: error?.response ? "error" : error?.request ? "no-response" : "bad-request",
-            message: error.message,
-            name: error.name,
-            error,
-          },
+          error,
         }
       }
     )

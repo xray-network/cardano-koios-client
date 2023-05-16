@@ -1,6 +1,6 @@
-const fs = require("fs")
-const prettier = require("prettier")
-const schemaJson = require("./koiosapi.json")
+import fs from "fs"
+import prettier from "prettier"
+import schemaJson from "./koiosapi.json" assert { type: "json" }
 
 const prettierOptions = {
   parser: "typescript",
@@ -38,7 +38,7 @@ const transformRequestBodyTypes = (obj) => {
  */
 
 const methods = `
-import { Axios, AxiosResponse, GenericAbortSignal } from "axios"
+import { Axios, AxiosResponse, AxiosError, GenericAbortSignal } from "axios"
 import * as KoiosTypes from "./types"
 
 export default (client: Axios) => {
@@ -126,7 +126,7 @@ export default (client: Axios) => {
           extraParams?: string,
           headers?: object,
           signal?: GenericAbortSignal,
-        ): Promise<{ success: AxiosResponse<KoiosTypes.${name}Response>; error: KoiosTypes.IError }> => {
+        ): Promise<{ success: AxiosResponse<KoiosTypes.${name}Response>; error: AxiosError }> => {
           return client.${method}(
             \`${path}?${getQueryString}\${extraParams ? extraParams : ""}\`, ${getPostParams}
             { signal, headers },
@@ -187,13 +187,6 @@ const buildInterface = (schema, prop, parentType) => {
 
 const types = `
 import { AxiosError } from "axios"
-
-export interface IError {
-  type: "error" | "no-response" | "bad-request"
-  message: string
-  name: string
-  error: AxiosError
-}
 
 ${schemaJson
   .map((op) => {

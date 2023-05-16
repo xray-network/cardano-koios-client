@@ -1,7 +1,8 @@
-const fs = require("fs")
-const YAML = require("yaml")
-const { dereferenceSync } = require("dereference-json-schema")
+import fs from "fs"
+import YAML from "yaml"
+import $RefParser from "dereference-json-schema"
 
+const { dereferenceSync } = $RefParser
 const schemaPaths = dereferenceSync(YAML.parse(fs.readFileSync("codegen/koiosapi.yaml", "utf8"))).paths
 
 delete schemaPaths["/submittx"] // removing the submit tx method because it is not represented in koios-lite by default
