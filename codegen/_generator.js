@@ -111,7 +111,7 @@ export default (client: Axios) => {
             .map((i) => {
               const [key, value] = i.split(":")
               const isReqired = key.includes("?")
-              return `* @param params.${key.replaceAll("?", "")} ${value} ${isReqired ? "optional" : ""}`
+              return `* @param params.${key.replaceAll(" ", "").replaceAll("?", "")} ${value.replaceAll(" ", "")} ${isReqired ? "optional" : ""}`
             })
             .join("\n")}
         * @param extraParams string (optional) Filtering/Sorting string, see https://api.koios.rest/#overview--api-usage
