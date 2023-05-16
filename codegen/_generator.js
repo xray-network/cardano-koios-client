@@ -56,8 +56,8 @@ export default (client: Axios) => {
       const postProperties = op.requestBody?.content["application/json"].schema.properties || {}
       const postRequired = op.requestBody?.content["application/json"].schema.required || []
 
-      const getParamsWithTypes = () => {
-        let notRequired = true
+      let notRequired = true
+      const getParamsWithTypesRaw = (() => {
         const _get = getParameters
           .map((param) => {
             const isRequired = param.required
@@ -76,18 +76,21 @@ export default (client: Axios) => {
             return `${prop}${!isRequired ? "?" : ""}: ${transformRequestBodyTypes(postProperties[prop])}`
           })
           .join(",\n")
-        const _paramsWithTypes = _get || _post
-        return _paramsWithTypes ? `params${notRequired ? "?" : ""}: { ${_paramsWithTypes} },` : ""
-      }
+        return _get || _post
+      })()
 
-      const getPostParams = () => {
+      const getParamsWithTypes = getParamsWithTypesRaw
+        ? `params${notRequired ? "?" : ""}: { ${getParamsWithTypesRaw} },`
+        : ""
+
+      const getPostParams = (() => {
         const _postParams = Object.keys(postProperties)
           .map((prop) => `${prop}: params.${prop}`)
           .join(",\n")
         return _postParams ? `{ ${_postParams}, },` : ""
-      }
+      })()
 
-      const getQueryString = () => {
+      const getQueryString = (() => {
         return (
           getParameters
             .map(
@@ -96,21 +99,40 @@ export default (client: Axios) => {
             )
             .join("") || ""
         )
-      }
+      })()
+
+      const printDescription = `
+        \n/**
+          ${op.description ? `* ${op.description}` : ""}
+          ${getParamsWithTypesRaw
+            .replaceAll("\n", "")
+            .split(",")
+            .filter((i) => i)
+            .map((i) => {
+              const [key, value] = i.split(":")
+              const isReqired = key.includes("?")
+              return `* @param params.${key.replaceAll("?", "")} ${value} ${isReqired ? "optional" : ""}`
+            })
+            .join("\n")}
+        * @param extraParams string (optional) Filtering/Sorting string, see https://api.koios.rest/#overview--api-usage
+        * @param headers? object (optional) Adding extra headers, see https://axios-http.com/docs/req_config
+        * @param signal? GenericAbortSignal (optional) The abort event of the AbortSignal, see https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal/abort_event
+        */`
 
       return `
+        ${printDescription}
         ${name}: (
-          ${getParamsWithTypes()}
+          ${getParamsWithTypes}
           extraParams?: string,
           headers?: object,
           signal?: GenericAbortSignal,
         ): Promise<{ success: AxiosResponse<KoiosTypes.${name}Response>; error: KoiosTypes.IError }> => {
           return client.${method}(
-            \`${path}?${getQueryString()}\${extraParams ? extraParams : ""}\`, ${getPostParams()}
+            \`${path}?${getQueryString}\${extraParams ? extraParams : ""}\`, ${getPostParams}
             { signal, headers },
           )
         }
-      `
+      \n`
     })}
   }
 }
@@ -134,24 +156,32 @@ const buildInterface = (schema, prop, parentType) => {
 
   const printNullable = schema.nullable ? " | null" : ""
   const printProp = prop ? `${prop}: ` : ""
+  const printDescription = schema.description
+    ? schema.example
+      ? `\n/** \n* ${schema.description} \n* @example \n* ${JSON.stringify(schema.example, null, 2).replaceAll(
+          "\n",
+          "\n* "
+        )} \n*/`
+      : `\n/** ${schema.description} */`
+    : ""
 
   switch (type) {
     case "[]":
-      return `\n${printProp}${buildInterface(schema.items)}[]`
+      return `${printDescription}\n${printProp} ${buildInterface(schema.items)}[]`
     case "{}":
-      return `\n${printProp}{\n${Object.keys(schema.properties || {})
+      return `${printDescription}\n${printProp} {\n${Object.keys(schema.properties || {})
         .map((prop) => buildInterface(schema.properties[prop], prop))
         .join("")}}${printNullable}`
     case "allOf":
-      return `\n${printProp} (${schema.allOf.map((i) => buildInterface(i))})${printNullable}`
+      return `${printDescription}\n${printProp} (${schema.allOf.map((i) => buildInterface(i))})${printNullable}`
     case "oneOf":
-      return `\n${printProp} ${schema.additionalProperties.oneOf
+      return `${printDescription}\n${printProp} ${schema.additionalProperties.oneOf
         .map((i) => mapTypes(i.type))
         .join(" | ")}${printNullable}`
     case "enum":
-      return `\n${printProp} ${schema.enum.map((i) => `"${i}"`).join(" | ")}${printNullable}`
+      return `${printDescription}\n${printProp} ${schema.enum.map((i) => `"${i}"`).join(" | ")}${printNullable}`
     default:
-      return `\n${printProp} ${type}${printNullable}`
+      return `${printDescription}\n${printProp} ${type}${printNullable}`
   }
 }
 
@@ -177,6 +207,10 @@ ${schemaJson
     const { schema } = op.responses["200"].content["application/json"]
 
     return `
+     /**
+      ${op.summary ? `* ${op.summary}` : ""}
+      ${op.description ? `* ${op.description}` : ""}
+      */
       export type ${name}Response = I${name}[]
       export interface I${name}${buildInterface(schema.items)}
     `
