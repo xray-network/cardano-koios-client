@@ -1,6 +1,6 @@
 # Koios Tiny TypeScript Client
 
-Automatically generated Axios-based client for [Koios](https://koios.rest) Cardano RESTful API based on [koiosapi.yaml](https://api.koios.rest/koiosapi.yaml) schema. Works great with [raygraph-output](https://github.com/ray-network/raygraph-output) (a dockered Koios-based solution extended by Postgraphile) and the original Koios. Visit [RayGraph.io](https://raygraph.io) for more information.
+Automatically generated Axios-based client for [Koios](https://koios.rest) Cardano RESTful API based on [koiosapi.yaml](https://api.koios.rest/koiosapi.yaml) schema. Works great with [raygraph-output](https://github.com/ray-network/raygraph-output) (a dockered Koios-based & DB Sync Cardano API solution extended by Postgraphile) and the original Koios. Visit [RayGraph.io](https://raygraph.io) for more information.
 
 ## Installation
 
@@ -37,6 +37,32 @@ const app = async () => {
 }
 
 app();
+```
+
+## API URLs
+Managed by Cardano Community (Koios Elastic Query Layer / HAproxy Balancer)
+```
+https://api.koios.rest/api/v0
+```
+```
+https://preprod.koios.rest/api/v0
+```
+```
+https://preview.koios.rest/api/v0
+```
+```
+https://guild.koios.rest/api/v0
+```
+
+Managed by Ray Network (RayGraph-Output Cluster / Cloudflare FAW & Load Balancer)
+```
+https://mainnet.blockchain.raygraph.io/rpc
+```
+```
+https://preprod.blockchain.raygraph.io/rpc
+```
+```
+https://preview.blockchain.raygraph.io/rpc
 ```
 
 ## Advanced
