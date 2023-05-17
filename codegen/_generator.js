@@ -1,6 +1,8 @@
 import fs from "fs"
 import prettier from "prettier"
 import schemaJson from "./koiosapi.json" assert { type: "json" }
+import schemaJsonRaw from "./koiosapiraw.json" assert { type: "json" }
+import packageJson from "../package.json" assert { type: "json" }
 
 const prettierOptions = {
   parser: "typescript",
@@ -32,6 +34,15 @@ const transformRequestBodyTypes = (obj) => {
     return mapTypes(obj.type)
   }
 }
+
+/*********************************************
+ * Replace Version
+ */
+
+fs.writeFileSync("package.json", prettier.format(JSON.stringify({
+  ...packageJson,
+  version: schemaJsonRaw.info.version
+}, null, 2), { ...prettierOptions, parser: "json"}))
 
 /*********************************************
  * Build Methods
@@ -111,7 +122,9 @@ export default (client: Axios) => {
             .map((i) => {
               const [key, value] = i.split(":")
               const isReqired = key.includes("?")
-              return `* @param params.${key.replaceAll(" ", "").replaceAll("?", "")} ${value.replaceAll(" ", "")} ${isReqired ? "optional" : ""}`
+              return `* @param params.${key.replaceAll(" ", "").replaceAll("?", "")} ${value.replaceAll(" ", "")} ${
+                isReqired ? "optional" : ""
+              }`
             })
             .join("\n")}
         * @param extraParams string (optional) Filtering/Sorting string, see https://api.koios.rest/#overview--api-usage
@@ -212,3 +225,50 @@ ${schemaJson
 `
 
 fs.writeFileSync("src/types.ts", prettier.format(types, prettierOptions))
+
+/*********************************************
+ * Build Docs
+ */
+
+const docs = `
+<table>
+  <thead>
+    <tr>
+      <th align="left">Name</th>
+      <th align="left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+  ${schemaJson
+    .map((op) => {
+      const { path, method } = op
+      const postfix = (path === "/asset_info" && method === "post" && "Bulk") || "" // exception for /asset_info POST method
+      const name =
+        path.replace(/\//g, "").replace(/(?:_| |\b)(\w)/g, function ($1) {
+          return $1.toUpperCase().replace("_", "")
+        }) + postfix
+
+      return `    <tr>
+      <td>
+        ${name}()
+      </td>
+      <td>
+        ${op.summary ? `${op.summary}<br />` : ""}
+        ${op.description}
+      </td>
+    </tr>`
+    })
+    .join("\n")
+  }
+  </tbody>
+</table>
+`
+
+const readme = fs.readFileSync("README.md", "utf8")
+fs.writeFileSync(
+  "README.md",
+  prettier.format(readme.replace(/(<!-- START -->)[\w\W]*?(<!-- END -->)/g, `$1 ${docs} $2`), {
+    ...prettierOptions,
+    parser: "markdown",
+  })
+)
