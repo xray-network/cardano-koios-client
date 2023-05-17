@@ -39,41 +39,7 @@ const app = async () => {
 app();
 ```
 
-## API URLs
-
-Managed by Cardano Community (Koios Elastic Query Layer / HAproxy Balancer)
-
-```
-https://api.koios.rest/api/v0
-```
-
-```
-https://preprod.koios.rest/api/v0
-```
-
-```
-https://preview.koios.rest/api/v0
-```
-
-```
-https://guild.koios.rest/api/v0
-```
-
-Managed by Ray Network (RayGraph-Output Cluster / Cloudflare FAW & Load Balancer)
-
-```
-https://mainnet.blockchain.raygraph.io/rpc
-```
-
-```
-https://preprod.blockchain.raygraph.io/rpc
-```
-
-```
-https://preview.blockchain.raygraph.io/rpc
-```
-
-## Advanced
+## Advanced Usage
 
 <details>
 <summary>Filtering / Ordering</summary>
@@ -189,6 +155,40 @@ const someVar2: KoiosTypes.IAssetTokenRegistry = wrongItem // type error
 ```
 
 </details>
+
+## API URLs
+
+Managed by Cardano Community (Koios Elastic Query Layer / HAproxy Balancer)
+
+```
+https://api.koios.rest/api/v0
+```
+
+```
+https://preprod.koios.rest/api/v0
+```
+
+```
+https://preview.koios.rest/api/v0
+```
+
+```
+https://guild.koios.rest/api/v0
+```
+
+Managed by Ray Network (RayGraph-Output Cluster / Cloudflare FAW & Load Balancer)
+
+```
+https://mainnet.blockchain.raygraph.io/rpc
+```
+
+```
+https://preprod.blockchain.raygraph.io/rpc
+```
+
+```
+https://preview.blockchain.raygraph.io/rpc
+```
 
 ## Methods
 
