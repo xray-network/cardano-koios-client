@@ -39,10 +39,20 @@ const transformRequestBodyTypes = (obj) => {
  * Replace Version
  */
 
-fs.writeFileSync("package.json", prettier.format(JSON.stringify({
-  ...packageJson,
-  version: schemaJsonRaw.info.version
-}, null, 2), { ...prettierOptions, parser: "json"}))
+fs.writeFileSync(
+  "package.json",
+  prettier.format(
+    JSON.stringify(
+      {
+        ...packageJson,
+        version: schemaJsonRaw.info.version,
+      },
+      null,
+      2
+    ),
+    { ...prettierOptions, parser: "json" }
+  )
+)
 
 /*********************************************
  * Build Methods
@@ -62,6 +72,30 @@ export default (client: Axios) => {
         path.replace(/\//g, "").replace(/(?:_| |\b)(\w)/g, function ($1) {
           return $1.toUpperCase().replace("_", "")
         }) + postfix
+
+      if (path === "/submittx") {
+        return `
+          /**
+           * Submit an already serialized transaction to the network.
+           * @param params._tx string Raw binary serialized transaction
+           * @param headers? object (optional) Adding extra headers, see https://axios-http.com/docs/req_config
+           * @param signal? GenericAbortSignal (optional) The abort event of the AbortSignal, see https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal/abort_event
+           */
+          ${name}: (
+            params: { _tx: string },
+            headers?: object,
+            signal?: GenericAbortSignal,
+          ): Promise<{ success: AxiosResponse<KoiosTypes.${name}Response>; error: AxiosError }> => {
+            return client.${method}(
+              \`${path}\`, params._tx,
+              { signal, headers: {
+                "Content-Type": "application/cbor",
+                ...headers,
+              } },
+            )
+          }
+        \n`
+      }
 
       const getParameters = op.parameters || []
       const postProperties = op.requestBody?.content["application/json"].schema.properties || {}
@@ -210,7 +244,18 @@ ${schemaJson
         return $1.toUpperCase().replace("_", "")
       }) + postfix
 
-    const { schema } = op.responses["200"].content["application/json"]
+    const { schema } =
+      op.responses["200"]?.content?.["application/json"] || op.responses["202"]?.content?.["application/json"] || {}
+
+    if (path === "/submittx") {
+      return `
+      /**
+       ${op.summary ? `* ${op.summary}` : ""}
+       ${op.description ? `* ${op.description}` : ""}
+       */
+       export type ${name}Response = ${schema?.type}
+     `
+    }
 
     return `
      /**
@@ -218,7 +263,7 @@ ${schemaJson
       ${op.description ? `* ${op.description}` : ""}
       */
       export type ${name}Response = I${name}[]
-      export interface I${name}${buildInterface(schema.items)}
+      export interface I${name}${buildInterface(schema?.items)}
     `
   })
   .join("\n")}
@@ -258,8 +303,7 @@ const docs = `
       </td>
     </tr>`
     })
-    .join("\n")
-  }
+    .join("\n")}
   </tbody>
 </table>
 `

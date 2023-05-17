@@ -3,10 +3,9 @@ import YAML from "yaml"
 import $RefParser from "dereference-json-schema"
 
 const { dereferenceSync } = $RefParser
-const schemaRaw  = dereferenceSync(YAML.parse(fs.readFileSync("codegen/koiosapi.yaml", "utf8")))
+const schemaRaw = dereferenceSync(YAML.parse(fs.readFileSync("codegen/koiosapi.yaml", "utf8")))
 const schemaPaths = schemaRaw.paths
 
-delete schemaPaths["/submittx"] // removing the submit tx method because it is not represented in koios-lite by default
 schemaPaths["/credential_txs"].post.responses["200"].content["application/json"].schema =
   schemaPaths["/address_txs"].post.responses["200"].content["application/json"].schema // weird hack to fix $ref top-level non-assigment problem on /credential_txs path, need to write own parser?
 

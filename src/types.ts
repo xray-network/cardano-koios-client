@@ -1776,6 +1776,12 @@ export interface ITxMetalabels {
 }
 
 /**
+ * Submit Transaction
+ * Submit an already serialized transaction to the network.
+ */
+export type SubmittxResponse = string
+
+/**
  * Transaction Status (Block Confirmations)
  * Get the number of block confirmations for a given transaction hash list
  */

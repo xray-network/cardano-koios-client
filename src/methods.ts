@@ -260,6 +260,26 @@ export default (client: Axios) => {
     },
 
     /**
+     * Submit an already serialized transaction to the network.
+     * @param params._tx string Raw binary serialized transaction
+     * @param headers? object (optional) Adding extra headers, see https://axios-http.com/docs/req_config
+     * @param signal? GenericAbortSignal (optional) The abort event of the AbortSignal, see https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal/abort_event
+     */
+    Submittx: (
+      params: { _tx: string },
+      headers?: object,
+      signal?: GenericAbortSignal
+    ): Promise<{ success: AxiosResponse<KoiosTypes.SubmittxResponse>; error: AxiosError }> => {
+      return client.post(`/submittx`, params._tx, {
+        signal,
+        headers: {
+          "Content-Type": "application/cbor",
+          ...headers,
+        },
+      })
+    },
+
+    /**
      * Get the number of block confirmations for a given transaction hash list
      * @param params._tx_hashes string[]
      * @param extraParams string (optional) Filtering/Sorting string, see https://api.koios.rest/#overview--api-usage

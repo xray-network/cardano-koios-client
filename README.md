@@ -331,6 +331,15 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
     </tr>
     <tr>
       <td>
+        Submittx()
+      </td>
+      <td>
+        Submit Transaction<br />
+        Submit an already serialized transaction to the network.
+      </td>
+    </tr>
+    <tr>
+      <td>
         TxStatus()
       </td>
       <td>
