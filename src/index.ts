@@ -1,5 +1,4 @@
 import axios, { Axios, AxiosError, AxiosResponse, GenericAbortSignal } from "axios"
-import * as KoiosTypes from "./types"
 import methods from "./methods"
 
 export default class KoiosTinyClient {
@@ -23,3 +22,5 @@ export default class KoiosTinyClient {
     this.methods = methods(this.client)
   }
 }
+
+export type * as KoiosTypes from "./types"
