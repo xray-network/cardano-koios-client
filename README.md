@@ -96,7 +96,7 @@ console.log(Blocks)
   
 // advanced pagination
 const headers = { Prefer: "count=estimated" } // get the exact "content-range" header in the request
-const PoolListFirst5Items = await KoiosClient.PoolList("&limit=5", headers)
+const PoolListFirst5Items = await KoiosClient.PoolList(undefined, headers)
 if (PoolListFirst5Items.success) {
   const contentRange = PoolListFirst5Items.success.headers?.["content-range"] || ""
   const [currentPosition, totalItems] = contentRange.split('/')
