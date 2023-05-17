@@ -68,21 +68,42 @@ https://preview.blockchain.raygraph.io/rpc
 ## Advanced
 
 <details>
-<summary>Filtering / Sorting</summary>
-
+<summary>Filtering / Ordering</summary>
+  
 Read https://api.koios.rest/#overview--api-usage for more information
 ``` TypeScript
-  Hello
+const { methods: KoiosClient } = new KoiosTinyClient("https://api.koios.rest/api/v0")
+  
+const Blocks = await KoiosClient.Blocks("&pool=eq.pool155efqn9xpcf73pphkk88cmlkdwx4ulkg606tne970qswczg3asc&order=block_height.asc")
+console.log(Blocks)
+  
+const PoolsList = await KoiosClient.PoolList("&ticker=like.*RAY*")
+console.log(PoolsList)
 ```
 
 </details>
 
 <details>
 Read https://api.koios.rest/#overview--pagination-offsetlimit for more information
-<summary>Pagination</summary>
+<summary>Offset / Limit / Pagination</summary>
 
 ``` TypeScript
-  Hello
+const { methods: KoiosClient } = new KoiosTinyClient("https://api.koios.rest/api/v0")
+  
+// simple offset limit
+const Blocks = await KoiosClient.Blocks("&offset=10&limit=5")
+console.log(Blocks)
+  
+// advanced pagination
+const headers = { Prefer: "count=estimated" } // get the exact "content-range" header in the request
+const PoolListFirst5Items = await KoiosClient.PoolList("&limit=5", headers)
+if (PoolListFirst5Items.success) {
+  const contentRange = PoolListFirst5Items.success.headers?.["content-range"] || ""
+  const [currentPosition, totalItems] = contentRange.split('/')
+  const queryRange = `${Number(totalItems) - 5}-${Number(totalItems)}`
+  const PoolListLast5Items = await KoiosClient.PoolList(undefined, { ...headers, Range: queryRange})
+  console.log(PoolListLast5Items)
+} 
 ```
 
 </details>
@@ -91,7 +112,26 @@ Read https://api.koios.rest/#overview--pagination-offsetlimit for more informati
 <summary>Custom Axios Interceptors</summary>
 
 ``` TypeScript
-  Hello
+const { client, methods: KoiosClient } = new KoiosTinyClient("https://api.koios.rest/api/v0")
+  
+// your response interceptor, used as default shown in the example below
+client.interceptors.response.use(
+  (response: AxiosResponse): any => {
+    return {
+      success: response,
+    }
+  },
+  (error: AxiosError): { error: AxiosError } => {
+    return {
+      error,
+    }
+  }
+)
+  
+// your request interceptor  
+client.interceptors.request.use(
+  // ...  
+)
 ```
 
 </details>
@@ -100,7 +140,14 @@ Read https://api.koios.rest/#overview--pagination-offsetlimit for more informati
 <summary>Request Cancellation</summary>
 
 ``` TypeScript
-  Hello
+const { methods: KoiosClient } = new KoiosTinyClient("https://api.koios.rest/api/v0")
+  
+const abortController = new AbortController()
+setTimeout(() => {
+  abortController.abort() // cancel request
+  console.log('Aborted!')
+}, 200)
+const PoolListFirst5Items = await KoiosClient.PoolList(undefined, undefined, abortController.signal)
 ```
 
 </details>
@@ -109,7 +156,28 @@ Read https://api.koios.rest/#overview--pagination-offsetlimit for more informati
 <summary>Accessing Types</summary>
 
 ``` TypeScript
-  Hello
+import KoiosTinyClient, { KoiosTypes } from "koios-tiny-client"
+  
+const correctItem = {
+  policy_id: "somePolidyId",
+  asset_name: "someAssetNameOrNull",
+  asset_name_ascii: "someAsciiName",
+  ticker: "someTicker",
+  description: "someDescription",
+  url: "someUrl",
+  decimals: 6,
+  logo: "someBase64PngString"
+}
+
+const wrongItem = {
+  policy_id: "somePolidyId",
+}
+
+const response: KoiosTypes.AssetTokenRegistryResponse = [correctItem] // no type error
+const someVar: KoiosTypes.IAssetTokenRegistry = correctItem // no type error
+
+const response2: KoiosTypes.AssetTokenRegistryResponse = [wrongItem] // type error
+const someVar2: KoiosTypes.IAssetTokenRegistry = wrongItem // type error
 ```
 
 </details>
