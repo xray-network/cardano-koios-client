@@ -1,3 +1,13 @@
+<a href="https://github.com/ray-network/koios-tiny-client/releases">
+  <img src="https://img.shields.io/github/package-json/v/ray-network/koios-tiny-client?style=for-the-badge"
+</a>
+<a href="https://github.com/ray-network/koios-tiny-client/actions">
+  <img src="https://img.shields.io/github/actions/workflow/status/ray-network/koios-tiny-client/codeql.yml?label=CodeQL&style=for-the-badge"
+</a>
+<a href="https://discord.gg/dDVXcthYWn">
+  <img src="https://img.shields.io/discord/852538978946383893?label=Discord&style=for-the-badge"
+</a>
+  
 # Koios Tiny TypeScript Client
 
 Automatically generated Axios-based client for [Koios](https://koios.rest) Cardano RESTful API based on [koiosapi.yaml](https://api.koios.rest/koiosapi.yaml) schema. Works great with [raygraph-output](https://github.com/ray-network/raygraph-output) (a dockered Koios-based & DB Sync Cardano API solution extended by Postgraphile) and the original Koios. Visit [RayGraph.io](https://raygraph.io) for more information.
