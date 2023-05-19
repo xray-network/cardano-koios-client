@@ -1,5 +1,5 @@
-<a href="https://github.com/ray-network/koios-tiny-client/releases">
-  <img src="https://img.shields.io/github/package-json/v/ray-network/koios-tiny-client?style=for-the-badge"
+<a href="https://www.npmjs.com/package/koios-tiny-client">
+  <img src="https://img.shields.io/npm/v/koios-tiny-client/latest?style=for-the-badge"
 </a>
 <a href="https://github.com/ray-network/koios-tiny-client/actions">
   <img src="https://img.shields.io/github/actions/workflow/status/ray-network/koios-tiny-client/codeql.yml?label=CodeQL&style=for-the-badge"
