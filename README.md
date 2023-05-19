@@ -46,12 +46,12 @@ app();
   
 Read https://api.koios.rest/#overview--api-usage for more information
 ``` TypeScript
-const { methods: KoiosClient } = new KoiosTinyClient("https://api.koios.rest/api/v0")
+const { methods: Koios } = new KoiosTinyClient("https://api.koios.rest/api/v0")
   
-const Blocks = await KoiosClient.Blocks("&pool=eq.pool155efqn9xpcf73pphkk88cmlkdwx4ulkg606tne970qswczg3asc&order=block_height.asc")
+const Blocks = await Koios.Blocks("&pool=eq.pool155efqn9xpcf73pphkk88cmlkdwx4ulkg606tne970qswczg3asc&order=block_height.asc")
 console.log(Blocks)
   
-const PoolsList = await KoiosClient.PoolList("&ticker=like.*RAY*")
+const PoolsList = await Koios.PoolList("&ticker=like.*RAY*")
 console.log(PoolsList)
 ```
 
@@ -62,20 +62,20 @@ Read https://api.koios.rest/#overview--pagination-offsetlimit for more informati
 <summary>Offset / Limit / Pagination</summary>
 
 ```TypeScript
-const { methods: KoiosClient } = new KoiosTinyClient("https://api.koios.rest/api/v0")
+const { methods: Koios } = new KoiosTinyClient("https://api.koios.rest/api/v0")
 
 // simple offset limit
-const Blocks = await KoiosClient.Blocks("&offset=10&limit=5")
+const Blocks = await Koios.Blocks("&offset=10&limit=5")
 console.log(Blocks)
 
 // advanced pagination
 const headers = { Prefer: "count=estimated" } // get the exact "content-range" header in the request
-const PoolListFirst5Items = await KoiosClient.PoolList(undefined, headers)
+const PoolListFirst5Items = await Koios.PoolList("&limit=5", headers)
 if (PoolListFirst5Items.success) {
   const contentRange = PoolListFirst5Items.success.headers?.["content-range"] || ""
   const [currentPosition, totalItems] = contentRange.split('/')
   const queryRange = `${Number(totalItems) - 5}-${Number(totalItems)}`
-  const PoolListLast5Items = await KoiosClient.PoolList(undefined, { ...headers, Range: queryRange})
+  const PoolListLast5Items = await Koios.PoolList(undefined, { ...headers, Range: queryRange})
   console.log(PoolListLast5Items)
 }
 ```
@@ -86,7 +86,7 @@ if (PoolListFirst5Items.success) {
 <summary>Custom Axios Interceptors</summary>
 
 ```TypeScript
-const { client, methods: KoiosClient } = new KoiosTinyClient("https://api.koios.rest/api/v0")
+const { client, methods: Koios } = new KoiosTinyClient("https://api.koios.rest/api/v0")
 
 // your response interceptor, used as default shown in the example below
 client.interceptors.response.use(
@@ -114,14 +114,14 @@ client.interceptors.request.use(
 <summary>Request Cancellation</summary>
 
 ```TypeScript
-const { methods: KoiosClient } = new KoiosTinyClient("https://api.koios.rest/api/v0")
+const { methods: Koios } = new KoiosTinyClient("https://api.koios.rest/api/v0")
 
 const abortController = new AbortController()
 setTimeout(() => {
   abortController.abort() // cancel request
   console.log('Aborted!')
 }, 200)
-const PoolListFirst5Items = await KoiosClient.PoolList(undefined, undefined, abortController.signal)
+const PoolList = await Koios.PoolList(undefined, undefined, abortController.signal)
 ```
 
 </details>
@@ -132,7 +132,8 @@ const PoolListFirst5Items = await KoiosClient.PoolList(undefined, undefined, abo
 ```TypeScript
 import KoiosTinyClient, { KoiosTypes } from "koios-tiny-client"
 
-const correctItem = {
+// no error
+const correctItem: KoiosTypes.IAssetTokenRegistry = {
   policy_id: "somePolidyId",
   asset_name: "someAssetNameOrNull",
   asset_name_ascii: "someAsciiName",
@@ -143,15 +144,10 @@ const correctItem = {
   logo: "someBase64PngString"
 }
 
-const wrongItem = {
+// error
+const wrongItem: KoiosTypes.IAssetTokenRegistry = {
   policy_id: "somePolidyId",
 }
-
-const response: KoiosTypes.AssetTokenRegistryResponse = [correctItem] // no type error
-const someVar: KoiosTypes.IAssetTokenRegistry = correctItem // no type error
-
-const response2: KoiosTypes.AssetTokenRegistryResponse = [wrongItem] // type error
-const someVar2: KoiosTypes.IAssetTokenRegistry = wrongItem // type error
 ```
 
 </details>
