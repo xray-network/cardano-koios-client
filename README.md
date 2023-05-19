@@ -4,7 +4,7 @@
 <a href="https://github.com/ray-network/koios-tiny-client/actions">
   <img src="https://img.shields.io/github/actions/workflow/status/ray-network/koios-tiny-client/codeql.yml?label=CodeQL&style=for-the-badge"
 </a>
-<a href="https://discord.gg/dDVXcthYWn">
+<a href="https://discord.gg/WhZmm46APN">
   <img src="https://img.shields.io/discord/852538978946383893?label=Discord&style=for-the-badge"
 </a>
   
@@ -46,7 +46,7 @@ const app = async () => {
   }
 }
 
-app();
+app()
 ```
 
 ## Advanced Usage
