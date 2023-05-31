@@ -2,7 +2,7 @@
   "name": "koios-tiny-client",
   "version": "1.1010.0",
   "description": "TypeScript client fot KOIOS Elastic Cardano Query Layer",
-  "author": "Ray Robot <hello@raynetwork.io>",
+  "author": "Ray Network <hello@raynetwork.io>",
   "homepage": "https://raygraph.io",
   "license": "MIT",
   "repository": {
@@ -12,16 +12,12 @@
   "files": ["dist"],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "type": "module",
   "scripts": {
     "build": "tsc --build",
-    "prepare": "curl \"https://api.koios.rest/koiosapi.yaml\" > codegen/koiosapi.yaml && node codegen/_prepare.js",
-    "codegen": "node codegen/_generator.js",
-    "format": "prettier --write \"{codegen,src}/**/*.{js,jsx,ts,tsx,json,md,scss,css}\"",
+    "codegen": "curl \"https://api.koios.rest/koiosapi.yaml\" > codegen/koiosapi.yaml && node codegen/_prepare.mjs && node codegen/_generator.mjs",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md,scss,css}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Ray Network",
-  "license": "MIT",
   "devDependencies": {
     "dereference-json-schema": "^0.2.1",
     "prettier": "^2.8.8",

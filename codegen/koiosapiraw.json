@@ -25,7 +25,9 @@
   "paths": {
     "/tip": {
       "get": {
-        "tags": ["Network"],
+        "tags": [
+          "Network"
+        ],
         "responses": {
           "200": {
             "description": "Array of block summary (limit+paginated)",
@@ -88,7 +90,9 @@
     },
     "/genesis": {
       "get": {
-        "tags": ["Network"],
+        "tags": [
+          "Network"
+        ],
         "responses": {
           "200": {
             "description": "Array of genesis parameters used to start each era on chain",
@@ -180,7 +184,9 @@
     },
     "/totals": {
       "get": {
-        "tags": ["Network"],
+        "tags": [
+          "Network"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -256,7 +262,9 @@
     },
     "/param_updates": {
       "get": {
-        "tags": ["Network"],
+        "tags": [
+          "Network"
+        ],
         "responses": {
           "200": {
             "description": "Array of unique param update proposals submitted on chain",
@@ -316,7 +324,9 @@
     },
     "/epoch_info": {
       "get": {
-        "tags": ["Epoch"],
+        "tags": [
+          "Epoch"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -438,7 +448,9 @@
     },
     "/epoch_params": {
       "get": {
-        "tags": ["Epoch"],
+        "tags": [
+          "Epoch"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -680,7 +692,9 @@
     },
     "/epoch_block_protocols": {
       "get": {
-        "tags": ["Epoch"],
+        "tags": [
+          "Epoch"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -741,7 +755,9 @@
     },
     "/blocks": {
       "get": {
-        "tags": ["Block"],
+        "tags": [
+          "Block"
+        ],
         "responses": {
           "200": {
             "description": "Array of block information",
@@ -843,12 +859,16 @@
     },
     "/block_info": {
       "post": {
-        "tags": ["Block"],
+        "tags": [
+          "Block"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_block_hashes"],
+                "required": [
+                  "_block_hashes"
+                ],
                 "type": "object",
                 "properties": {
                   "_block_hashes": {
@@ -1005,12 +1025,16 @@
     },
     "/block_txs": {
       "post": {
-        "tags": ["Block"],
+        "tags": [
+          "Block"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_block_hashes"],
+                "required": [
+                  "_block_hashes"
+                ],
                 "type": "object",
                 "properties": {
                   "_block_hashes": {
@@ -1079,12 +1103,16 @@
     },
     "/tx_info": {
       "post": {
-        "tags": ["Transactions"],
+        "tags": [
+          "Transactions"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_tx_hashes"],
+                "required": [
+                  "_tx_hashes"
+                ],
                 "type": "object",
                 "properties": {
                   "_tx_hashes": {
@@ -1957,7 +1985,9 @@
                           "721": {
                             "version": 1,
                             "copyright": "...",
-                            "publisher": ["p...o"],
+                            "publisher": [
+                              "p...o"
+                            ],
                             "4bf184e01e0f163296ab253edd60774e2d34367d0e7b6cbc689b567d": {}
                           }
                         }
@@ -2066,7 +2096,12 @@
                                     "purpose": {
                                       "type": "string",
                                       "description": "What kind of validation this redeemer is used for",
-                                      "enum": ["spend", "mint", "cert", "reward"],
+                                      "enum": [
+                                        "spend",
+                                        "mint",
+                                        "cert",
+                                        "reward"
+                                      ],
                                       "example": "spend"
                                     },
                                     "fee": {
@@ -2174,12 +2209,16 @@
     },
     "/tx_utxos": {
       "post": {
-        "tags": ["Transactions"],
+        "tags": [
+          "Transactions"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_tx_hashes"],
+                "required": [
+                  "_tx_hashes"
+                ],
                 "type": "object",
                 "properties": {
                   "_tx_hashes": {
@@ -2340,12 +2379,16 @@
     },
     "/tx_metadata": {
       "post": {
-        "tags": ["Transactions"],
+        "tags": [
+          "Transactions"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_tx_hashes"],
+                "required": [
+                  "_tx_hashes"
+                ],
                 "type": "object",
                 "properties": {
                   "_tx_hashes": {
@@ -2390,7 +2433,9 @@
                           "721": {
                             "version": 1,
                             "copyright": "...",
-                            "publisher": ["p...o"],
+                            "publisher": [
+                              "p...o"
+                            ],
                             "4bf184e01e0f163296ab253edd60774e2d34367d0e7b6cbc689b567d": {}
                           }
                         }
@@ -2417,7 +2462,9 @@
     },
     "/tx_metalabels": {
       "get": {
-        "tags": ["Transactions"],
+        "tags": [
+          "Transactions"
+        ],
         "responses": {
           "200": {
             "description": "Array of known metadata labels",
@@ -2454,7 +2501,9 @@
     },
     "/submittx": {
       "post": {
-        "tags": ["Transactions"],
+        "tags": [
+          "Transactions"
+        ],
         "requestBody": {
           "content": {
             "application/cbor": {
@@ -2498,12 +2547,16 @@
     },
     "/tx_status": {
       "post": {
-        "tags": ["Transactions"],
+        "tags": [
+          "Transactions"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_tx_hashes"],
+                "required": [
+                  "_tx_hashes"
+                ],
                 "type": "object",
                 "properties": {
                   "_tx_hashes": {
@@ -2567,12 +2620,16 @@
     },
     "/address_info": {
       "post": {
-        "tags": ["Address"],
+        "tags": [
+          "Address"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_addresses"],
+                "required": [
+                  "_addresses"
+                ],
                 "type": "object",
                 "properties": {
                   "_addresses": {
@@ -2777,12 +2834,16 @@
     },
     "/address_txs": {
       "post": {
-        "tags": ["Address"],
+        "tags": [
+          "Address"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_addresses"],
+                "required": [
+                  "_addresses"
+                ],
                 "type": "object",
                 "properties": {
                   "_addresses": {
@@ -2863,12 +2924,16 @@
     },
     "/credential_utxos": {
       "post": {
-        "tags": ["Address"],
+        "tags": [
+          "Address"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_payment_credentials"],
+                "required": [
+                  "_payment_credentials"
+                ],
                 "type": "object",
                 "properties": {
                   "_payment_credentials": {
@@ -2937,12 +3002,16 @@
     },
     "/address_assets": {
       "post": {
-        "tags": ["Address"],
+        "tags": [
+          "Address"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_addresses"],
+                "required": [
+                  "_addresses"
+                ],
                 "type": "object",
                 "properties": {
                   "_addresses": {
@@ -3035,12 +3104,16 @@
     },
     "/credential_txs": {
       "post": {
-        "tags": ["Address"],
+        "tags": [
+          "Address"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_payment_credentials"],
+                "required": [
+                  "_payment_credentials"
+                ],
                 "type": "object",
                 "properties": {
                   "_payment_credentials": {
@@ -3121,7 +3194,9 @@
     },
     "/account_list": {
       "get": {
-        "tags": ["Stake Account"],
+        "tags": [
+          "Stake Account"
+        ],
         "responses": {
           "200": {
             "description": "Array of account (stake address) IDs",
@@ -3159,12 +3234,16 @@
     },
     "/account_info": {
       "post": {
-        "tags": ["Stake Account"],
+        "tags": [
+          "Stake Account"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_stake_addresses"],
+                "required": [
+                  "_stake_addresses"
+                ],
                 "type": "object",
                 "properties": {
                   "_stake_addresses": {
@@ -3204,7 +3283,10 @@
                       "status": {
                         "type": "string",
                         "description": "Stake address status",
-                        "enum": ["registered", "not registered"],
+                        "enum": [
+                          "registered",
+                          "not registered"
+                        ],
                         "example": "registered"
                       },
                       "delegated_pool": {
@@ -3270,7 +3352,9 @@
     },
     "/account_utxos": {
       "get": {
-        "tags": ["Stake Account"],
+        "tags": [
+          "Stake Account"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -3348,12 +3432,16 @@
     },
     "/account_info_cached": {
       "post": {
-        "tags": ["Stake Account"],
+        "tags": [
+          "Stake Account"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_stake_addresses"],
+                "required": [
+                  "_stake_addresses"
+                ],
                 "type": "object",
                 "properties": {
                   "_stake_addresses": {
@@ -3393,7 +3481,10 @@
                       "status": {
                         "type": "string",
                         "description": "Stake address status",
-                        "enum": ["registered", "not registered"],
+                        "enum": [
+                          "registered",
+                          "not registered"
+                        ],
                         "example": "registered"
                       },
                       "delegated_pool": {
@@ -3459,12 +3550,16 @@
     },
     "/account_rewards": {
       "post": {
-        "tags": ["Stake Account"],
+        "tags": [
+          "Stake Account"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_stake_addresses"],
+                "required": [
+                  "_stake_addresses"
+                ],
                 "type": "object",
                 "properties": {
                   "_stake_addresses": {
@@ -3529,7 +3624,12 @@
                             "type": {
                               "type": "string",
                               "description": "The source of the rewards",
-                              "enum": ["member", "leader", "treasury", "reserves"],
+                              "enum": [
+                                "member",
+                                "leader",
+                                "treasury",
+                                "reserves"
+                              ],
                               "example": "member"
                             },
                             "pool_id": {
@@ -3563,12 +3663,16 @@
     },
     "/account_updates": {
       "post": {
-        "tags": ["Stake Account"],
+        "tags": [
+          "Stake Account"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_stake_addresses"],
+                "required": [
+                  "_stake_addresses"
+                ],
                 "type": "object",
                 "properties": {
                   "_stake_addresses": {
@@ -3613,7 +3717,12 @@
                             "action_type": {
                               "type": "string",
                               "description": "Type of certificate submitted",
-                              "enum": ["registration", "delegation", "withdrawal", "deregistration"],
+                              "enum": [
+                                "registration",
+                                "delegation",
+                                "withdrawal",
+                                "deregistration"
+                              ],
                               "example": "registration"
                             },
                             "tx_hash": {
@@ -3666,12 +3775,16 @@
     },
     "/account_addresses": {
       "post": {
-        "tags": ["Stake Account"],
+        "tags": [
+          "Stake Account"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_stake_addresses"],
+                "required": [
+                  "_stake_addresses"
+                ],
                 "type": "object",
                 "properties": {
                   "_stake_addresses": {
@@ -3748,12 +3861,16 @@
     },
     "/account_assets": {
       "post": {
-        "tags": ["Stake Account"],
+        "tags": [
+          "Stake Account"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_stake_addresses"],
+                "required": [
+                  "_stake_addresses"
+                ],
                 "type": "object",
                 "properties": {
                   "_stake_addresses": {
@@ -3846,12 +3963,16 @@
     },
     "/account_history": {
       "post": {
-        "tags": ["Stake Account"],
+        "tags": [
+          "Stake Account"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_stake_addresses"],
+                "required": [
+                  "_stake_addresses"
+                ],
                 "type": "object",
                 "properties": {
                   "_stake_addresses": {
@@ -3938,7 +4059,9 @@
     },
     "/asset_list": {
       "get": {
-        "tags": ["Asset"],
+        "tags": [
+          "Asset"
+        ],
         "responses": {
           "200": {
             "description": "Array of policy IDs and asset names",
@@ -3988,7 +4111,9 @@
     },
     "/asset_token_registry": {
       "get": {
-        "tags": ["Asset"],
+        "tags": [
+          "Asset"
+        ],
         "responses": {
           "200": {
             "description": "Array of token registry information for each asset",
@@ -4059,7 +4184,9 @@
     },
     "/asset_addresses": {
       "get": {
-        "tags": ["Asset"],
+        "tags": [
+          "Asset"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -4128,7 +4255,9 @@
     },
     "/asset_address_list": {
       "get": {
-        "tags": ["Asset"],
+        "tags": [
+          "Asset"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -4197,7 +4326,9 @@
     },
     "/asset_nft_address": {
       "get": {
-        "tags": ["Asset"],
+        "tags": [
+          "Asset"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -4261,7 +4392,9 @@
     },
     "/asset_info": {
       "get": {
-        "tags": ["Asset"],
+        "tags": [
+          "Asset"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -4353,7 +4486,9 @@
                               "721": {
                                 "version": 1,
                                 "copyright": "...",
-                                "publisher": ["p...o"],
+                                "publisher": [
+                                  "p...o"
+                                ],
                                 "4bf184e01e0f163296ab253edd60774e2d34367d0e7b6cbc689b567d": {}
                               }
                             }
@@ -4413,12 +4548,16 @@
         "description": "Get the information of an asset including first minting & token registry metadata"
       },
       "post": {
-        "tags": ["Asset"],
+        "tags": [
+          "Asset"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_asset_list"],
+                "required": [
+                  "_asset_list"
+                ],
                 "type": "object",
                 "properties": {
                   "_asset_list": {
@@ -4435,8 +4574,14 @@
                 },
                 "example": {
                   "_asset_list": [
-                    ["750900e4999ebe0d58f19b634768ba25e525aaf12403bfe8fe130501", "424f4f4b"],
-                    ["1d7f33bd23d85e1a25d87d86fac4f199c3197a2f7afeb662a0f34e1e", "776f726c646d6f62696c65746f6b656e"]
+                    [
+                      "750900e4999ebe0d58f19b634768ba25e525aaf12403bfe8fe130501",
+                      "424f4f4b"
+                    ],
+                    [
+                      "1d7f33bd23d85e1a25d87d86fac4f199c3197a2f7afeb662a0f34e1e",
+                      "776f726c646d6f62696c65746f6b656e"
+                    ]
                   ]
                 }
               }
@@ -4508,7 +4653,9 @@
                               "721": {
                                 "version": 1,
                                 "copyright": "...",
-                                "publisher": ["p...o"],
+                                "publisher": [
+                                  "p...o"
+                                ],
                                 "4bf184e01e0f163296ab253edd60774e2d34367d0e7b6cbc689b567d": {}
                               }
                             }
@@ -4570,7 +4717,9 @@
     },
     "/asset_history": {
       "get": {
-        "tags": ["Asset"],
+        "tags": [
+          "Asset"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -4657,7 +4806,9 @@
                                       "721": {
                                         "version": 1,
                                         "copyright": "...",
-                                        "publisher": ["p...o"],
+                                        "publisher": [
+                                          "p...o"
+                                        ],
                                         "4bf184e01e0f163296ab253edd60774e2d34367d0e7b6cbc689b567d": {}
                                       }
                                     }
@@ -4691,7 +4842,9 @@
     },
     "/policy_asset_addresses": {
       "get": {
-        "tags": ["Asset"],
+        "tags": [
+          "Asset"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -4754,7 +4907,9 @@
     },
     "/policy_asset_info": {
       "get": {
-        "tags": ["Asset"],
+        "tags": [
+          "Asset"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -4830,7 +4985,9 @@
                               "721": {
                                 "version": 1,
                                 "copyright": "...",
-                                "publisher": ["p...o"],
+                                "publisher": [
+                                  "p...o"
+                                ],
                                 "4bf184e01e0f163296ab253edd60774e2d34367d0e7b6cbc689b567d": {}
                               }
                             }
@@ -4892,7 +5049,9 @@
     },
     "/asset_policy_info": {
       "get": {
-        "tags": ["Asset"],
+        "tags": [
+          "Asset"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -4968,7 +5127,9 @@
                               "721": {
                                 "version": 1,
                                 "copyright": "...",
-                                "publisher": ["p...o"],
+                                "publisher": [
+                                  "p...o"
+                                ],
                                 "4bf184e01e0f163296ab253edd60774e2d34367d0e7b6cbc689b567d": {}
                               }
                             }
@@ -5030,7 +5191,9 @@
     },
     "/policy_asset_list": {
       "get": {
-        "tags": ["Asset"],
+        "tags": [
+          "Asset"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -5098,7 +5261,9 @@
     },
     "/asset_summary": {
       "get": {
-        "tags": ["Asset"],
+        "tags": [
+          "Asset"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -5187,7 +5352,9 @@
     },
     "/asset_txs": {
       "get": {
-        "tags": ["Asset"],
+        "tags": [
+          "Asset"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -5291,7 +5458,9 @@
     },
     "/pool_list": {
       "get": {
-        "tags": ["Pool"],
+        "tags": [
+          "Pool"
+        ],
         "responses": {
           "200": {
             "description": "Array of pool IDs and tickers",
@@ -5335,12 +5504,16 @@
     },
     "/pool_info": {
       "post": {
-        "tags": ["Pool"],
+        "tags": [
+          "Pool"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "required": ["_pool_bech32_ids"],
+                "required": [
+                  "_pool_bech32_ids"
+                ],
                 "type": "object",
                 "properties": {
                   "_pool_bech32_ids": {
@@ -5500,7 +5673,11 @@
                       "pool_status": {
                         "type": "string",
                         "description": "Pool status",
-                        "enum": ["registered", "retiring", "retired"],
+                        "enum": [
+                          "registered",
+                          "retiring",
+                          "retired"
+                        ],
                         "example": "registered"
                       },
                       "retiring_epoch": {
@@ -5584,7 +5761,9 @@
     },
     "/pool_stake_snapshot": {
       "get": {
-        "tags": ["Pool"],
+        "tags": [
+          "Pool"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -5658,7 +5837,9 @@
     },
     "/pool_delegators": {
       "get": {
-        "tags": ["Pool"],
+        "tags": [
+          "Pool"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -5726,7 +5907,9 @@
     },
     "/pool_delegators_history": {
       "get": {
-        "tags": ["Pool"],
+        "tags": [
+          "Pool"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -5801,7 +5984,9 @@
     },
     "/pool_blocks": {
       "get": {
-        "tags": ["Pool"],
+        "tags": [
+          "Pool"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -5892,7 +6077,9 @@
     },
     "/pool_history": {
       "get": {
-        "tags": ["Pool"],
+        "tags": [
+          "Pool"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -6007,7 +6194,9 @@
     },
     "/pool_updates": {
       "get": {
-        "tags": ["Pool"],
+        "tags": [
+          "Pool"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -6169,7 +6358,11 @@
                       "pool_status": {
                         "type": "string",
                         "description": "Pool status",
-                        "enum": ["registered", "retiring", "retired"],
+                        "enum": [
+                          "registered",
+                          "retiring",
+                          "retired"
+                        ],
                         "example": "registered"
                       },
                       "retiring_epoch": {
@@ -6200,7 +6393,9 @@
     },
     "/pool_relays": {
       "get": {
-        "tags": ["Pool"],
+        "tags": [
+          "Pool"
+        ],
         "responses": {
           "200": {
             "description": "Array of pool relay information",
@@ -6276,7 +6471,9 @@
     },
     "/pool_metadata": {
       "post": {
-        "tags": ["Pool"],
+        "tags": [
+          "Pool"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -6378,7 +6575,9 @@
     },
     "/native_script_list": {
       "get": {
-        "tags": ["Script"],
+        "tags": [
+          "Script"
+        ],
         "responses": {
           "200": {
             "description": "List of native script and creation tx hash pairs",
@@ -6401,7 +6600,10 @@
                       "type": {
                         "type": "string",
                         "description": "Type of the script",
-                        "enum": ["timelock", "multisig"],
+                        "enum": [
+                          "timelock",
+                          "multisig"
+                        ],
                         "example": "timelock"
                       }
                     }
@@ -6426,7 +6628,9 @@
     },
     "/plutus_script_list": {
       "get": {
-        "tags": ["Script"],
+        "tags": [
+          "Script"
+        ],
         "responses": {
           "200": {
             "description": "List of Plutus script and creation tx hash pairs",
@@ -6468,7 +6672,9 @@
     },
     "/script_redeemers": {
       "get": {
-        "tags": ["Script"],
+        "tags": [
+          "Script"
+        ],
         "parameters": [
           {
             "deprecated": false,
@@ -6551,7 +6757,12 @@
                             "purpose": {
                               "type": "string",
                               "description": "What kind of validation this redeemer is used for",
-                              "enum": ["spend", "mint", "cert", "reward"],
+                              "enum": [
+                                "spend",
+                                "mint",
+                                "cert",
+                                "reward"
+                              ],
                               "example": "spend"
                             },
                             "datum_hash": {
@@ -6592,7 +6803,9 @@
     },
     "/datum_info": {
       "post": {
-        "tags": ["Script"],
+        "tags": [
+          "Script"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -6968,7 +7181,9 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": ["_block_hashes"],
+              "required": [
+                "_block_hashes"
+              ],
               "type": "object",
               "properties": {
                 "_block_hashes": {
@@ -6996,7 +7211,9 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": ["_addresses"],
+              "required": [
+                "_addresses"
+              ],
               "type": "object",
               "properties": {
                 "_addresses": {
@@ -7022,7 +7239,9 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": ["_addresses"],
+              "required": [
+                "_addresses"
+              ],
               "type": "object",
               "properties": {
                 "_addresses": {
@@ -7054,7 +7273,9 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": ["_stake_addresses"],
+              "required": [
+                "_stake_addresses"
+              ],
               "type": "object",
               "properties": {
                 "_stake_addresses": {
@@ -7086,7 +7307,9 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": ["_stake_addresses"],
+              "required": [
+                "_stake_addresses"
+              ],
               "type": "object",
               "properties": {
                 "_stake_addresses": {
@@ -7122,7 +7345,9 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": ["_stake_addresses"],
+              "required": [
+                "_stake_addresses"
+              ],
               "type": "object",
               "properties": {
                 "_stake_addresses": {
@@ -7148,7 +7373,9 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": ["_payment_credentials"],
+              "required": [
+                "_payment_credentials"
+              ],
               "type": "object",
               "properties": {
                 "_payment_credentials": {
@@ -7180,7 +7407,9 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": ["_payment_credentials"],
+              "required": [
+                "_payment_credentials"
+              ],
               "type": "object",
               "properties": {
                 "_payment_credentials": {
@@ -7206,7 +7435,9 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": ["_tx_hashes"],
+              "required": [
+                "_tx_hashes"
+              ],
               "type": "object",
               "properties": {
                 "_tx_hashes": {
@@ -7243,7 +7474,9 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": ["_pool_bech32_ids"],
+              "required": [
+                "_pool_bech32_ids"
+              ],
               "type": "object",
               "properties": {
                 "_pool_bech32_ids": {
@@ -7321,7 +7554,9 @@
         "content": {
           "application/json": {
             "schema": {
-              "required": ["_asset_list"],
+              "required": [
+                "_asset_list"
+              ],
               "type": "object",
               "properties": {
                 "_asset_list": {
@@ -7338,8 +7573,14 @@
               },
               "example": {
                 "_asset_list": [
-                  ["750900e4999ebe0d58f19b634768ba25e525aaf12403bfe8fe130501", "424f4f4b"],
-                  ["1d7f33bd23d85e1a25d87d86fac4f199c3197a2f7afeb662a0f34e1e", "776f726c646d6f62696c65746f6b656e"]
+                  [
+                    "750900e4999ebe0d58f19b634768ba25e525aaf12403bfe8fe130501",
+                    "424f4f4b"
+                  ],
+                  [
+                    "1d7f33bd23d85e1a25d87d86fac4f199c3197a2f7afeb662a0f34e1e",
+                    "776f726c646d6f62696c65746f6b656e"
+                  ]
                 ]
               }
             }
@@ -7741,7 +7982,11 @@
             "pool_status": {
               "type": "string",
               "description": "Pool status",
-              "enum": ["registered", "retiring", "retired"],
+              "enum": [
+                "registered",
+                "retiring",
+                "retired"
+              ],
               "example": "registered"
             },
             "retiring_epoch": {
@@ -8076,7 +8321,11 @@
             "pool_status": {
               "type": "string",
               "description": "Pool status",
-              "enum": ["registered", "retiring", "retired"],
+              "enum": [
+                "registered",
+                "retiring",
+                "retired"
+              ],
               "example": "registered"
             },
             "retiring_epoch": {
@@ -9006,7 +9255,10 @@
             "status": {
               "type": "string",
               "description": "Stake address status",
-              "enum": ["registered", "not registered"],
+              "enum": [
+                "registered",
+                "not registered"
+              ],
               "example": "registered"
             },
             "delegated_pool": {
@@ -9124,7 +9376,12 @@
                   "type": {
                     "type": "string",
                     "description": "The source of the rewards",
-                    "enum": ["member", "leader", "treasury", "reserves"],
+                    "enum": [
+                      "member",
+                      "leader",
+                      "treasury",
+                      "reserves"
+                    ],
                     "example": "member"
                   },
                   "pool_id": {
@@ -9157,7 +9414,12 @@
                   "action_type": {
                     "type": "string",
                     "description": "Type of certificate submitted",
-                    "enum": ["registration", "delegation", "withdrawal", "deregistration"],
+                    "enum": [
+                      "registration",
+                      "delegation",
+                      "withdrawal",
+                      "deregistration"
+                    ],
                     "example": "registration"
                   },
                   "tx_hash": {
@@ -10140,7 +10402,9 @@
                 "721": {
                   "version": 1,
                   "copyright": "...",
-                  "publisher": ["p...o"],
+                  "publisher": [
+                    "p...o"
+                  ],
                   "4bf184e01e0f163296ab253edd60774e2d34367d0e7b6cbc689b567d": {}
                 }
               }
@@ -10249,7 +10513,12 @@
                           "purpose": {
                             "type": "string",
                             "description": "What kind of validation this redeemer is used for",
-                            "enum": ["spend", "mint", "cert", "reward"],
+                            "enum": [
+                              "spend",
+                              "mint",
+                              "cert",
+                              "reward"
+                            ],
                             "example": "spend"
                           },
                           "fee": {
@@ -10471,7 +10740,9 @@
                 "721": {
                   "version": 1,
                   "copyright": "...",
-                  "publisher": ["p...o"],
+                  "publisher": [
+                    "p...o"
+                  ],
                   "4bf184e01e0f163296ab253edd60774e2d34367d0e7b6cbc689b567d": {}
                 }
               }
@@ -10709,7 +10980,9 @@
                     "721": {
                       "version": 1,
                       "copyright": "...",
-                      "publisher": ["p...o"],
+                      "publisher": [
+                        "p...o"
+                      ],
                       "4bf184e01e0f163296ab253edd60774e2d34367d0e7b6cbc689b567d": {}
                     }
                   }
@@ -10807,7 +11080,9 @@
                             "721": {
                               "version": 1,
                               "copyright": "...",
-                              "publisher": ["p...o"],
+                              "publisher": [
+                                "p...o"
+                              ],
                               "4bf184e01e0f163296ab253edd60774e2d34367d0e7b6cbc689b567d": {}
                             }
                           }
@@ -10902,7 +11177,9 @@
                     "721": {
                       "version": 1,
                       "copyright": "...",
-                      "publisher": ["p...o"],
+                      "publisher": [
+                        "p...o"
+                      ],
                       "4bf184e01e0f163296ab253edd60774e2d34367d0e7b6cbc689b567d": {}
                     }
                   }
@@ -11020,7 +11297,10 @@
             "type": {
               "type": "string",
               "description": "Type of the script",
-              "enum": ["timelock", "multisig"],
+              "enum": [
+                "timelock",
+                "multisig"
+              ],
               "example": "timelock"
             }
           }
@@ -11106,7 +11386,12 @@
                   "purpose": {
                     "type": "string",
                     "description": "What kind of validation this redeemer is used for",
-                    "enum": ["spend", "mint", "cert", "reward"],
+                    "enum": [
+                      "spend",
+                      "mint",
+                      "cert",
+                      "reward"
+                    ],
                     "example": "spend"
                   },
                   "datum_hash": {

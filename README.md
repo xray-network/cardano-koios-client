@@ -31,7 +31,6 @@ npm i koios-tiny-client
 ![Request Types](https://github.com/ray-network/koios-tiny-client/assets/38279597/4bc0cdee-a75c-4547-bbe9-994707bb7814)
 ![Response Types](https://github.com/ray-network/koios-tiny-client/assets/38279597/53d238a3-46dd-4722-8aaa-3516b702f795)
 
-
 ```TypeScript
 import KoiosTinyClient from "koios-tiny-client"
 
@@ -742,5 +741,5 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
 Downloads the YAML schema and generates library methods and types
 
 ```sh
-yarn prepare && yarn codegen && yarn build
+yarn codegen && yarn build
 ```
