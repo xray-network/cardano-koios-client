@@ -1,6 +1,6 @@
 {
   "name": "koios-tiny-client",
-  "version": "1.0.100",
+  "version": "1.1010.0",
   "description": "TypeScript client fot KOIOS Elastic Cardano Query Layer",
   "files": ["dist"],
   "main": "dist/index.js",
