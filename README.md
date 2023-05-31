@@ -185,15 +185,15 @@ https://guild.koios.rest/api/v0
 Managed by Ray Network (RayGraph-Output Cluster / Cloudflare FAW & Load Balancer)
 
 ```
-https://mainnet.blockchain.raygraph.io/rpc
+https://mainnet.blockchain.raygraph.io
 ```
 
 ```
-https://preprod.blockchain.raygraph.io/rpc
+https://preprod.blockchain.raygraph.io
 ```
 
 ```
-https://preview.blockchain.raygraph.io/rpc
+https://preview.blockchain.raygraph.io
 ```
 
 ## Methods
