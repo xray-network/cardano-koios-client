@@ -1,8 +1,8 @@
 import fs from "fs"
 import prettier from "prettier"
 import schemaJson from "./koiosapi.json" assert { type: "json" }
-import schemaJsonRaw from "./koiosapiraw.json" assert { type: "json" }
-import packageJson from "../package.json" assert { type: "json" }
+
+const skipMethods = ["/ogmios", "/submittx"]
 
 const prettierOptions = {
   parser: "typescript",
@@ -36,25 +36,6 @@ const transformRequestBodyTypes = (obj) => {
 }
 
 /*********************************************
- * Replace Version
- */
-
-fs.writeFileSync(
-  "package.json",
-  prettier.format(
-    JSON.stringify(
-      {
-        ...packageJson,
-        version: schemaJsonRaw.info.version,
-      },
-      null,
-      2
-    ),
-    { ...prettierOptions, parser: "json" }
-  )
-)
-
-/*********************************************
  * Build Methods
  */
 
@@ -64,89 +45,67 @@ import * as KoiosTypes from "./types"
 
 export default (client: Axios) => {
   return {
-    ${schemaJson.map((op) => {
-      const { path, method } = op
+    ${schemaJson
+      .filter((op) => !skipMethods.includes(op.path))
+      .map((op) => {
+        const { path, method } = op
 
-      const postfix = (path === "/asset_info" && method === "post" && "Bulk") || "" // exception for /asset_info POST method
-      const name =
-        path.replace(/\//g, "").replace(/(?:_| |\b)(\w)/g, function ($1) {
-          return $1.toUpperCase().replace("_", "")
-        }) + postfix
+        const postfix = (path === "/asset_info" && method === "post" && "Bulk") || "" // exception for /asset_info POST method
+        const name =
+          path.replace(/\//g, "").replace(/(?:_| |\b)(\w)/g, function ($1) {
+            return $1.toUpperCase().replace("_", "")
+          }) + postfix
 
-      if (path === "/submittx") {
-        return `
-          /**
-           * Submit an already serialized transaction to the network.
-           * @param params._tx string Raw binary serialized transaction
-           * @param headers? object (optional) Adding extra headers, see https://axios-http.com/docs/req_config
-           * @param signal? GenericAbortSignal (optional) The abort event of the AbortSignal, see https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal/abort_event
-           */
-          ${name}: (
-            params: { _tx: string },
-            headers?: object,
-            signal?: GenericAbortSignal,
-          ): Promise<{ success: AxiosResponse<KoiosTypes.${name}Response>; error: AxiosError }> => {
-            return client.${method}(
-              \`${path}\`, params._tx,
-              { signal, headers: {
-                "Content-Type": "application/cbor",
-                ...headers,
-              } },
-            )
-          }
-        \n`
-      }
+        const getParameters = op.parameters || []
+        const postProperties = op.requestBody?.content["application/json"].schema.properties || {}
+        const postRequired = op.requestBody?.content["application/json"].schema.required || []
 
-      const getParameters = op.parameters || []
-      const postProperties = op.requestBody?.content["application/json"].schema.properties || {}
-      const postRequired = op.requestBody?.content["application/json"].schema.required || []
+        let notRequired = true
+        const getParamsWithTypesRaw = (() => {
+          const _get = getParameters
+            .map((param) => {
+              const isRequired = param.required
+              if (isRequired) {
+                notRequired = false
+              }
+              return `${param.name}${!isRequired ? "?" : ""}: ${mapTypes(param.schema.type)}`
+            })
+            .join(",\n")
+          const _post = Object.keys(postProperties)
+            .map((prop) => {
+              const isRequired = postRequired.includes(prop)
+              if (isRequired) {
+                notRequired = false
+              }
+              return `${prop}${!isRequired ? "?" : ""}: ${transformRequestBodyTypes(postProperties[prop])}`
+            })
+            .join(",\n")
+          return _get || _post
+        })()
 
-      let notRequired = true
-      const getParamsWithTypesRaw = (() => {
-        const _get = getParameters
-          .map((param) => {
-            const isRequired = param.required
-            if (isRequired) {
-              notRequired = false
-            }
-            return `${param.name}${!isRequired ? "?" : ""}: ${mapTypes(param.schema.type)}`
-          })
-          .join(",\n")
-        const _post = Object.keys(postProperties)
-          .map((prop) => {
-            const isRequired = postRequired.includes(prop)
-            if (isRequired) {
-              notRequired = false
-            }
-            return `${prop}${!isRequired ? "?" : ""}: ${transformRequestBodyTypes(postProperties[prop])}`
-          })
-          .join(",\n")
-        return _get || _post
-      })()
+        const getParamsWithTypes = getParamsWithTypesRaw
+          ? `params${notRequired ? "?" : ""}: { ${getParamsWithTypesRaw} },`
+          : ""
 
-      const getParamsWithTypes = getParamsWithTypesRaw
-        ? `params${notRequired ? "?" : ""}: { ${getParamsWithTypesRaw} },`
-        : ""
+        const getPostParams = (() => {
+          const _postParams = Object.keys(postProperties)
+            .map((prop) => `${prop}: params.${prop}`)
+            .join(",\n")
+          return _postParams ? `{ ${_postParams}, },` : ""
+        })()
 
-      const getPostParams = (() => {
-        const _postParams = Object.keys(postProperties)
-          .map((prop) => `${prop}: params.${prop}`)
-          .join(",\n")
-        return _postParams ? `{ ${_postParams}, },` : ""
-      })()
+        const getQueryString = (() => {
+          return (
+            getParameters
+              .map(
+                (param) =>
+                  `${param.name ? `\${params.${param.name} ? "&${param.name}=" + params.${param.name} : ""}` : ""}`
+              )
+              .join("") || ""
+          )
+        })()
 
-      const getQueryString = (() => {
-        return (
-          getParameters
-            .map(
-              (param) =>
-                `${param.name ? `\${params.${param.name} ? "&${param.name}=" + params.${param.name} : ""}` : ""}`
-            )
-            .join("") || ""
-        )
-      })()
-
-      const printDescription = `
+        const printDescription = `
         \n/**
           ${op.description ? `* ${op.description}` : ""}
           ${getParamsWithTypesRaw
@@ -166,21 +125,21 @@ export default (client: Axios) => {
         * @param signal? GenericAbortSignal (optional) The abort event of the AbortSignal, see https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal/abort_event
         */`
 
-      return `
+        return `
         ${printDescription}
         ${name}: (
           ${getParamsWithTypes}
           extraParams?: string,
           headers?: object,
           signal?: GenericAbortSignal,
-        ): Promise<{ success: AxiosResponse<KoiosTypes.${name}Response>; error: AxiosError }> => {
+        ): Promise<{ ok: AxiosResponse<KoiosTypes.${name}Response> | undefined, error: AxiosError | undefined }> => {
           return client.${method}(
             \`${path}?${getQueryString}\${extraParams ? extraParams : ""}\`, ${getPostParams}
             { signal, headers },
           )
         }
       \n`
-    })}
+      })}
   }
 }
 `
@@ -191,11 +150,8 @@ fs.writeFileSync("src/methods.ts", prettier.format(methods, prettierOptions))
  * Build Types
  */
 
-const buildAllOf = (schema) => {
-  return ""
-}
-
 const buildInterface = (schema, prop, parentType) => {
+  if (!schema) return ""
   let type = mapTypes(schema.type || "object")
   if (schema.allOf) type = "allOf"
   if (schema.additionalProperties?.oneOf) type = "oneOf"
@@ -236,6 +192,7 @@ const types = `
 import { AxiosError } from "axios"
 
 ${schemaJson
+  .filter((op) => !skipMethods.includes(op.path))
   .map((op) => {
     const { path, method } = op
     const postfix = (path === "/asset_info" && method === "post" && "Bulk") || "" // exception for /asset_info POST method
@@ -246,16 +203,6 @@ ${schemaJson
 
     const { schema } =
       op.responses["200"]?.content?.["application/json"] || op.responses["202"]?.content?.["application/json"] || {}
-
-    if (path === "/submittx") {
-      return `
-      /**
-       ${op.summary ? `* ${op.summary}` : ""}
-       ${op.description ? `* ${op.description}` : ""}
-       */
-       export type ${name}Response = ${schema?.type}
-     `
-    }
 
     return `
      /**
@@ -285,6 +232,7 @@ const docs = `
   </thead>
   <tbody>
   ${schemaJson
+    .filter((op) => !skipMethods.includes(op.path))
     .map((op) => {
       const { path, method } = op
       const postfix = (path === "/asset_info" && method === "post" && "Bulk") || "" // exception for /asset_info POST method

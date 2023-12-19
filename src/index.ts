@@ -1,7 +1,7 @@
 import axios, { Axios, AxiosError, AxiosResponse, GenericAbortSignal } from "axios"
 import methods from "./methods"
 
-export default class KoiosTinyClient {
+export default class KoiosTinyClientClass {
   public client: Axios
   public methods: ReturnType<typeof methods>
 
@@ -10,10 +10,10 @@ export default class KoiosTinyClient {
     this.client.interceptors.response.use(
       (response: AxiosResponse): any => {
         return {
-          success: response,
+          ok: response,
         }
       },
-      (error: AxiosError): { error: AxiosError } => {
+      (error: AxiosError): any => {
         return {
           error,
         }

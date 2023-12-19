@@ -248,6 +248,24 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
     </tr>
     <tr>
       <td>
+        ReserveWithdrawals()
+      </td>
+      <td>
+        Reserve Withdrawals<br />
+        List of all withdrawals from reserves against stake accounts
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TreasuryWithdrawals()
+      </td>
+      <td>
+        Treasury Withdrawals<br />
+        List of all withdrawals from treasury against stake accounts
+      </td>
+    </tr>
+    <tr>
+      <td>
         EpochInfo()
       </td>
       <td>
@@ -302,20 +320,20 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
     </tr>
     <tr>
       <td>
+        UtxoInfo()
+      </td>
+      <td>
+        UTxO Info<br />
+        Get UTxO set for requested UTxO references
+      </td>
+    </tr>
+    <tr>
+      <td>
         TxInfo()
       </td>
       <td>
         Transaction Information<br />
         Get detailed information about transaction(s)
-      </td>
-    </tr>
-    <tr>
-      <td>
-        TxUtxos()
-      </td>
-      <td>
-        Transaction UTxOs<br />
-        Get UTxO set (inputs/outputs) of transactions.
       </td>
     </tr>
     <tr>
@@ -338,20 +356,20 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
     </tr>
     <tr>
       <td>
-        Submittx()
+        TxStatus()
       </td>
       <td>
-        Submit Transaction<br />
-        Submit an already serialized transaction to the network.
+        Transaction Status<br />
+        Get the number of block confirmations for a given transaction hash list
       </td>
     </tr>
     <tr>
       <td>
-        TxStatus()
+        TxUtxos()
       </td>
       <td>
-        Transaction Status (Block Confirmations)<br />
-        Get the number of block confirmations for a given transaction hash list
+        Transaction UTxOs<br />
+        Get UTxO set (inputs/outputs) of transactions [DEPRECATED - Use /utxo_info instead].
       </td>
     </tr>
     <tr>
@@ -365,6 +383,24 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
     </tr>
     <tr>
       <td>
+        AddressUtxos()
+      </td>
+      <td>
+        Address UTXOs<br />
+        Get UTxO set for given addresses
+      </td>
+    </tr>
+    <tr>
+      <td>
+        CredentialUtxos()
+      </td>
+      <td>
+        UTxOs from payment credentials<br />
+        Get UTxO details for requested payment credentials
+      </td>
+    </tr>
+    <tr>
+      <td>
         AddressTxs()
       </td>
       <td>
@@ -374,11 +410,11 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
     </tr>
     <tr>
       <td>
-        CredentialUtxos()
+        CredentialTxs()
       </td>
       <td>
-        UTxOs from payment credentials<br />
-        Get a list of UTxO against input payment credential array including their balances
+        Transactions from payment credentials<br />
+        Get the transaction hash list of input payment credential array, optionally filtering after specified block height (inclusive)
       </td>
     </tr>
     <tr>
@@ -388,15 +424,6 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
       <td>
         Address Assets<br />
         Get the list of all the assets (policy, name and quantity) for given addresses
-      </td>
-    </tr>
-    <tr>
-      <td>
-        CredentialTxs()
-      </td>
-      <td>
-        Transactions from payment credentials<br />
-        Get the transaction hash list of input payment credential array, optionally filtering after specified block height (inclusive)
       </td>
     </tr>
     <tr>
@@ -419,20 +446,29 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
     </tr>
     <tr>
       <td>
-        AccountUtxos()
-      </td>
-      <td>
-        Account UTxOs<br />
-        Get a list of all UTxOs for a given stake address (account)
-      </td>
-    </tr>
-    <tr>
-      <td>
         AccountInfoCached()
       </td>
       <td>
         Account Information (Cached)<br />
-        Get the cached account information for given stake addresses, effective for registered accounts
+        Get the cached account information for given stake addresses (effective for performance query against registered accounts)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        AccountUtxos()
+      </td>
+      <td>
+        UTxOs for stake addresses (accounts)<br />
+        Get a list of all UTxOs for given stake addresses (account)s
+      </td>
+    </tr>
+    <tr>
+      <td>
+        AccountTxs()
+      </td>
+      <td>
+        Account Txs<br />
+        Get a list of all Txs for a given stake address (account)
       </td>
     </tr>
     <tr>
@@ -491,47 +527,20 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
     </tr>
     <tr>
       <td>
+        PolicyAssetList()
+      </td>
+      <td>
+        Policy Asset List<br />
+        Get the list of asset under the given policy (including balances)
+      </td>
+    </tr>
+    <tr>
+      <td>
         AssetTokenRegistry()
       </td>
       <td>
         Asset Token Registry<br />
         Get a list of assets registered via token registry on github
-      </td>
-    </tr>
-    <tr>
-      <td>
-        AssetAddresses()
-      </td>
-      <td>
-        Asset Addresses<br />
-        Get the list of all addresses holding a given asset <br><br> `Note - Due to cardano's UTxO design and usage from projects, asset to addresses map can be infinite. Thus, for a small subset of active projects with millions of transactions, these might end up with timeouts (HTTP code 504) on free layer. Such large-scale projects are free to subscribe to query layers to have a dedicated cache table for themselves served via Koios.`
-      </td>
-    </tr>
-    <tr>
-      <td>
-        AssetAddressList()
-      </td>
-      <td>
-        Asset Address List [DEPRECATED]<br />
-        Get the list of all addresses holding a given asset (replaced by asset_addresses)
-      </td>
-    </tr>
-    <tr>
-      <td>
-        AssetNftAddress()
-      </td>
-      <td>
-        NFT Address<br />
-        Get the address where specified NFT currently reside on.
-      </td>
-    </tr>
-    <tr>
-      <td>
-        AssetInfo()
-      </td>
-      <td>
-        Asset Information<br />
-        Get the information of an asset including first minting & token registry metadata
       </td>
     </tr>
     <tr>
@@ -545,11 +554,38 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
     </tr>
     <tr>
       <td>
+        AssetUtxos()
+      </td>
+      <td>
+        Asset UTXOs<br />
+        Get the UTXO information of a list of assets including
+      </td>
+    </tr>
+    <tr>
+      <td>
         AssetHistory()
       </td>
       <td>
         Asset History<br />
         Get the mint/burn history of an asset
+      </td>
+    </tr>
+    <tr>
+      <td>
+        AssetAddresses()
+      </td>
+      <td>
+        Asset Addresses<br />
+        Get the list of all addresses holding a given asset <br><br> `Note - Due to cardano's UTxO design and usage from projects, asset to addresses map can be infinite. Thus, for a small subset of active projects with millions of transactions, these might end up with timeouts (HTTP code 504) on free layer. Such large-scale projects are free to subscribe to query layers to have a dedicated cache table for themselves served via Koios.`
+      </td>
+    </tr>
+    <tr>
+      <td>
+        AssetNftAddress()
+      </td>
+      <td>
+        NFT Address<br />
+        Get the address where specified NFT currently reside on.
       </td>
     </tr>
     <tr>
@@ -572,24 +608,6 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
     </tr>
     <tr>
       <td>
-        AssetPolicyInfo()
-      </td>
-      <td>
-        Asset Policy Information [DEPRECATED]<br />
-        Get the information for all assets under the same policy (replaced by asset_addresses)
-      </td>
-    </tr>
-    <tr>
-      <td>
-        PolicyAssetList()
-      </td>
-      <td>
-        Policy Asset List<br />
-        Get the list of asset under the given policy (including balances)
-      </td>
-    </tr>
-    <tr>
-      <td>
         AssetSummary()
       </td>
       <td>
@@ -608,11 +626,29 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
     </tr>
     <tr>
       <td>
+        AssetAddressList()
+      </td>
+      <td>
+        Asset Address List<br />
+        Get the list of all addresses holding a given asset [DEPRECATED - replaced by asset_addresses]
+      </td>
+    </tr>
+    <tr>
+      <td>
+        AssetPolicyInfo()
+      </td>
+      <td>
+        Asset Policy Information<br />
+        Get the information for all assets under the same policy (DEPRECATED - replaced by policy_asset_info)
+      </td>
+    </tr>
+    <tr>
+      <td>
         PoolList()
       </td>
       <td>
         Pool List<br />
-        A list of all currently registered/retiring (not retired) pools
+        List of brief info for all pools
       </td>
     </tr>
     <tr>
@@ -680,11 +716,29 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
     </tr>
     <tr>
       <td>
+        PoolRegistrations()
+      </td>
+      <td>
+        Pool Registrations<br />
+        Return all pool registrations initiated in the requested epoch
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PoolRetirements()
+      </td>
+      <td>
+        Pool Retirements<br />
+        Return all pool retirements initiated in the requested epoch
+      </td>
+    </tr>
+    <tr>
+      <td>
         PoolRelays()
       </td>
       <td>
         Pool Relays<br />
-        A list of registered relays for all currently registered/retiring (not retired) pools
+        A list of registered relays for all pools
       </td>
     </tr>
     <tr>
@@ -693,7 +747,16 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
       </td>
       <td>
         Pool Metadata<br />
-        Metadata (on & off-chain) for all currently registered/retiring (not retired) pools
+        Metadata (on & off-chain) for all pools
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ScriptInfo()
+      </td>
+      <td>
+        Script Information<br />
+        List of script information for given script hashes
       </td>
     </tr>
     <tr>
@@ -721,6 +784,15 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
       <td>
         Script Redeemers<br />
         List of all redeemers for a given script hash
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ScriptUtxos()
+      </td>
+      <td>
+        Script UTXOs<br />
+        List of all UTXOs for a given script hash
       </td>
     </tr>
     <tr>

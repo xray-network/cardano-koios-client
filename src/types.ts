@@ -17,31 +17,31 @@ export interface ITip {
    * @example
    * 321
    */
-  epoch_no: number
+  epoch_no: any
   /**
    * Absolute slot number of the block
    * @example
    * 53384242
    */
-  abs_slot: number
+  abs_slot: any
   /**
    * Slot number of the block in epoch
    * @example
    * 75442
    */
-  epoch_slot: number
+  epoch_slot: any
   /**
    * Block height
    * @example
    * 42325043
    */
-  block_no: number | null
+  block_no: any
   /**
    * UNIX timestamp of the block
    * @example
    * 1506635091
    */
-  block_time: number
+  block_time: any
 }
 
 /**
@@ -85,7 +85,7 @@ export interface IGenesis {
    * @example
    * 1506203091
    */
-  systemstart: number
+  systemstart: any
   /**
    * Active Slot Co-Efficient (f) - determines the _probability_ of number of slots in epoch that are expected to have blocks (so mainnet, this would be: 432000 * 0.05 = 21600 estimated blocks)
    * @example
@@ -135,7 +135,7 @@ export interface ITotals {
    * @example
    * 294
    */
-  epoch_no: number
+  epoch_no: any
   /**
    * Circulating UTxOs for given epoch (in lovelaces)
    * @example
@@ -174,30 +174,25 @@ export interface ITotals {
  */
 export type ParamUpdatesResponse = IParamUpdates[]
 export interface IParamUpdates {
-  /**
-   * Hash identifier of the transaction
-   * @example
-   * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
-   */
-  tx_hash: string
+  tx_hash: {}
   /**
    * Block height
    * @example
    * 42325043
    */
-  block_height: number | null
+  block_height: any
   /**
    * UNIX timestamp of the block
    * @example
    * 1506635091
    */
-  block_time: number
+  block_time: any
   /**
    * Epoch number
    * @example
    * 294
    */
-  epoch_no: number
+  epoch_no: any
   /**
    * JSON encoded data with details about the parameter update
    * @example
@@ -206,6 +201,96 @@ export interface IParamUpdates {
    * }
    */
   data: string
+}
+
+/**
+ * Reserve Withdrawals
+ * List of all withdrawals from reserves against stake accounts
+ */
+export type ReserveWithdrawalsResponse = IReserveWithdrawals[]
+export interface IReserveWithdrawals {
+  /**
+   * Epoch number
+   * @example
+   * 294
+   */
+  epoch_no: any
+  /**
+   * Slot number of the block in epoch
+   * @example
+   * 75442
+   */
+  epoch_slot: any
+  tx_hash: {}
+  /**
+   * Hash of the block
+   * @example
+   * "e8c6992d52cd74b577b79251e0351be25070797a0dbc486b2c284d0bf7aeea9c"
+   */
+  block_hash: string
+  /**
+   * Block height
+   * @example
+   * 42325043
+   */
+  block_height: any
+  /**
+   * Current delegator live stake (in lovelace)
+   * @example
+   * 64328591517480
+   */
+  amount: string
+  /**
+   * Cardano staking address (reward account) in bech32 format
+   * @example
+   * "stake1u8yxtugdv63wxafy9d00nuz6hjyyp4qnggvc9a3vxh8yl0ckml2uz"
+   */
+  stake_address: string
+}
+
+/**
+ * Treasury Withdrawals
+ * List of all withdrawals from treasury against stake accounts
+ */
+export type TreasuryWithdrawalsResponse = ITreasuryWithdrawals[]
+export interface ITreasuryWithdrawals {
+  /**
+   * Epoch number
+   * @example
+   * 294
+   */
+  epoch_no: any
+  /**
+   * Slot number of the block in epoch
+   * @example
+   * 75442
+   */
+  epoch_slot: any
+  tx_hash: {}
+  /**
+   * Hash of the block
+   * @example
+   * "e8c6992d52cd74b577b79251e0351be25070797a0dbc486b2c284d0bf7aeea9c"
+   */
+  block_hash: string
+  /**
+   * Block height
+   * @example
+   * 42325043
+   */
+  block_height: any
+  /**
+   * Current delegator live stake (in lovelace)
+   * @example
+   * 64328591517480
+   */
+  amount: string
+  /**
+   * Cardano staking address (reward account) in bech32 format
+   * @example
+   * "stake1u8yxtugdv63wxafy9d00nuz6hjyyp4qnggvc9a3vxh8yl0ckml2uz"
+   */
+  stake_address: string
 }
 
 /**
@@ -219,7 +304,7 @@ export interface IEpochInfo {
    * @example
    * 294
    */
-  epoch_no: number
+  epoch_no: any
   /**
    * Total output value across all transactions in epoch
    * @example
@@ -237,55 +322,55 @@ export interface IEpochInfo {
    * @example
    * 357919
    */
-  tx_count: number
+  tx_count: any
   /**
    * Number of blocks created in epoch
    * @example
    * 17321
    */
-  blk_count: number
+  blk_count: any
   /**
    * UNIX timestamp of the epoch start
    * @example
    * 1506203091
    */
-  start_time: number
+  start_time: any
   /**
    * UNIX timestamp of the epoch end
    * @example
    * 1506635091
    */
-  end_time: number
+  end_time: any
   /**
    * UNIX timestamp of the epoch's first block
    * @example
    * 1506635091
    */
-  first_block_time: number
+  first_block_time: any
   /**
    * UNIX timestamp of the epoch's last block
    * @example
    * 1506635091
    */
-  last_block_time: number
+  last_block_time: any
   /**
    * Total active stake in epoch stake snapshot (null for pre-Shelley epochs)
    * @example
    * 23395112387185880
    */
-  active_stake: string | null
+  active_stake: any
   /**
    * Total rewards earned in epoch (null for pre-Shelley epochs)
    * @example
    * 252902897534230
    */
-  total_rewards: string | null
+  total_rewards: any
   /**
    * Average block reward for epoch (null for pre-Shelley epochs)
    * @example
    * 660233450
    */
-  avg_blk_reward: string | null
+  avg_blk_reward: any
 }
 
 /**
@@ -299,185 +384,189 @@ export interface IEpochParams {
    * @example
    * 294
    */
-  epoch_no: number
+  epoch_no: any
   /**
    * The 'a' parameter to calculate the minimum transaction fee
    * @example
    * 44
    */
-  min_fee_a: number | null
+  min_fee_a: any
   /**
    * The 'b' parameter to calculate the minimum transaction fee
    * @example
    * 155381
    */
-  min_fee_b: number | null
+  min_fee_b: any
   /**
    * The maximum block size (in bytes)
    * @example
    * 65536
    */
-  max_block_size: number | null
+  max_block_size: any
   /**
    * The maximum transaction size (in bytes)
    * @example
    * 16384
    */
-  max_tx_size: number | null
+  max_tx_size: any
   /**
    * The maximum block header size (in bytes)
    * @example
    * 1100
    */
-  max_bh_size: number | null
+  max_bh_size: any
   /**
    * The amount (in lovelace) required for a deposit to register a stake address
    * @example
    * 2000000
    */
-  key_deposit: string | null
+  key_deposit: any
   /**
    * The amount (in lovelace) required for a deposit to register a stake pool
    * @example
    * 500000000
    */
-  pool_deposit: string | null
+  pool_deposit: any
   /**
    * The maximum number of epochs in the future that a pool retirement is allowed to be scheduled for
    * @example
    * 18
    */
-  max_epoch: number | null
+  max_epoch: any
   /**
    * The optimal number of stake pools
    * @example
    * 500
    */
-  optimal_pool_count: number | null
+  optimal_pool_count: any
   /**
    * The pledge influence on pool rewards
    * @example
    * 0.3
    */
-  influence: any | null
+  influence: any
   /**
    * The monetary expansion rate
    * @example
    * 0.003
    */
-  monetary_expand_rate: any | null
+  monetary_expand_rate: any
   /**
    * The treasury growth rate
    * @example
    * 0.2
    */
-  treasury_growth_rate: any | null
+  treasury_growth_rate: any
   /**
    * The decentralisation parameter (1 fully centralised, 0 fully decentralised)
    * @example
    * 0.1
    */
-  decentralisation: any | null
+  decentralisation: any
   /**
    * The hash of 32-byte string of extra random-ness added into the protocol's entropy pool
    * @example
    * "d982e06fd33e7440b43cefad529b7ecafbaa255e38178ad4189a37e4ce9bf1fa"
    */
-  extra_entropy: string | null
+  extra_entropy: any
   /**
    * The protocol major version
    * @example
    * 5
    */
-  protocol_major: number | null
+  protocol_major: any
   /** The protocol minor version */
-  protocol_minor: number | null
+  protocol_minor: any
   /**
    * The minimum value of a UTxO entry
    * @example
    * 34482
    */
-  min_utxo_value: string | null
+  min_utxo_value: any
   /**
    * The minimum pool cost
    * @example
    * 340000000
    */
-  min_pool_cost: string | null
+  min_pool_cost: any
   /**
    * The nonce value for this epoch
    * @example
    * "01304ddf5613166be96fce27be110747f2c8fcb38776618ee79225ccb59b81e2"
    */
-  nonce: string | null
+  nonce: any
   /**
    * The hash of the first block where these parameters are valid
    * @example
    * "f9dc2a2fc3a2db09a71af007a740261de585afc9e3022b8e30535592ff4dd9e5"
    */
   block_hash: string
-  /** The per language cost models */
-  cost_models: string | null
+  /**
+   * The per language cost model in JSON
+   * @example
+   * "null"
+   */
+  cost_models: any
   /**
    * The per word cost of script memory usage
    * @example
    * 0.0577
    */
-  price_mem: any | null
+  price_mem: any
   /**
    * The cost of script execution step usage
    * @example
    * 0.0000721
    */
-  price_step: any | null
+  price_step: any
   /**
    * The maximum number of execution memory allowed to be used in a single transaction
    * @example
    * 10000000
    */
-  max_tx_ex_mem: any | null
+  max_tx_ex_mem: any
   /**
    * The maximum number of execution steps allowed to be used in a single transaction
    * @example
    * 10000000000
    */
-  max_tx_ex_steps: any | null
+  max_tx_ex_steps: any
   /**
    * The maximum number of execution memory allowed to be used in a single block
    * @example
    * 50000000
    */
-  max_block_ex_mem: any | null
+  max_block_ex_mem: any
   /**
    * The maximum number of execution steps allowed to be used in a single block
    * @example
    * 40000000000
    */
-  max_block_ex_steps: any | null
+  max_block_ex_steps: any
   /**
    * The maximum Val size
    * @example
    * 5000
    */
-  max_val_size: any | null
+  max_val_size: any
   /**
    * The percentage of the tx fee which must be provided as collateral when including non-native scripts
    * @example
    * 150
    */
-  collateral_percent: number | null
+  collateral_percent: any
   /**
    * The maximum number of collateral inputs allowed in a transaction
    * @example
    * 3
    */
-  max_collateral_inputs: number | null
+  max_collateral_inputs: any
   /**
    * The cost per UTxO size
    * @example
    * 34482
    */
-  coins_per_utxo_size: string | null
+  coins_per_utxo_size: any
 }
 
 /**
@@ -491,19 +580,19 @@ export interface IEpochBlockProtocols {
    * @example
    * 6
    */
-  proto_major: number
+  proto_major: any
   /**
    * Protocol major version
    * @example
    * 2
    */
-  proto_minor: number
+  proto_minor: any
   /**
    * Amount of blocks with specified major and protocol combination
    * @example
    * 2183
    */
-  blocks: number
+  blocks: any
 }
 
 /**
@@ -523,43 +612,43 @@ export interface IBlocks {
    * @example
    * 321
    */
-  epoch_no: number
+  epoch_no: any
   /**
    * Absolute slot number of the block
    * @example
    * 53384242
    */
-  abs_slot: number
+  abs_slot: any
   /**
    * Slot number of the block in epoch
    * @example
    * 75442
    */
-  epoch_slot: number
+  epoch_slot: any
   /**
    * Block height
    * @example
    * 42325043
    */
-  block_height: number | null
+  block_height: any
   /**
    * Block size in bytes
    * @example
    * 79109
    */
-  block_size: number
+  block_size: any
   /**
    * UNIX timestamp of the block
    * @example
    * 1506635091
    */
-  block_time: number
+  block_time: any
   /**
    * Number of transactions in the block
    * @example
    * 44
    */
-  tx_count: number
+  tx_count: any
   /**
    * VRF key of the block producer
    * @example
@@ -571,21 +660,21 @@ export interface IBlocks {
    * @example
    * "pool155efqn9xpcf73pphkk88cmlkdwx4ulkg606tne970qswczg3asc"
    */
-  pool: string | null
+  pool: any
   /**
    * Counter value of the operational certificate used to create this block
    * @example
    * 8
    */
-  op_cert_counter: number
+  op_cert_counter: any
   /**
    * The protocol major version
    * @example
    * 5
    */
-  proto_major: number | null
+  proto_major: any
   /** The protocol minor version */
-  proto_minor: number | null
+  proto_minor: any
 }
 
 /**
@@ -605,43 +694,43 @@ export interface IBlockInfo {
    * @example
    * 321
    */
-  epoch_no: number
+  epoch_no: any
   /**
    * Absolute slot number of the block
    * @example
    * 53384242
    */
-  abs_slot: number
+  abs_slot: any
   /**
    * Slot number of the block in epoch
    * @example
    * 75442
    */
-  epoch_slot: number
+  epoch_slot: any
   /**
    * Block height
    * @example
    * 42325043
    */
-  block_height: number | null
+  block_height: any
   /**
    * Block size in bytes
    * @example
    * 79109
    */
-  block_size: number
+  block_size: any
   /**
    * UNIX timestamp of the block
    * @example
    * 1506635091
    */
-  block_time: number
+  block_time: any
   /**
    * Number of transactions in the block
    * @example
    * 44
    */
-  tx_count: number
+  tx_count: any
   /**
    * VRF key of the block producer
    * @example
@@ -659,39 +748,39 @@ export interface IBlockInfo {
    * @example
    * 8
    */
-  op_cert_counter: number
+  op_cert_counter: any
   /**
    * Pool ID in bech32 format (null for pre-Shelley blocks)
    * @example
    * "pool155efqn9xpcf73pphkk88cmlkdwx4ulkg606tne970qswczg3asc"
    */
-  pool: string | null
+  pool: any
   /**
    * The protocol major version
    * @example
    * 5
    */
-  proto_major: number | null
+  proto_major: any
   /** The protocol minor version */
-  proto_minor: number | null
+  proto_minor: any
   /**
    * Total output of the block (in lovelace)
    * @example
    * 92384672389
    */
-  total_output: string | null
+  total_output: any
   /**
    * Total fees of the block (in lovelace)
    * @example
    * 2346834
    */
-  total_fees: string | null
+  total_fees: any
   /**
    * Number of confirmations for the block
    * @example
    * 664275
    */
-  num_confirmations: number
+  num_confirmations: any
   /**
    * Hash of the parent of this block
    * @example
@@ -718,12 +807,96 @@ export interface IBlockTxs {
    * "e8c6992d52cd74b577b79251e0351be25070797a0dbc486b2c284d0bf7aeea9c"
    */
   block_hash: string
-  tx_hashes: /**
+  tx_hash: {}
+  /**
+   * Epoch number of the block
+   * @example
+   * 321
+   */
+  epoch_no: any
+  /**
+   * Block height
+   * @example
+   * 42325043
+   */
+  block_height: any
+  /**
+   * UNIX timestamp of the block
+   * @example
+   * 1506635091
+   */
+  block_time: any
+}
+
+/**
+ * UTxO Info
+ * Get UTxO set for requested UTxO references
+ */
+export type UtxoInfoResponse = IUtxoInfo[]
+export interface IUtxoInfo {
+  /**
    * Hash identifier of the transaction
    * @example
    * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
    */
-  string[]
+  tx_hash: string
+  /** Index of UTxO in the transaction */
+  tx_index: any
+  /**
+   * A Cardano payment/base address (bech32 encoded)
+   * @example
+   * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
+   */
+  address: string
+  /**
+   * Total sum of ADA on the UTxO
+   * @example
+   * 157832856
+   */
+  value: string
+  stake_address: {}
+  /**
+   * Payment credential
+   * @example
+   * "de3c1c527e8826b9cd2030f88f75fc44cd4ce519b9ded9eb794b3794"
+   */
+  payment_cred: any
+  /**
+   * Epoch number of the block
+   * @example
+   * 321
+   */
+  epoch_no: any
+  /**
+   * Block height
+   * @example
+   * 42325043
+   */
+  block_height: any
+  /**
+   * UNIX timestamp of the block
+   * @example
+   * 1506635091
+   */
+  block_time: any
+  /**
+   * The Hash of the Plutus Data
+   * @example
+   * "5a595ce795815e81d22a1a522cf3987d546dc5bb016de61b002edd63a5413ec4"
+   */
+  datum_hash: any
+  /** Allows datums to be attached to UTxO (CIP-32) */
+  inline_datum: any
+  /** Allow reference scripts to be used to satisfy script requirements during validation, rather than requiring the spending transaction to do so. (CIP-33) */
+  reference_script: any
+  /** An array of assets on the UTxO */
+  asset_list: any
+  /**
+   * True if the UTXO has been spent
+   * @example
+   * true
+   */
+  is_spent: boolean
 }
 
 /**
@@ -749,43 +922,43 @@ export interface ITxInfo {
    * @example
    * 42325043
    */
-  block_height: number | null
+  block_height: any
   /**
    * Epoch number of the block
    * @example
    * 321
    */
-  epoch_no: number
+  epoch_no: any
   /**
    * Slot number of the block in epoch
    * @example
    * 75442
    */
-  epoch_slot: number
+  epoch_slot: any
   /**
    * Absolute slot number of the block
    * @example
    * 53384242
    */
-  absolute_slot: number
+  absolute_slot: any
   /**
    * UNIX timestamp of the transaction
    * @example
    * 1506635091
    */
-  tx_timestamp: number
+  tx_timestamp: any
   /**
    * Index of transaction within block
    * @example
    * 6
    */
-  tx_block_index: number
+  tx_block_index: any
   /**
    * Size in bytes of transaction
    * @example
    * 391
    */
-  tx_size: number
+  tx_size: any
   /**
    * Total sum of all transaction outputs (in lovelaces)
    * @example
@@ -801,391 +974,26 @@ export interface ITxInfo {
   /** Total Deposits included in transaction (for example, if it is registering a pool/key) */
   deposit: string
   /** Slot before which transaction cannot be validated (if supplied, else null) */
-  invalid_before: string | null
+  invalid_before: any
   /**
    * Slot after which transaction cannot be validated
    * @example
    * 42332172
    */
-  invalid_after: string | null
-  /** An array of UTxO outputs created by the transaction */
-  collateral_inputs: {
-    payment_addr: {
-      /**
-       * A Cardano payment/base address (bech32 encoded) where funds were sent or change to be returned
-       * @example
-       * "addr1q80rc8zj06yzdwwdyqc03rm4l3zv6n89rxuaak0t099n09yssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqad9mkw"
-       */
-      bech32: string
-      /**
-       * Payment credential
-       * @example
-       * "de3c1c527e8826b9cd2030f88f75fc44cd4ce519b9ded9eb794b3794"
-       */
-      cred: string
-    }
-    stake_addr:
-      | /**
-       * Cardano staking address (reward account) in bech32 format
-       * @example
-       * "stake1u8yxtugdv63wxafy9d00nuz6hjyyp4qnggvc9a3vxh8yl0ckml2uz"
-       */
-      string
-      | null
-    /**
-     * Hash of transaction for UTxO
-     * @example
-     * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
-     */
-    tx_hash: string
-    /** Index of UTxO in the transaction */
-    tx_index: number
-    /**
-     * Total sum of ADA on the UTxO
-     * @example
-     * 157832856
-     */
-    value: string
-    /**
-     * Hash of datum (if any) connected to UTxO
-     * @example
-     * "30c16dd243324cf9d90ffcf211b9e0f2117a7dc28d17e85927dfe2af3328e5c9"
-     */
-    datum_hash: string | null
-    /** Allows datums to be attached to UTxO (CIP-32) */
-    inline_datum: {
-      /**
-       * Datum bytes (hex)
-       * @example
-       * "19029a"
-       */
-      bytes: string
-      /**
-       * Value (json)
-       * @example
-       * {
-       *   "int": 666
-       * }
-       */
-      value: {}
-    } | null
-    /** Allow reference scripts to be used to satisfy script requirements during validation, rather than requiring the spending transaction to do so. (CIP-33) */
-    reference_script: {
-      /**
-       * Hash of referenced script
-       * @example
-       * "67f33146617a5e61936081db3b2117cbf59bd2123748f58ac9678656"
-       */
-      hash: string
-      /**
-       * Size in bytes
-       * @example
-       * 14
-       */
-      size: number
-      /**
-       * Type of script
-       * @example
-       * "plutusV1"
-       */
-      type: string
-      /**
-       * Script bytes (hex)
-       * @example
-       * "4e4d01000033222220051200120011"
-       */
-      bytes: string
-      /** Value (json) */
-      value: {} | null
-    } | null
-    /** An array of assets on the UTxO */
-    asset_list: {
-      /**
-       * Asset Policy ID (hex)
-       * @example
-       * "d3501d9531fcc25e3ca4b6429318c2cc374dbdbcf5e99c1c1e5da1ff"
-       */
-      policy_id: string
-      /**
-       * Asset Name (hex)
-       * @example
-       * "444f4e545350414d"
-       */
-      asset_name: string | null
-      /**
-       * The CIP14 fingerprint of the asset
-       * @example
-       * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
-       */
-      fingerprint: string
-      /**
-       * Asset decimals
-       * @example
-       * 6
-       */
-      decimals: number
-      /**
-       * Quantity of assets on the UTxO
-       * @example
-       * 1
-       */
-      quantity: string
-    }[]
-  }[]
-  collateral_output: {
-    payment_addr: {
-      /**
-       * A Cardano payment/base address (bech32 encoded) where funds were sent or change to be returned
-       * @example
-       * "addr1q80rc8zj06yzdwwdyqc03rm4l3zv6n89rxuaak0t099n09yssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqad9mkw"
-       */
-      bech32: string
-      /**
-       * Payment credential
-       * @example
-       * "de3c1c527e8826b9cd2030f88f75fc44cd4ce519b9ded9eb794b3794"
-       */
-      cred: string
-    }
-    stake_addr:
-      | /**
-       * Cardano staking address (reward account) in bech32 format
-       * @example
-       * "stake1u8yxtugdv63wxafy9d00nuz6hjyyp4qnggvc9a3vxh8yl0ckml2uz"
-       */
-      string
-      | null
-    /**
-     * Hash of transaction for UTxO
-     * @example
-     * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
-     */
-    tx_hash: string
-    /** Index of UTxO in the transaction */
-    tx_index: number
-    /**
-     * Total sum of ADA on the UTxO
-     * @example
-     * 157832856
-     */
-    value: string
-    /**
-     * Hash of datum (if any) connected to UTxO
-     * @example
-     * "30c16dd243324cf9d90ffcf211b9e0f2117a7dc28d17e85927dfe2af3328e5c9"
-     */
-    datum_hash: string | null
-    /** Allows datums to be attached to UTxO (CIP-32) */
-    inline_datum: {
-      /**
-       * Datum bytes (hex)
-       * @example
-       * "19029a"
-       */
-      bytes: string
-      /**
-       * Value (json)
-       * @example
-       * {
-       *   "int": 666
-       * }
-       */
-      value: {}
-    } | null
-    /** Allow reference scripts to be used to satisfy script requirements during validation, rather than requiring the spending transaction to do so. (CIP-33) */
-    reference_script: {
-      /**
-       * Hash of referenced script
-       * @example
-       * "67f33146617a5e61936081db3b2117cbf59bd2123748f58ac9678656"
-       */
-      hash: string
-      /**
-       * Size in bytes
-       * @example
-       * 14
-       */
-      size: number
-      /**
-       * Type of script
-       * @example
-       * "plutusV1"
-       */
-      type: string
-      /**
-       * Script bytes (hex)
-       * @example
-       * "4e4d01000033222220051200120011"
-       */
-      bytes: string
-      /** Value (json) */
-      value: {} | null
-    } | null
-    /** An array of assets on the UTxO */
-    asset_list: {
-      /**
-       * Asset Policy ID (hex)
-       * @example
-       * "d3501d9531fcc25e3ca4b6429318c2cc374dbdbcf5e99c1c1e5da1ff"
-       */
-      policy_id: string
-      /**
-       * Asset Name (hex)
-       * @example
-       * "444f4e545350414d"
-       */
-      asset_name: string | null
-      /**
-       * The CIP14 fingerprint of the asset
-       * @example
-       * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
-       */
-      fingerprint: string
-      /**
-       * Asset decimals
-       * @example
-       * 6
-       */
-      decimals: number
-      /**
-       * Quantity of assets on the UTxO
-       * @example
-       * 1
-       */
-      quantity: string
-    }[]
-  }
-  /** An array of UTxO outputs created by the transaction */
-  reference_inputs: {
-    payment_addr: {
-      /**
-       * A Cardano payment/base address (bech32 encoded) where funds were sent or change to be returned
-       * @example
-       * "addr1q80rc8zj06yzdwwdyqc03rm4l3zv6n89rxuaak0t099n09yssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqad9mkw"
-       */
-      bech32: string
-      /**
-       * Payment credential
-       * @example
-       * "de3c1c527e8826b9cd2030f88f75fc44cd4ce519b9ded9eb794b3794"
-       */
-      cred: string
-    }
-    stake_addr:
-      | /**
-       * Cardano staking address (reward account) in bech32 format
-       * @example
-       * "stake1u8yxtugdv63wxafy9d00nuz6hjyyp4qnggvc9a3vxh8yl0ckml2uz"
-       */
-      string
-      | null
-    /**
-     * Hash of transaction for UTxO
-     * @example
-     * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
-     */
-    tx_hash: string
-    /** Index of UTxO in the transaction */
-    tx_index: number
-    /**
-     * Total sum of ADA on the UTxO
-     * @example
-     * 157832856
-     */
-    value: string
-    /**
-     * Hash of datum (if any) connected to UTxO
-     * @example
-     * "30c16dd243324cf9d90ffcf211b9e0f2117a7dc28d17e85927dfe2af3328e5c9"
-     */
-    datum_hash: string | null
-    /** Allows datums to be attached to UTxO (CIP-32) */
-    inline_datum: {
-      /**
-       * Datum bytes (hex)
-       * @example
-       * "19029a"
-       */
-      bytes: string
-      /**
-       * Value (json)
-       * @example
-       * {
-       *   "int": 666
-       * }
-       */
-      value: {}
-    } | null
-    /** Allow reference scripts to be used to satisfy script requirements during validation, rather than requiring the spending transaction to do so. (CIP-33) */
-    reference_script: {
-      /**
-       * Hash of referenced script
-       * @example
-       * "67f33146617a5e61936081db3b2117cbf59bd2123748f58ac9678656"
-       */
-      hash: string
-      /**
-       * Size in bytes
-       * @example
-       * 14
-       */
-      size: number
-      /**
-       * Type of script
-       * @example
-       * "plutusV1"
-       */
-      type: string
-      /**
-       * Script bytes (hex)
-       * @example
-       * "4e4d01000033222220051200120011"
-       */
-      bytes: string
-      /** Value (json) */
-      value: {} | null
-    } | null
-    /** An array of assets on the UTxO */
-    asset_list: {
-      /**
-       * Asset Policy ID (hex)
-       * @example
-       * "d3501d9531fcc25e3ca4b6429318c2cc374dbdbcf5e99c1c1e5da1ff"
-       */
-      policy_id: string
-      /**
-       * Asset Name (hex)
-       * @example
-       * "444f4e545350414d"
-       */
-      asset_name: string | null
-      /**
-       * The CIP14 fingerprint of the asset
-       * @example
-       * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
-       */
-      fingerprint: string
-      /**
-       * Asset decimals
-       * @example
-       * 6
-       */
-      decimals: number
-      /**
-       * Quantity of assets on the UTxO
-       * @example
-       * 1
-       */
-      quantity: string
-    }[]
-  }[]
+  invalid_after: any
+  /** An array of collateral inputs needed for smart contracts in case of contract failure */
+  collateral_inputs: {}
+  /** A collateral output for change if the smart contract fails to execute and collateral inputs are spent. (CIP-40) */
+  collateral_output: {}
+  /** An array of reference inputs. A reference input allows looking at an output without spending it. (CIP-31) */
+  reference_inputs: {}
   /** An array of UTxO outputs created by the transaction */
   inputs: {
     payment_addr: {
       /**
-       * A Cardano payment/base address (bech32 encoded) where funds were sent or change to be returned
+       * A Cardano payment/base address (bech32 encoded)
        * @example
-       * "addr1q80rc8zj06yzdwwdyqc03rm4l3zv6n89rxuaak0t099n09yssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqad9mkw"
+       * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
        */
       bech32: string
       /**
@@ -1195,22 +1003,15 @@ export interface ITxInfo {
        */
       cred: string
     }
-    stake_addr:
-      | /**
-       * Cardano staking address (reward account) in bech32 format
-       * @example
-       * "stake1u8yxtugdv63wxafy9d00nuz6hjyyp4qnggvc9a3vxh8yl0ckml2uz"
-       */
-      string
-      | null
+    stake_addr: {}
     /**
-     * Hash of transaction for UTxO
+     * Hash identifier of the transaction
      * @example
      * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
      */
     tx_hash: string
     /** Index of UTxO in the transaction */
-    tx_index: number
+    tx_index: any
     /**
      * Total sum of ADA on the UTxO
      * @example
@@ -1222,94 +1023,21 @@ export interface ITxInfo {
      * @example
      * "30c16dd243324cf9d90ffcf211b9e0f2117a7dc28d17e85927dfe2af3328e5c9"
      */
-    datum_hash: string | null
+    datum_hash: any
     /** Allows datums to be attached to UTxO (CIP-32) */
-    inline_datum: {
-      /**
-       * Datum bytes (hex)
-       * @example
-       * "19029a"
-       */
-      bytes: string
-      /**
-       * Value (json)
-       * @example
-       * {
-       *   "int": 666
-       * }
-       */
-      value: {}
-    } | null
+    inline_datum: any
     /** Allow reference scripts to be used to satisfy script requirements during validation, rather than requiring the spending transaction to do so. (CIP-33) */
-    reference_script: {
-      /**
-       * Hash of referenced script
-       * @example
-       * "67f33146617a5e61936081db3b2117cbf59bd2123748f58ac9678656"
-       */
-      hash: string
-      /**
-       * Size in bytes
-       * @example
-       * 14
-       */
-      size: number
-      /**
-       * Type of script
-       * @example
-       * "plutusV1"
-       */
-      type: string
-      /**
-       * Script bytes (hex)
-       * @example
-       * "4e4d01000033222220051200120011"
-       */
-      bytes: string
-      /** Value (json) */
-      value: {} | null
-    } | null
+    reference_script: any
     /** An array of assets on the UTxO */
-    asset_list: {
-      /**
-       * Asset Policy ID (hex)
-       * @example
-       * "d3501d9531fcc25e3ca4b6429318c2cc374dbdbcf5e99c1c1e5da1ff"
-       */
-      policy_id: string
-      /**
-       * Asset Name (hex)
-       * @example
-       * "444f4e545350414d"
-       */
-      asset_name: string | null
-      /**
-       * The CIP14 fingerprint of the asset
-       * @example
-       * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
-       */
-      fingerprint: string
-      /**
-       * Asset decimals
-       * @example
-       * 6
-       */
-      decimals: number
-      /**
-       * Quantity of assets on the UTxO
-       * @example
-       * 1
-       */
-      quantity: string
-    }[]
+    asset_list: any
   }[]
   /** An array of UTxO outputs created by the transaction */
   outputs: {
     payment_addr: {
       /**
-       * A Cardano payment/base address (bech32 encoded) where funds were sent or change to be returned
+       * A Cardano payment/base address (bech32 encoded)
        * @example
-       * "addr1q80rc8zj06yzdwwdyqc03rm4l3zv6n89rxuaak0t099n09yssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqad9mkw"
+       * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
        */
       bech32: string
       /**
@@ -1319,22 +1047,15 @@ export interface ITxInfo {
        */
       cred: string
     }
-    stake_addr:
-      | /**
-       * Cardano staking address (reward account) in bech32 format
-       * @example
-       * "stake1u8yxtugdv63wxafy9d00nuz6hjyyp4qnggvc9a3vxh8yl0ckml2uz"
-       */
-      string
-      | null
+    stake_addr: {}
     /**
-     * Hash of transaction for UTxO
+     * Hash identifier of the transaction
      * @example
      * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
      */
     tx_hash: string
     /** Index of UTxO in the transaction */
-    tx_index: number
+    tx_index: any
     /**
      * Total sum of ADA on the UTxO
      * @example
@@ -1346,135 +1067,18 @@ export interface ITxInfo {
      * @example
      * "30c16dd243324cf9d90ffcf211b9e0f2117a7dc28d17e85927dfe2af3328e5c9"
      */
-    datum_hash: string | null
+    datum_hash: any
     /** Allows datums to be attached to UTxO (CIP-32) */
-    inline_datum: {
-      /**
-       * Datum bytes (hex)
-       * @example
-       * "19029a"
-       */
-      bytes: string
-      /**
-       * Value (json)
-       * @example
-       * {
-       *   "int": 666
-       * }
-       */
-      value: {}
-    } | null
+    inline_datum: any
     /** Allow reference scripts to be used to satisfy script requirements during validation, rather than requiring the spending transaction to do so. (CIP-33) */
-    reference_script: {
-      /**
-       * Hash of referenced script
-       * @example
-       * "67f33146617a5e61936081db3b2117cbf59bd2123748f58ac9678656"
-       */
-      hash: string
-      /**
-       * Size in bytes
-       * @example
-       * 14
-       */
-      size: number
-      /**
-       * Type of script
-       * @example
-       * "plutusV1"
-       */
-      type: string
-      /**
-       * Script bytes (hex)
-       * @example
-       * "4e4d01000033222220051200120011"
-       */
-      bytes: string
-      /** Value (json) */
-      value: {} | null
-    } | null
+    reference_script: any
     /** An array of assets on the UTxO */
-    asset_list: {
-      /**
-       * Asset Policy ID (hex)
-       * @example
-       * "d3501d9531fcc25e3ca4b6429318c2cc374dbdbcf5e99c1c1e5da1ff"
-       */
-      policy_id: string
-      /**
-       * Asset Name (hex)
-       * @example
-       * "444f4e545350414d"
-       */
-      asset_name: string | null
-      /**
-       * The CIP14 fingerprint of the asset
-       * @example
-       * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
-       */
-      fingerprint: string
-      /**
-       * Asset decimals
-       * @example
-       * 6
-       */
-      decimals: number
-      /**
-       * Quantity of assets on the UTxO
-       * @example
-       * 1
-       */
-      quantity: string
-    }[]
+    asset_list: any
   }[]
   /** Array of withdrawals with-in a transaction */
-  withdrawals: {
-    /**
-     * Withdrawal amount (in lovelaces)
-     * @example
-     * 9845162
-     */
-    amount: string
-    /**
-     * A Cardano staking address (reward account, bech32 encoded)
-     * @example
-     * "stake1uxggf4shfvpghcangm67ky0q4zlc3xn7gezy0auhxczu3pslm9wrj"
-     */
-    stake_addr: string
-  }[]
+  withdrawals: any
   /** Array of minted assets with-in a transaction */
-  assets_minted: {
-    /**
-     * Asset Policy ID (hex)
-     * @example
-     * "d3501d9531fcc25e3ca4b6429318c2cc374dbdbcf5e99c1c1e5da1ff"
-     */
-    policy_id: string
-    /**
-     * Asset Name (hex)
-     * @example
-     * "444f4e545350414d"
-     */
-    asset_name: string | null
-    /**
-     * The CIP14 fingerprint of the asset
-     * @example
-     * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
-     */
-    fingerprint: string
-    /**
-     * Asset decimals
-     * @example
-     * 6
-     */
-    decimals: number
-    /**
-     * Quantity of minted assets (negative on burn)
-     * @example
-     * 1
-     */
-    quantity: string
-  }[]
+  assets_minted: any
   /**
    * A JSON array containing details about metadata within transaction
    * @example
@@ -1489,247 +1093,13 @@ export interface ITxInfo {
    *   }
    * }
    */
-  metadata: {} | null
+  metadata: any
   /** Certificates present with-in a transaction (if any) */
-  certificates: {
-    /** Certificate index */
-    index: number | null
-    /**
-     * Type of certificate (could be delegation, stake_registration, stake_deregistraion, pool_update, pool_retire, param_proposal, reserve_MIR, treasury_MIR)
-     * @example
-     * "delegation"
-     */
-    type: string
-    /**
-     * A JSON array containing information from the certificate
-     * @example
-     * {
-     *   "stake_address": "stake1uxggf4shfvpghcangm67ky0q4zlc3xn7gezy0auhxczu3pslm9wrj",
-     *   "pool": "pool1k53pf4wzn263c08e3wr3gttndfecm9f4uzekgctcx947vt7fh2p"
-     * }
-     */
-    info: {} | null
-  }[]
+  certificates: any
   /** Native scripts present in a transaction (if any) */
-  native_scripts: {
-    /**
-     * Hash of a script
-     * @example
-     * "d8480dc869b94b80e81ec91b0abe307279311fe0e7001a9488f61ff8"
-     */
-    script_hash: string
-    /**
-     * JSON representation of the timelock script (null for other script types)
-     * @example
-     * {
-     *   "type": "all",
-     *   "scripts": [
-     *     {
-     *       "type": "sig",
-     *       "keyHash": "a96da581c39549aeda81f539ac3940ac0cb53657e774ca7e68f15ed9"
-     *     },
-     *     {
-     *       "type": "sig",
-     *       "keyHash": "ccfcb3fed004562be1354c837a4a4b9f4b1c2b6705229efeedd12d4d"
-     *     },
-     *     {
-     *       "type": "sig",
-     *       "keyHash": "74fcd61aecebe36aa6b6cd4314027282fa4b41c3ce8af17d9b77d0d1"
-     *     }
-     *   ]
-     * }
-     */
-    script_json: {}
-  }[]
+  native_scripts: any
   /** Plutus contracts present in transaction (if any) */
-  plutus_contracts: {
-    /**
-     * Plutus script address
-     * @example
-     * "addr1w999n67e86jn6xal07pzxtrmqynspgx0fwmcmpua4wc6yzsxpljz3"
-     */
-    address: string | null
-    /**
-     * Hash of a script
-     * @example
-     * "d8480dc869b94b80e81ec91b0abe307279311fe0e7001a9488f61ff8"
-     */
-    script_hash: string
-    /**
-     * CBOR-encoded Plutus script data
-     * @example
-     * "5911ea010000332333222332233223322332232323332223233322232333333332222222232333222323333222232323322323332223233322232323322332232323333322222332233223322332233223322223223223232533530333330083333573466e1cd55cea8032400046460a000264646464646666ae68cdc39aab9d5004480008cccc8888cccc16c01000c008004dd71aba15004375c6ae85400cdd71aba15002375a6ae84d5d1280111a8279a982819ab9c491035054310005149926135744a00226ae8940044d55cf280089baa001357426aae79401c8d4124d4c128cd5ce2481035054310004b499263333573466e1d40112002205323333573466e1d40152000205523504a35304b335738921035054310004c49926498cccd5cd19b8735573aa004900011980599191919191919191919191999ab9a3370e6aae754029200023333333333019335027232323333573466e1cd55cea8012400046603e60746ae854008c0b0d5d09aba2500223505935305a3357389201035054310005b49926135573ca00226ea8004d5d0a80519a8138141aba150093335502e75ca05a6ae854020ccd540b9d728169aba1500733502704335742a00c66a04e66aa0a8098eb4d5d0a8029919191999ab9a3370e6aae754009200023350213232323333573466e1cd55cea80124000466a05266a084eb4d5d0a80118239aba135744a00446a0ba6a60bc66ae712401035054310005f49926135573ca00226ea8004d5d0a8011919191999ab9a3370e6aae7540092000233502733504275a6ae854008c11cd5d09aba2500223505d35305e3357389201035054310005f49926135573ca00226ea8004d5d09aba2500223505935305a3357389201035054310005b49926135573ca00226ea8004d5d0a80219a813bae35742a00666a04e66aa0a8eb88004d5d0a801181c9aba135744a00446a0aa6a60ac66ae71241035054310005749926135744a00226ae8940044d5d1280089aba25001135744a00226ae8940044d5d1280089aba25001135573ca00226ea8004d5d0a8011919191999ab9a3370ea00290031180f181d9aba135573ca00646666ae68cdc3a801240084603a608a6ae84d55cf280211999ab9a3370ea00690011180e98181aba135573ca00a46666ae68cdc3a80224000460406eb8d5d09aab9e50062350503530513357389201035054310005249926499264984d55cea80089baa001357426ae8940088d4124d4c128cd5ce249035054310004b49926104a1350483530493357389201035054350004a4984d55cf280089baa001135573a6ea80044dd50009109198008018011000911111111109199999999980080580500480400380300280200180110009109198008018011000891091980080180109000891091980080180109000891091980080180109000909111180200290911118018029091111801002909111180080290008919118011bac0013200135503b2233335573e0024a01c466a01a60086ae84008c00cd5d100101991919191999ab9a3370e6aae75400d200023330073232323333573466e1cd55cea8012400046601a60626ae854008cd404c0b4d5d09aba25002235036353037335738921035054310003849926135573ca00226ea8004d5d0a801999aa805bae500a35742a00466a01eeb8d5d09aba25002235032353033335738921035054310003449926135744a00226aae7940044dd50009110919980080200180110009109198008018011000899aa800bae75a224464460046eac004c8004d540d488c8cccd55cf80112804919a80419aa81898031aab9d5002300535573ca00460086ae8800c0b84d5d08008891001091091198008020018900089119191999ab9a3370ea002900011a80418029aba135573ca00646666ae68cdc3a801240044a01046a0526a605466ae712401035054310002b499264984d55cea80089baa001121223002003112200112001232323333573466e1cd55cea8012400046600c600e6ae854008dd69aba135744a00446a0466a604866ae71241035054310002549926135573ca00226ea80048848cc00400c00880048c8cccd5cd19b8735573aa002900011bae357426aae7940088d407cd4c080cd5ce24810350543100021499261375400224464646666ae68cdc3a800a40084a00e46666ae68cdc3a8012400446a014600c6ae84d55cf280211999ab9a3370ea00690001280511a8111a981199ab9c490103505431000244992649926135573aa00226ea8004484888c00c0104488800844888004480048c8cccd5cd19b8750014800880188cccd5cd19b8750024800080188d4068d4c06ccd5ce249035054310001c499264984d55ce9baa0011220021220012001232323232323333573466e1d4005200c200b23333573466e1d4009200a200d23333573466e1d400d200823300b375c6ae854014dd69aba135744a00a46666ae68cdc3a8022400c46601a6eb8d5d0a8039bae357426ae89401c8cccd5cd19b875005480108cc048c050d5d0a8049bae357426ae8940248cccd5cd19b875006480088c050c054d5d09aab9e500b23333573466e1d401d2000230133016357426aae7940308d407cd4c080cd5ce2481035054310002149926499264992649926135573aa00826aae79400c4d55cf280109aab9e500113754002424444444600e01044244444446600c012010424444444600a010244444440082444444400644244444446600401201044244444446600201201040024646464646666ae68cdc3a800a400446660106eb4d5d0a8021bad35742a0066eb4d5d09aba2500323333573466e1d400920002300a300b357426aae7940188d4040d4c044cd5ce2490350543100012499264984d55cea80189aba25001135573ca00226ea80048488c00800c888488ccc00401401000c80048c8c8cccd5cd19b875001480088c018dd71aba135573ca00646666ae68cdc3a80124000460106eb8d5d09aab9e500423500a35300b3357389201035054310000c499264984d55cea80089baa001212230020032122300100320011122232323333573466e1cd55cea80124000466aa016600c6ae854008c014d5d09aba25002235007353008335738921035054310000949926135573ca00226ea8004498480048004448848cc00400c008448004848c0040088004888848cccc00401401000c00880044880084880048004448c8c00400488cc00cc008008004c8ccc888c8c8cc88cc88ccc888c8c8c8c8cc88c8c8cc88c8cccc8888c8c8c8c8c8c8c8c8ccc888c8ccc888ccc888cccccccc88888888cc88ccccc88888cccc8888cc88cc88cc88ccc888cc88cc88cc88cc88cc88c8c8c8cc88c8c8c8c8c8c8cc88c8c8c8c8c8c8cc888c888c8c94cd4c1240104cc0352401297369676e617475726520646f6573206e6f74206d617463682063726561746f7220696e20646174756d0033223530200022222222222533535032333553068120015027253353079333573466e3c0300041ec1e84d40d4004540d000c841ec41e54008c04540144cc054cc03524012f65787065637465642063726561746f7220746f2067657420616c6c206f66207768617420736865206f72646572656400330153350133335500e305c12001504f350481223335501b2253353070333505006353353502a3235302900122335304c0022350300012502f300e00221001132635300b335738920117696e76616c6964207075626c6963206b657920686173680000c498c05540244cc010c0340080044004004c8d4c08400488888888880254010ccd41354138c1894014c04920c08db7013350133335500e305c12001504f350481223335501b22533530703005002133004335506500d30100020011001001300d5004333504d504e30625005333504d504e533535026301a00321300a300d0011630124830236dc04cc0352401276f6e6c79206d617463686573206f66207061697273206f66206f726465727320616c6c6f77656400533535063350481223335501b225335307030050021330040020011001001300d50041306a162215335350650011306c16221533535067001107222130701623253353502732353024001222001500121333504e223530280022235302a0032232335304e0052335304f004253353077333573466e3c0080041e41e05400c41e081e08cd4c13c01081e094cd4c1dcccd5cd19b8f002001079078150031078153353502e0032153353502f00221335304c0022335304d002233530510022335305200223306d002001207b23353052002207b23306d00200122207b222335304f004207b2225335307c333573466e1c01800c1f81f454cd4c1f0ccd5cd19b8700500207e07d1333573466e1c0100041f81f441f441f441d854cd4d40b8004841d841d8c03140094cd4d40a0c07001484cd54190034c03c0045841b84c0300044d4c068004880084d4c02800480044800480048d4c0680048880088d4c06400488800c8d4c05000488888888880288d4c05400488004894cd4c184004418c4cd5ce001031089119aa8011a82600090009091800801100091a982c0009111002119a82999aa82b245003350533355056489000015054505412233355304b120013500550032353550560012233355304e120013500850062353550590012233353550490012330614800000488cc1880080048cc184005200000133040002001133500400105a22533530590021001105a123350492233353500400322002002001353500200122001122123300100300212001112232001320013550582253353504e00110032213300600230040012353003001223530070022222222222533335302600b21501b21501b21501b2133355305012001500f2353015001225335306353353063333573466e3cd4c0bc00888008d4c0bc010880081941904ccd5cd19b8735302f0022200135302f00422001065064106413501f0031501e00b13350432253353500d002210031001500c2212330010030022001222222222212333333333300100b00a009008007006005004003002200122123300100300220012221233300100400300220012212330010030022001121223002003112200112001122123300100300212001122123300100300212001122123300100300212001121222300300411222002112220011200121222230040052122223003005212222300200521222230010052001221233001003002200121222222230070082212222222330060090082122222223005008122222220041222222200322122222223300200900822122222223300100900820012122300200322212233300100500400320012122300200321223001003200112335001501d501e1220021220012001120011200113002012133500b2233300301300200150162223355300e1200123535501a00122335501d002335530111200123535501d001223355020002333535500d00123300a4800000488cc02c0080048cc028005200000133004002001223355300c1200123535501800122335501b00233353550080012335530101200123535501c00122335501f00235500f001001223335550080150020012335530101200123535501c00122335501f00235500d0010013335550030100020011112223335530041200150153355300c1200123535501800122335501b00235500b0013335530041200122353550190022253353021333553011120013500d33500f22533530230021025100102223535501c001223300a0020050061003133501900400350160013355300c120012353550180012232335501c00330010053200135502322533535019001135500b0032213535501e00222533530263300c00200813355010007001130060030023200135501c221122253353501500110022213300500233355300712001005004001112122230030041122122233002005004112122230010041120011233500722333535004003220020020013535002001220011221233001003002120013200135501422112253353500c0011500e22133500f3004002335530061200100400132001355013221122253353500c00113535006003220012213335350080052200230040023335530071200100500400112212330010030021200122333573466e3c00800404404088cdc000100088911801000919991119a80319aa80480199a80319aa804801000a803a8039a980380091110019a980380091110011a98038009111000889100109109119800802001890008891091980080180108900091110919998008028020018011000900211199ab9a3371000400200800a244004244002400222464600200244660066004004003"
-     */
-    bytecode: string
-    /**
-     * The size of the CBOR serialised script (in bytes)
-     * @example
-     * 234895
-     */
-    size: number
-    /**
-     * True if the contract is valid or there is no contract
-     * @example
-     * true
-     */
-    valid_contract: boolean
-    input: {
-      redeemer: {
-        /**
-         * What kind of validation this redeemer is used for
-         * @example
-         * "spend"
-         */
-        purpose: "spend" | "mint" | "cert" | "reward"
-        /**
-         * The budget in fees to run a script - the fees depend on the ExUnits and the current prices
-         * @example
-         * 45282
-         */
-        fee: string
-        unit: {
-          /**
-           * The budget in Cpu steps to run a script
-           * @example
-           * 211535239
-           */
-          steps: string | number | null
-          /**
-           * The budget in Memory to run a script
-           * @example
-           * 520448
-           */
-          mem: string | number | null
-        }
-        datum: {
-          /**
-           * The Hash of the Plutus Data
-           * @example
-           * "5a595ce795815e81d22a1a522cf3987d546dc5bb016de61b002edd63a5413ec4"
-           */
-          hash: string | null
-          /**
-           * The actual data in json format
-           * @example
-           * {
-           *   "bytes": "3c33"
-           * }
-           */
-          value: {}
-        }
-      }
-      datum: {
-        /**
-         * The Hash of the Plutus Data
-         * @example
-         * "5a595ce795815e81d22a1a522cf3987d546dc5bb016de61b002edd63a5413ec4"
-         */
-        hash: string | null
-        /**
-         * The actual data in json format
-         * @example
-         * {
-         *   "bytes": "3c33"
-         * }
-         */
-        value: {}
-      }
-    }
-  }[]
-}
-
-/**
- * Transaction UTxOs
- * Get UTxO set (inputs/outputs) of transactions.
- */
-export type TxUtxosResponse = ITxUtxos[]
-export interface ITxUtxos {
-  /**
-   * Hash identifier of the transaction
-   * @example
-   * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
-   */
-  tx_hash: string
-  /** An array of UTxO inputs used by the transaction */
-  inputs: {
-    payment_addr: {
-      /**
-       * A Cardano payment/base address (bech32 encoded) where funds were sent or change to be returned
-       * @example
-       * "addr1q80rc8zj06yzdwwdyqc03rm4l3zv6n89rxuaak0t099n09yssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqad9mkw"
-       */
-      bech32: string
-      /**
-       * Payment credential
-       * @example
-       * "de3c1c527e8826b9cd2030f88f75fc44cd4ce519b9ded9eb794b3794"
-       */
-      cred: string
-    }
-    stake_addr:
-      | /**
-       * Cardano staking address (reward account) in bech32 format
-       * @example
-       * "stake1u8yxtugdv63wxafy9d00nuz6hjyyp4qnggvc9a3vxh8yl0ckml2uz"
-       */
-      string
-      | null
-    /**
-     * Hash of transaction for UTxO
-     * @example
-     * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
-     */
-    tx_hash: string
-    /** Index of UTxO in the transaction */
-    tx_index: number
-    /**
-     * Total sum of ADA on the UTxO
-     * @example
-     * 157832856
-     */
-    value: string
-  }[]
-  /** An array of UTxO outputs created by the transaction */
-  outputs: /** An array of UTxO inputs used by the transaction */
-
-  {
-    payment_addr: {
-      /**
-       * A Cardano payment/base address (bech32 encoded) where funds were sent or change to be returned
-       * @example
-       * "addr1q80rc8zj06yzdwwdyqc03rm4l3zv6n89rxuaak0t099n09yssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqad9mkw"
-       */
-      bech32: string
-      /**
-       * Payment credential
-       * @example
-       * "de3c1c527e8826b9cd2030f88f75fc44cd4ce519b9ded9eb794b3794"
-       */
-      cred: string
-    }
-    stake_addr:
-      | /**
-       * Cardano staking address (reward account) in bech32 format
-       * @example
-       * "stake1u8yxtugdv63wxafy9d00nuz6hjyyp4qnggvc9a3vxh8yl0ckml2uz"
-       */
-      string
-      | null
-    /**
-     * Hash of transaction for UTxO
-     * @example
-     * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
-     */
-    tx_hash: string
-    /** Index of UTxO in the transaction */
-    tx_index: number
-    /**
-     * Total sum of ADA on the UTxO
-     * @example
-     * 157832856
-     */
-    value: string
-  }[]
+  plutus_contracts: any
 }
 
 /**
@@ -1758,7 +1128,7 @@ export interface ITxMetadata {
    *   }
    * }
    */
-  metadata: {} | null
+  metadata: any
 }
 
 /**
@@ -1776,13 +1146,7 @@ export interface ITxMetalabels {
 }
 
 /**
- * Submit Transaction
- * Submit an already serialized transaction to the network.
- */
-export type SubmittxResponse = string
-
-/**
- * Transaction Status (Block Confirmations)
+ * Transaction Status
  * Get the number of block confirmations for a given transaction hash list
  */
 export type TxStatusResponse = ITxStatus[]
@@ -1798,7 +1162,82 @@ export interface ITxStatus {
    * @example
    * 17
    */
-  num_confirmations: number | null
+  num_confirmations: any
+}
+
+/**
+ * Transaction UTxOs
+ * Get UTxO set (inputs/outputs) of transactions [DEPRECATED - Use /utxo_info instead].
+ */
+export type TxUtxosResponse = ITxUtxos[]
+export interface ITxUtxos {
+  tx_hash: {}
+  /** An array of UTxO inputs used by the transaction */
+  inputs: {
+    payment_addr: {
+      /**
+       * A Cardano payment/base address (bech32 encoded) where funds were sent or change to be returned
+       * @example
+       * "addr1q80rc8zj06yzdwwdyqc03rm4l3zv6n89rxuaak0t099n09yssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqad9mkw"
+       */
+      bech32: string
+      /**
+       * Payment credential
+       * @example
+       * "de3c1c527e8826b9cd2030f88f75fc44cd4ce519b9ded9eb794b3794"
+       */
+      cred: string
+    }
+    stake_addr: {}
+    /**
+     * Hash identifier of the transaction
+     * @example
+     * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
+     */
+    tx_hash: string
+    /** Index of UTxO in the transaction */
+    tx_index: any
+    /**
+     * Total sum of ADA on the UTxO
+     * @example
+     * 157832856
+     */
+    value: string
+  }[]
+  /** An array of UTxO outputs created by the transaction */
+  outputs: /** An array of UTxO inputs used by the transaction */
+
+  {
+    payment_addr: {
+      /**
+       * A Cardano payment/base address (bech32 encoded) where funds were sent or change to be returned
+       * @example
+       * "addr1q80rc8zj06yzdwwdyqc03rm4l3zv6n89rxuaak0t099n09yssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqad9mkw"
+       */
+      bech32: string
+      /**
+       * Payment credential
+       * @example
+       * "de3c1c527e8826b9cd2030f88f75fc44cd4ce519b9ded9eb794b3794"
+       */
+      cred: string
+    }
+    stake_addr: {}
+    /**
+     * Hash identifier of the transaction
+     * @example
+     * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
+     */
+    tx_hash: string
+    /** Index of UTxO in the transaction */
+    tx_index: any
+    /**
+     * Total sum of ADA on the UTxO
+     * @example
+     * 157832856
+     */
+    value: string
+  }[]
 }
 
 /**
@@ -1808,7 +1247,7 @@ export interface ITxStatus {
 export type AddressInfoResponse = IAddressInfo[]
 export interface IAddressInfo {
   /**
-   * A Cardano payment/base address (bech32 encoded) for transaction's input UTxO
+   * A Cardano payment/base address (bech32 encoded)
    * @example
    * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
    */
@@ -1819,14 +1258,7 @@ export interface IAddressInfo {
    * 10723473983
    */
   balance: string
-  stake_address:
-    | /**
-     * Cardano staking address (reward account) in bech32 format
-     * @example
-     * "stake1u8yxtugdv63wxafy9d00nuz6hjyyp4qnggvc9a3vxh8yl0ckml2uz"
-     */
-    string
-    | null
+  stake_address: {}
   /**
    * Signifies whether the address is a script address
    * @example
@@ -1835,25 +1267,25 @@ export interface IAddressInfo {
   script_address: boolean
   utxo_set: {
     /**
-     * Hash of transaction for UTxO
+     * Hash identifier of the transaction
      * @example
      * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
      */
     tx_hash: string
     /** Index of UTxO in the transaction */
-    tx_index: number
+    tx_index: any
     /**
      * Block height
      * @example
      * 42325043
      */
-    block_height: number | null
+    block_height: any
     /**
      * UNIX timestamp of the block
      * @example
      * 1506635091
      */
-    block_time: number
+    block_time: any
     /**
      * Total sum of ADA on the UTxO
      * @example
@@ -1865,86 +1297,156 @@ export interface IAddressInfo {
      * @example
      * "5a595ce795815e81d22a1a522cf3987d546dc5bb016de61b002edd63a5413ec4"
      */
-    datum_hash: string | null
+    datum_hash: any
     /** Allows datums to be attached to UTxO (CIP-32) */
-    inline_datum: {
-      /**
-       * Datum bytes (hex)
-       * @example
-       * "19029a"
-       */
-      bytes: string
-      /**
-       * Value (json)
-       * @example
-       * {
-       *   "int": 666
-       * }
-       */
-      value: {}
-    } | null
+    inline_datum: any
     /** Allow reference scripts to be used to satisfy script requirements during validation, rather than requiring the spending transaction to do so. (CIP-33) */
-    reference_script: {
-      /**
-       * Hash of referenced script
-       * @example
-       * "67f33146617a5e61936081db3b2117cbf59bd2123748f58ac9678656"
-       */
-      hash: string
-      /**
-       * Size in bytes
-       * @example
-       * 14
-       */
-      size: number
-      /**
-       * Type of script
-       * @example
-       * "plutusV1"
-       */
-      type: string
-      /**
-       * Script bytes (hex)
-       * @example
-       * "4e4d01000033222220051200120011"
-       */
-      bytes: string
-      /** Value (json) */
-      value: {} | null
-    } | null
-    asset_list: {
-      /**
-       * Asset Policy ID (hex)
-       * @example
-       * "d3501d9531fcc25e3ca4b6429318c2cc374dbdbcf5e99c1c1e5da1ff"
-       */
-      policy_id: string
-      /**
-       * Asset Name (hex)
-       * @example
-       * "444f4e545350414d"
-       */
-      asset_name: string | null
-      /**
-       * The CIP14 fingerprint of the asset
-       * @example
-       * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
-       */
-      fingerprint: string
-      /**
-       * Asset decimals
-       * @example
-       * 6
-       */
-      decimals: number
-      /**
-       * Asset quantity owned by account
-       * @example
-       * 990000
-       */
-      quantity: string
-    }[]
+    reference_script: any
+    /** An array of assets on the UTxO */
+    asset_list: any
   }[]
+}
+
+/**
+ * Address UTXOs
+ * Get UTxO set for given addresses
+ */
+export type AddressUtxosResponse = IAddressUtxos[]
+export interface IAddressUtxos {
+  /**
+   * Hash identifier of the transaction
+   * @example
+   * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
+   */
+  tx_hash: string
+  /** Index of UTxO in the transaction */
+  tx_index: any
+  /**
+   * A Cardano payment/base address (bech32 encoded)
+   * @example
+   * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
+   */
+  address: string
+  /**
+   * Total sum of ADA on the UTxO
+   * @example
+   * 157832856
+   */
+  value: string
+  stake_address: {}
+  /**
+   * Payment credential
+   * @example
+   * "de3c1c527e8826b9cd2030f88f75fc44cd4ce519b9ded9eb794b3794"
+   */
+  payment_cred: any
+  /**
+   * Epoch number of the block
+   * @example
+   * 321
+   */
+  epoch_no: any
+  /**
+   * Block height
+   * @example
+   * 42325043
+   */
+  block_height: any
+  /**
+   * UNIX timestamp of the block
+   * @example
+   * 1506635091
+   */
+  block_time: any
+  /**
+   * The Hash of the Plutus Data
+   * @example
+   * "5a595ce795815e81d22a1a522cf3987d546dc5bb016de61b002edd63a5413ec4"
+   */
+  datum_hash: any
+  /** Allows datums to be attached to UTxO (CIP-32) */
+  inline_datum: any
+  /** Allow reference scripts to be used to satisfy script requirements during validation, rather than requiring the spending transaction to do so. (CIP-33) */
+  reference_script: any
+  /** An array of assets on the UTxO */
+  asset_list: any
+  /**
+   * True if the UTXO has been spent
+   * @example
+   * true
+   */
+  is_spent: boolean
+}
+
+/**
+ * UTxOs from payment credentials
+ * Get UTxO details for requested payment credentials
+ */
+export type CredentialUtxosResponse = ICredentialUtxos[]
+export interface ICredentialUtxos {
+  /**
+   * Hash identifier of the transaction
+   * @example
+   * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
+   */
+  tx_hash: string
+  /** Index of UTxO in the transaction */
+  tx_index: any
+  /**
+   * A Cardano payment/base address (bech32 encoded)
+   * @example
+   * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
+   */
+  address: string
+  /**
+   * Total sum of ADA on the UTxO
+   * @example
+   * 157832856
+   */
+  value: string
+  stake_address: {}
+  /**
+   * Payment credential
+   * @example
+   * "de3c1c527e8826b9cd2030f88f75fc44cd4ce519b9ded9eb794b3794"
+   */
+  payment_cred: any
+  /**
+   * Epoch number of the block
+   * @example
+   * 321
+   */
+  epoch_no: any
+  /**
+   * Block height
+   * @example
+   * 42325043
+   */
+  block_height: any
+  /**
+   * UNIX timestamp of the block
+   * @example
+   * 1506635091
+   */
+  block_time: any
+  /**
+   * The Hash of the Plutus Data
+   * @example
+   * "5a595ce795815e81d22a1a522cf3987d546dc5bb016de61b002edd63a5413ec4"
+   */
+  datum_hash: any
+  /** Allows datums to be attached to UTxO (CIP-32) */
+  inline_datum: any
+  /** Allow reference scripts to be used to satisfy script requirements during validation, rather than requiring the spending transaction to do so. (CIP-33) */
+  reference_script: any
+  /** An array of assets on the UTxO */
+  asset_list: any
+  /**
+   * True if the UTXO has been spent
+   * @example
+   * true
+   */
+  is_spent: boolean
 }
 
 /**
@@ -1953,52 +1455,52 @@ export interface IAddressInfo {
  */
 export type AddressTxsResponse = IAddressTxs[]
 export interface IAddressTxs {
-  /**
-   * Hash identifier of the transaction
-   * @example
-   * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
-   */
-  tx_hash: string
+  tx_hash: {}
   /**
    * Epoch number of the block
    * @example
    * 321
    */
-  epoch_no: number
+  epoch_no: any
   /**
    * Block height
    * @example
    * 42325043
    */
-  block_height: number | null
+  block_height: any
   /**
    * UNIX timestamp of the block
    * @example
    * 1506635091
    */
-  block_time: number
+  block_time: any
 }
 
 /**
- * UTxOs from payment credentials
- * Get a list of UTxO against input payment credential array including their balances
+ * Transactions from payment credentials
+ * Get the transaction hash list of input payment credential array, optionally filtering after specified block height (inclusive)
  */
-export type CredentialUtxosResponse = ICredentialUtxos[]
-export interface ICredentialUtxos {
+export type CredentialTxsResponse = ICredentialTxs[]
+export interface ICredentialTxs {
+  tx_hash: {}
   /**
-   * Hash of transaction for UTxO
+   * Epoch number of the block
    * @example
-   * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
+   * 321
    */
-  tx_hash: string
-  /** Index of UTxO in the transaction */
-  tx_index: number
+  epoch_no: any
   /**
-   * Total sum of ADA on the UTxO
+   * Block height
    * @example
-   * 157832856
+   * 42325043
    */
-  value: string
+  block_height: any
+  /**
+   * UNIX timestamp of the block
+   * @example
+   * 1506635091
+   */
+  block_time: any
 }
 
 /**
@@ -2008,75 +1510,36 @@ export interface ICredentialUtxos {
 export type AddressAssetsResponse = IAddressAssets[]
 export interface IAddressAssets {
   /**
-   * A Cardano payment/base address (bech32 encoded) for transaction's input UTxO
+   * A Cardano payment/base address (bech32 encoded)
    * @example
    * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
    */
   address: string
-  asset_list: {
-    /**
-     * Asset Policy ID (hex)
-     * @example
-     * "d3501d9531fcc25e3ca4b6429318c2cc374dbdbcf5e99c1c1e5da1ff"
-     */
-    policy_id: string
-    /**
-     * Asset Name (hex)
-     * @example
-     * "444f4e545350414d"
-     */
-    asset_name: string | null
-    /**
-     * The CIP14 fingerprint of the asset
-     * @example
-     * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
-     */
-    fingerprint: string
-    /**
-     * Asset decimals
-     * @example
-     * 6
-     */
-    decimals: number
-    /**
-     * Asset quantity owned by account
-     * @example
-     * 990000
-     */
-    quantity: string
-  }[]
-}
-
-/**
- * Transactions from payment credentials
- * Get the transaction hash list of input payment credential array, optionally filtering after specified block height (inclusive)
- */
-export type CredentialTxsResponse = ICredentialTxs[]
-export interface ICredentialTxs {
   /**
-   * Hash identifier of the transaction
+   * Asset Policy ID (hex)
    * @example
-   * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
+   * "d3501d9531fcc25e3ca4b6429318c2cc374dbdbcf5e99c1c1e5da1ff"
    */
-  tx_hash: string
+  policy_id: string
   /**
-   * Epoch number of the block
+   * Asset Name (hex)
    * @example
-   * 321
+   * "444f4e545350414d"
    */
-  epoch_no: number
+  asset_name: any
   /**
-   * Block height
+   * The CIP14 fingerprint of the asset
    * @example
-   * 42325043
+   * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
    */
-  block_height: number | null
+  fingerprint: string
+  decimals: any
   /**
-   * UNIX timestamp of the block
+   * Asset balance on the payment address
    * @example
-   * 1506635091
+   * 23
    */
-  block_time: number
+  quantity: string
 }
 
 /**
@@ -2111,12 +1574,7 @@ export interface IAccountInfo {
    * "registered"
    */
   status: "registered" | "not registered"
-  /**
-   * Bech32 representation of pool ID
-   * @example
-   * "pool1z5uqdk7dzdxaae5633fqfcu2eqzy3a3rgtuvy087fdld7yws0xt"
-   */
-  delegated_pool: string | null
+  delegated_pool: {}
   /**
    * Total balance of the account including UTxO, rewards and MIRs (in lovelace)
    * @example
@@ -2162,48 +1620,8 @@ export interface IAccountInfo {
 }
 
 /**
- * Account UTxOs
- * Get a list of all UTxOs for a given stake address (account)
- */
-export type AccountUtxosResponse = IAccountUtxos[]
-export interface IAccountUtxos {
-  /**
-   * Hash of transaction for UTxO
-   * @example
-   * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
-   */
-  tx_hash: string
-  /** Index of UTxO in the transaction */
-  tx_index: number
-  /**
-   * A Cardano payment/base address (bech32 encoded) for transaction's input UTxO
-   * @example
-   * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
-   */
-  address: string
-  /**
-   * Total sum of ADA on the UTxO
-   * @example
-   * 157832856
-   */
-  value: string
-  /**
-   * Block height
-   * @example
-   * 42325043
-   */
-  block_height: number | null
-  /**
-   * UNIX timestamp of the block
-   * @example
-   * 1506635091
-   */
-  block_time: number
-}
-
-/**
  * Account Information (Cached)
- * Get the cached account information for given stake addresses, effective for registered accounts
+ * Get the cached account information for given stake addresses (effective for performance query against registered accounts)
  */
 export type AccountInfoCachedResponse = IAccountInfoCached[]
 export interface IAccountInfoCached {
@@ -2219,12 +1637,7 @@ export interface IAccountInfoCached {
    * "registered"
    */
   status: "registered" | "not registered"
-  /**
-   * Bech32 representation of pool ID
-   * @example
-   * "pool1z5uqdk7dzdxaae5633fqfcu2eqzy3a3rgtuvy087fdld7yws0xt"
-   */
-  delegated_pool: string | null
+  delegated_pool: {}
   /**
    * Total balance of the account including UTxO, rewards and MIRs (in lovelace)
    * @example
@@ -2267,6 +1680,104 @@ export interface IAccountInfoCached {
    * "0"
    */
   treasury: string
+}
+
+/**
+ * UTxOs for stake addresses (accounts)
+ * Get a list of all UTxOs for given stake addresses (account)s
+ */
+export type AccountUtxosResponse = IAccountUtxos[]
+export interface IAccountUtxos {
+  /**
+   * Hash identifier of the transaction
+   * @example
+   * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
+   */
+  tx_hash: string
+  /** Index of UTxO in the transaction */
+  tx_index: any
+  /**
+   * A Cardano payment/base address (bech32 encoded)
+   * @example
+   * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
+   */
+  address: string
+  /**
+   * Total sum of ADA on the UTxO
+   * @example
+   * 157832856
+   */
+  value: string
+  stake_address: {}
+  /**
+   * Payment credential
+   * @example
+   * "de3c1c527e8826b9cd2030f88f75fc44cd4ce519b9ded9eb794b3794"
+   */
+  payment_cred: any
+  /**
+   * Epoch number of the block
+   * @example
+   * 321
+   */
+  epoch_no: any
+  /**
+   * Block height
+   * @example
+   * 42325043
+   */
+  block_height: any
+  /**
+   * UNIX timestamp of the block
+   * @example
+   * 1506635091
+   */
+  block_time: any
+  /**
+   * The Hash of the Plutus Data
+   * @example
+   * "5a595ce795815e81d22a1a522cf3987d546dc5bb016de61b002edd63a5413ec4"
+   */
+  datum_hash: any
+  /** Allows datums to be attached to UTxO (CIP-32) */
+  inline_datum: any
+  /** Allow reference scripts to be used to satisfy script requirements during validation, rather than requiring the spending transaction to do so. (CIP-33) */
+  reference_script: any
+  /** An array of assets on the UTxO */
+  asset_list: any
+  /**
+   * True if the UTXO has been spent
+   * @example
+   * true
+   */
+  is_spent: boolean
+}
+
+/**
+ * Account Txs
+ * Get a list of all Txs for a given stake address (account)
+ */
+export type AccountTxsResponse = IAccountTxs[]
+export interface IAccountTxs {
+  tx_hash: {}
+  /**
+   * Epoch number of the block
+   * @example
+   * 321
+   */
+  epoch_no: any
+  /**
+   * Block height
+   * @example
+   * 42325043
+   */
+  block_height: any
+  /**
+   * UNIX timestamp of the block
+   * @example
+   * 1506635091
+   */
+  block_time: any
 }
 
 /**
@@ -2287,13 +1798,13 @@ export interface IAccountRewards {
      * @example
      * 294
      */
-    earned_epoch: number
+    earned_epoch: any
     /**
      * Epoch number
      * @example
      * 294
      */
-    spendable_epoch: number
+    spendable_epoch: any
     /** Amount of rewards earned (in lovelace) */
     amount: string
     /**
@@ -2303,11 +1814,11 @@ export interface IAccountRewards {
      */
     type: "member" | "leader" | "treasury" | "reserves"
     /**
-     * Bech32 representation of pool ID
+     * Pool ID (bech32 format)
      * @example
-     * "pool1z5uqdk7dzdxaae5633fqfcu2eqzy3a3rgtuvy087fdld7yws0xt"
+     * "pool155efqn9xpcf73pphkk88cmlkdwx4ulkg606tne970qswczg3asc"
      */
-    pool_id: string | null
+    pool_id: string
   }[]
 }
 
@@ -2341,25 +1852,25 @@ export interface IAccountUpdates {
      * @example
      * 321
      */
-    epoch_no: number
+    epoch_no: any
     /**
      * Slot number of the block in epoch
      * @example
      * 75442
      */
-    epoch_slot: number
+    epoch_slot: any
     /**
      * Absolute slot number of the block
      * @example
      * 53384242
      */
-    absolute_slot: number
+    absolute_slot: any
     /**
      * UNIX timestamp of the block
      * @example
      * 1506635091
      */
-    block_time: number
+    block_time: any
   }[]
 }
 
@@ -2376,7 +1887,7 @@ export interface IAccountAddresses {
    */
   stake_address: string
   addresses: /**
-   * A Cardano payment/base address (bech32 encoded) for transaction's input UTxO
+   * A Cardano payment/base address (bech32 encoded)
    * @example
    * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
    */
@@ -2395,38 +1906,31 @@ export interface IAccountAssets {
    * "stake1u8yxtugdv63wxafy9d00nuz6hjyyp4qnggvc9a3vxh8yl0ckml2uz"
    */
   stake_address: string
-  asset_list: {
-    /**
-     * Asset Policy ID (hex)
-     * @example
-     * "d3501d9531fcc25e3ca4b6429318c2cc374dbdbcf5e99c1c1e5da1ff"
-     */
-    policy_id: string
-    /**
-     * Asset Name (hex)
-     * @example
-     * "444f4e545350414d"
-     */
-    asset_name: string | null
-    /**
-     * The CIP14 fingerprint of the asset
-     * @example
-     * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
-     */
-    fingerprint: string
-    /**
-     * Asset decimals
-     * @example
-     * 6
-     */
-    decimals: number
-    /**
-     * Asset quantity owned by account
-     * @example
-     * 990000
-     */
-    quantity: string
-  }[]
+  /**
+   * Asset Policy ID (hex)
+   * @example
+   * "d3501d9531fcc25e3ca4b6429318c2cc374dbdbcf5e99c1c1e5da1ff"
+   */
+  policy_id: string
+  /**
+   * Asset Name (hex)
+   * @example
+   * "444f4e545350414d"
+   */
+  asset_name: any
+  /**
+   * The CIP14 fingerprint of the asset
+   * @example
+   * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
+   */
+  fingerprint: string
+  decimals: any
+  /**
+   * Asset balance on the payment address
+   * @example
+   * 23
+   */
+  quantity: string
 }
 
 /**
@@ -2453,7 +1957,7 @@ export interface IAccountHistory {
      * @example
      * 301
      */
-    epoch_no: number
+    epoch_no: any
     /**
      * Active stake amount (in lovelaces)
      * @example
@@ -2480,13 +1984,40 @@ export interface IAssetList {
    * @example
    * "444f4e545350414d"
    */
-  asset_name: string | null
+  asset_name: any
   /**
    * The CIP14 fingerprint of the asset
    * @example
    * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
    */
   fingerprint: string
+}
+
+/**
+ * Policy Asset List
+ * Get the list of asset under the given policy (including balances)
+ */
+export type PolicyAssetListResponse = IPolicyAssetList[]
+export interface IPolicyAssetList {
+  /**
+   * Asset Name (hex)
+   * @example
+   * "444f4e545350414d"
+   */
+  asset_name: any
+  /**
+   * The CIP14 fingerprint of the asset
+   * @example
+   * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
+   */
+  fingerprint: string
+  /**
+   * Total supply for the asset
+   * @example
+   * "35000"
+   */
+  total_supply: string
+  decimals: any
 }
 
 /**
@@ -2506,7 +2037,7 @@ export interface IAssetTokenRegistry {
    * @example
    * "444f4e545350414d"
    */
-  asset_name: string | null
+  asset_name: any
   /**
    * Asset Name (ASCII)
    * @example
@@ -2516,159 +2047,13 @@ export interface IAssetTokenRegistry {
   ticker: string
   description: string
   url: string
-  decimals: number
+  decimals: any
   /**
    * A PNG image file as a byte string
    * @example
    * "iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6CAYAAACI7Fo9AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADnmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSfvu78nIGlkPSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQnPz4KPHg6eG1wbWV0YSB4bWxuczp4PSdhZG9iZTpuczptZXRhLyc"
    */
   logo: string
-}
-
-/**
- * Asset Addresses
- * Get the list of all addresses holding a given asset <br><br> `Note - Due to cardano's UTxO design and usage from projects, asset to addresses map can be infinite. Thus, for a small subset of active projects with millions of transactions, these might end up with timeouts (HTTP code 504) on free layer. Such large-scale projects are free to subscribe to query layers to have a dedicated cache table for themselves served via Koios.`
- */
-export type AssetAddressesResponse = IAssetAddresses[]
-export interface IAssetAddresses {
-  /**
-   * A Cardano payment/base address (bech32 encoded) for transaction's input UTxO
-   * @example
-   * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
-   */
-  payment_address: string
-  /**
-   * Asset balance on the payment address
-   * @example
-   * 23
-   */
-  quantity: string
-}
-
-/**
- * Asset Address List [DEPRECATED]
- * Get the list of all addresses holding a given asset (replaced by asset_addresses)
- */
-export type AssetAddressListResponse = IAssetAddressList[]
-export interface IAssetAddressList {
-  /**
-   * A Cardano payment/base address (bech32 encoded) for transaction's input UTxO
-   * @example
-   * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
-   */
-  payment_address: string
-  /**
-   * Asset balance on the payment address
-   * @example
-   * 23
-   */
-  quantity: string
-}
-
-/**
- * NFT Address
- * Get the address where specified NFT currently reside on.
- */
-export type AssetNftAddressResponse = IAssetNftAddress[]
-export interface IAssetNftAddress {
-  /**
-   * A Cardano payment/base address (bech32 encoded) for transaction's input UTxO
-   * @example
-   * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
-   */
-  payment_address: string
-}
-
-/**
- * Asset Information
- * Get the information of an asset including first minting & token registry metadata
- */
-export type AssetInfoResponse = IAssetInfo[]
-export interface IAssetInfo {
-  /**
-   * Asset Policy ID (hex)
-   * @example
-   * "d3501d9531fcc25e3ca4b6429318c2cc374dbdbcf5e99c1c1e5da1ff"
-   */
-  policy_id: string
-  /**
-   * Asset Name (hex)
-   * @example
-   * "444f4e545350414d"
-   */
-  asset_name: string | null
-  /**
-   * Asset Name (ASCII)
-   * @example
-   * "DONTSPAM"
-   */
-  asset_name_ascii: string
-  /**
-   * The CIP14 fingerprint of the asset
-   * @example
-   * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
-   */
-  fingerprint: string
-  /**
-   * Hash of the latest mint transaction
-   * @example
-   * "cb07b7e51b77079776c4a78f2daf8f14f9945d2b047da7bfcb71d7fbb9f86712"
-   */
-  minting_tx_hash: string
-  /**
-   * Total supply for the asset
-   * @example
-   * "35000"
-   */
-  total_supply: string
-  /**
-   * Count of total mint transactions
-   * @example
-   * 1
-   */
-  mint_cnt: number
-  /**
-   * Count of total burn transactions
-   * @example
-   * 5
-   */
-  burn_cnt: number
-  /**
-   * UNIX timestamp of the first asset mint
-   * @example
-   * 1506635091
-   */
-  creation_time: number
-  /** Latest minting transaction metadata (aligns with CIP-25) */
-  minting_tx_metadata: /**
-   * A JSON array containing details about metadata within transaction
-   * @example
-   * {
-   *   "721": {
-   *     "version": 1,
-   *     "copyright": "...",
-   *     "publisher": [
-   *       "p...o"
-   *     ],
-   *     "4bf184e01e0f163296ab253edd60774e2d34367d0e7b6cbc689b567d": {}
-   *   }
-   * }
-   */
-  {} | null
-  /** Asset metadata registered on the Cardano Token Registry */
-  token_registry_metadata: {
-    name: string
-    description: string
-    ticker: string
-    url: string
-    /**
-     * A PNG image file as a byte string
-     * @example
-     * "iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6CAYAAACI7Fo9AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADnmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSfvu78nIGlkPSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQnPz4KPHg6eG1wbWV0YSB4bWxuczp4PSdhZG9iZTpuczptZXRhLyc"
-     */
-    logo: string
-    decimals: number
-  } | null
 }
 
 /**
@@ -2688,7 +2073,7 @@ export interface IAssetInfoBulk {
    * @example
    * "444f4e545350414d"
    */
-  asset_name: string | null
+  asset_name: any
   /**
    * Asset Name (ASCII)
    * @example
@@ -2718,19 +2103,19 @@ export interface IAssetInfoBulk {
    * @example
    * 1
    */
-  mint_cnt: number
+  mint_cnt: any
   /**
    * Count of total burn transactions
    * @example
    * 5
    */
-  burn_cnt: number
+  burn_cnt: any
   /**
    * UNIX timestamp of the first asset mint
    * @example
    * 1506635091
    */
-  creation_time: number
+  creation_time: any
   /** Latest minting transaction metadata (aligns with CIP-25) */
   minting_tx_metadata: /**
    * A JSON array containing details about metadata within transaction
@@ -2746,21 +2131,104 @@ export interface IAssetInfoBulk {
    *   }
    * }
    */
-  {} | null
+  any
   /** Asset metadata registered on the Cardano Token Registry */
-  token_registry_metadata: {
-    name: string
-    description: string
-    ticker: string
-    url: string
-    /**
-     * A PNG image file as a byte string
-     * @example
-     * "iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6CAYAAACI7Fo9AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADnmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSfvu78nIGlkPSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQnPz4KPHg6eG1wbWV0YSB4bWxuczp4PSdhZG9iZTpuczptZXRhLyc"
-     */
-    logo: string
-    decimals: number
-  } | null
+  token_registry_metadata: any
+  /**
+   * CIP 68 metadata if present for asset
+   * @example
+   * {
+   *   "222": {
+   *     "fields": [
+   *       {
+   *         "map": [
+   *           {
+   *             "k": {
+   *               "bytes": "6e616d65"
+   *             },
+   *             "v": {
+   *               "bytes": "74657374"
+   *             }
+   *           }
+   *         ]
+   *       }
+   *     ],
+   *     "constructor": 0
+   *   }
+   * }
+   */
+  cip68_metadata: any
+}
+
+/**
+ * Asset UTXOs
+ * Get the UTXO information of a list of assets including
+ */
+export type AssetUtxosResponse = IAssetUtxos[]
+export interface IAssetUtxos {
+  /**
+   * Hash identifier of the transaction
+   * @example
+   * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
+   */
+  tx_hash: string
+  /** Index of UTxO in the transaction */
+  tx_index: any
+  /**
+   * A Cardano payment/base address (bech32 encoded)
+   * @example
+   * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
+   */
+  address: string
+  /**
+   * Total sum of ADA on the UTxO
+   * @example
+   * 157832856
+   */
+  value: string
+  stake_address: {}
+  /**
+   * Payment credential
+   * @example
+   * "de3c1c527e8826b9cd2030f88f75fc44cd4ce519b9ded9eb794b3794"
+   */
+  payment_cred: any
+  /**
+   * Epoch number of the block
+   * @example
+   * 321
+   */
+  epoch_no: any
+  /**
+   * Block height
+   * @example
+   * 42325043
+   */
+  block_height: any
+  /**
+   * UNIX timestamp of the block
+   * @example
+   * 1506635091
+   */
+  block_time: any
+  /**
+   * The Hash of the Plutus Data
+   * @example
+   * "5a595ce795815e81d22a1a522cf3987d546dc5bb016de61b002edd63a5413ec4"
+   */
+  datum_hash: any
+  /** Allows datums to be attached to UTxO (CIP-32) */
+  inline_datum: any
+  /** Allow reference scripts to be used to satisfy script requirements during validation, rather than requiring the spending transaction to do so. (CIP-33) */
+  reference_script: any
+  /** An array of assets on the UTxO */
+  asset_list: any
+  /**
+   * True if the UTXO has been spent
+   * @example
+   * true
+   */
+  is_spent: boolean
 }
 
 /**
@@ -2780,7 +2248,7 @@ export interface IAssetHistory {
    * @example
    * "444f4e545350414d"
    */
-  asset_name: string | null
+  asset_name: any
   /**
    * The CIP14 fingerprint of the asset
    * @example
@@ -2788,43 +2256,41 @@ export interface IAssetHistory {
    */
   fingerprint: string
   /** Array of all mint/burn transactions for an asset */
-  minting_txs: {
-    /**
-     * Hash of minting/burning transaction
-     * @example
-     * "e1ecc517f95715bb87681cfde2c594dbc971739f84f8bfda16170b35d63d0ddf"
-     */
-    tx_hash: string
-    /**
-     * UNIX timestamp of the block
-     * @example
-     * 1506635091
-     */
-    block_time: number
-    /**
-     * Quantity minted/burned (negative numbers indicate burn transactions)
-     * @example
-     * "-10"
-     */
-    quantity: string
-    /** Array of Transaction Metadata for given transaction */
-    metadata: /** Latest minting transaction metadata (aligns with CIP-25) */
-    /**
-     * A JSON array containing details about metadata within transaction
-     * @example
-     * {
-     *   "721": {
-     *     "version": 1,
-     *     "copyright": "...",
-     *     "publisher": [
-     *       "p...o"
-     *     ],
-     *     "4bf184e01e0f163296ab253edd60774e2d34367d0e7b6cbc689b567d": {}
-     *   }
-     * }
-     */
-    ({} | null)[]
-  }[]
+  minting_txs: any
+}
+
+/**
+ * Asset Addresses
+ * Get the list of all addresses holding a given asset <br><br> `Note - Due to cardano's UTxO design and usage from projects, asset to addresses map can be infinite. Thus, for a small subset of active projects with millions of transactions, these might end up with timeouts (HTTP code 504) on free layer. Such large-scale projects are free to subscribe to query layers to have a dedicated cache table for themselves served via Koios.`
+ */
+export type AssetAddressesResponse = IAssetAddresses[]
+export interface IAssetAddresses {
+  /**
+   * A Cardano payment/base address (bech32 encoded)
+   * @example
+   * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
+   */
+  payment_address: string
+  /**
+   * Asset balance on the payment address
+   * @example
+   * 23
+   */
+  quantity: string
+}
+
+/**
+ * NFT Address
+ * Get the address where specified NFT currently reside on.
+ */
+export type AssetNftAddressResponse = IAssetNftAddress[]
+export interface IAssetNftAddress {
+  /**
+   * A Cardano payment/base address (bech32 encoded)
+   * @example
+   * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
+   */
+  payment_address: string
 }
 
 /**
@@ -2838,9 +2304,9 @@ export interface IPolicyAssetAddresses {
    * @example
    * "444f4e545350414d"
    */
-  asset_name: string | null
+  asset_name: any
   /**
-   * A Cardano payment/base address (bech32 encoded) for transaction's input UTxO
+   * A Cardano payment/base address (bech32 encoded)
    * @example
    * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
    */
@@ -2864,7 +2330,7 @@ export interface IPolicyAssetInfo {
    * @example
    * "444f4e545350414d"
    */
-  asset_name: string | null
+  asset_name: any
   /**
    * Asset Name (ASCII)
    * @example
@@ -2894,19 +2360,19 @@ export interface IPolicyAssetInfo {
    * @example
    * 1
    */
-  mint_cnt: number
+  mint_cnt: any
   /**
    * Count of total burn transactions
    * @example
    * 5
    */
-  burn_cnt: number
+  burn_cnt: any
   /**
    * UNIX timestamp of the first asset mint
    * @example
    * 1506635091
    */
-  creation_time: number
+  creation_time: any
   /** Latest minting transaction metadata (aligns with CIP-25) */
   minting_tx_metadata: /**
    * A JSON array containing details about metadata within transaction
@@ -2922,139 +2388,9 @@ export interface IPolicyAssetInfo {
    *   }
    * }
    */
-  {} | null
+  any
   /** Asset metadata registered on the Cardano Token Registry */
-  token_registry_metadata: {
-    name: string
-    description: string
-    ticker: string
-    url: string
-    /**
-     * A PNG image file as a byte string
-     * @example
-     * "iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6CAYAAACI7Fo9AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADnmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSfvu78nIGlkPSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQnPz4KPHg6eG1wbWV0YSB4bWxuczp4PSdhZG9iZTpuczptZXRhLyc"
-     */
-    logo: string
-    decimals: number
-  } | null
-}
-
-/**
- * Asset Policy Information [DEPRECATED]
- * Get the information for all assets under the same policy (replaced by asset_addresses)
- */
-export type AssetPolicyInfoResponse = IAssetPolicyInfo[]
-export interface IAssetPolicyInfo {
-  /**
-   * Asset Name (hex)
-   * @example
-   * "444f4e545350414d"
-   */
-  asset_name: string | null
-  /**
-   * Asset Name (ASCII)
-   * @example
-   * "DONTSPAM"
-   */
-  asset_name_ascii: string
-  /**
-   * The CIP14 fingerprint of the asset
-   * @example
-   * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
-   */
-  fingerprint: string
-  /**
-   * Hash of the latest mint transaction
-   * @example
-   * "cb07b7e51b77079776c4a78f2daf8f14f9945d2b047da7bfcb71d7fbb9f86712"
-   */
-  minting_tx_hash: string
-  /**
-   * Total supply for the asset
-   * @example
-   * "35000"
-   */
-  total_supply: string
-  /**
-   * Count of total mint transactions
-   * @example
-   * 1
-   */
-  mint_cnt: number
-  /**
-   * Count of total burn transactions
-   * @example
-   * 5
-   */
-  burn_cnt: number
-  /**
-   * UNIX timestamp of the first asset mint
-   * @example
-   * 1506635091
-   */
-  creation_time: number
-  /** Latest minting transaction metadata (aligns with CIP-25) */
-  minting_tx_metadata: /**
-   * A JSON array containing details about metadata within transaction
-   * @example
-   * {
-   *   "721": {
-   *     "version": 1,
-   *     "copyright": "...",
-   *     "publisher": [
-   *       "p...o"
-   *     ],
-   *     "4bf184e01e0f163296ab253edd60774e2d34367d0e7b6cbc689b567d": {}
-   *   }
-   * }
-   */
-  {} | null
-  /** Asset metadata registered on the Cardano Token Registry */
-  token_registry_metadata: {
-    name: string
-    description: string
-    ticker: string
-    url: string
-    /**
-     * A PNG image file as a byte string
-     * @example
-     * "iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6CAYAAACI7Fo9AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADnmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSfvu78nIGlkPSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQnPz4KPHg6eG1wbWV0YSB4bWxuczp4PSdhZG9iZTpuczptZXRhLyc"
-     */
-    logo: string
-    decimals: number
-  } | null
-}
-
-/**
- * Policy Asset List
- * Get the list of asset under the given policy (including balances)
- */
-export type PolicyAssetListResponse = IPolicyAssetList[]
-export interface IPolicyAssetList {
-  /**
-   * Asset Name (hex)
-   * @example
-   * "444f4e545350414d"
-   */
-  asset_name: string | null
-  /**
-   * The CIP14 fingerprint of the asset
-   * @example
-   * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
-   */
-  fingerprint: string
-  /**
-   * Total supply for the asset
-   * @example
-   * "35000"
-   */
-  total_supply: string
-  /**
-   * Asset decimals
-   * @example
-   * 6
-   */
-  decimals: number
+  token_registry_metadata: any
 }
 
 /**
@@ -3074,7 +2410,7 @@ export interface IAssetSummary {
    * @example
    * "444f4e545350414d"
    */
-  asset_name: string | null
+  asset_name: any
   /**
    * The CIP14 fingerprint of the asset
    * @example
@@ -3086,19 +2422,19 @@ export interface IAssetSummary {
    * @example
    * 89416
    */
-  total_transactions: number
+  total_transactions: any
   /**
    * Total number of registered wallets holding the given asset
    * @example
    * 548
    */
-  staked_wallets: number
+  staked_wallets: any
   /**
    * Total number of payment addresses (not belonging to registered wallets) holding the given asset
    * @example
    * 245
    */
-  unstaked_addresses: number
+  unstaked_addresses: any
 }
 
 /**
@@ -3107,50 +2443,227 @@ export interface IAssetSummary {
  */
 export type AssetTxsResponse = IAssetTxs[]
 export interface IAssetTxs {
-  /**
-   * Hash identifier of the transaction
-   * @example
-   * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
-   */
-  tx_hash: string
+  tx_hash: {}
   /**
    * Epoch number of the block
    * @example
    * 321
    */
-  epoch_no: number
+  epoch_no: any
   /**
    * Block height
    * @example
    * 42325043
    */
-  block_height: number | null
+  block_height: any
   /**
    * UNIX timestamp of the block
    * @example
    * 1506635091
    */
-  block_time: number
+  block_time: any
+}
+
+/**
+ * Asset Address List
+ * Get the list of all addresses holding a given asset [DEPRECATED - replaced by asset_addresses]
+ */
+export type AssetAddressListResponse = IAssetAddressList[]
+export interface IAssetAddressList {
+  /**
+   * A Cardano payment/base address (bech32 encoded)
+   * @example
+   * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
+   */
+  payment_address: string
+  /**
+   * Asset balance on the payment address
+   * @example
+   * 23
+   */
+  quantity: string
+}
+
+/**
+ * Asset Policy Information
+ * Get the information for all assets under the same policy (DEPRECATED - replaced by policy_asset_info)
+ */
+export type AssetPolicyInfoResponse = IAssetPolicyInfo[]
+export interface IAssetPolicyInfo {
+  /**
+   * Asset Name (hex)
+   * @example
+   * "444f4e545350414d"
+   */
+  asset_name: any
+  /**
+   * Asset Name (ASCII)
+   * @example
+   * "DONTSPAM"
+   */
+  asset_name_ascii: string
+  /**
+   * The CIP14 fingerprint of the asset
+   * @example
+   * "asset1ua6pz3yd5mdka946z8jw2fld3f8d0mmxt75gv9"
+   */
+  fingerprint: string
+  /**
+   * Hash of the latest mint transaction
+   * @example
+   * "cb07b7e51b77079776c4a78f2daf8f14f9945d2b047da7bfcb71d7fbb9f86712"
+   */
+  minting_tx_hash: string
+  /**
+   * Total supply for the asset
+   * @example
+   * "35000"
+   */
+  total_supply: string
+  /**
+   * Count of total mint transactions
+   * @example
+   * 1
+   */
+  mint_cnt: any
+  /**
+   * Count of total burn transactions
+   * @example
+   * 5
+   */
+  burn_cnt: any
+  /**
+   * UNIX timestamp of the first asset mint
+   * @example
+   * 1506635091
+   */
+  creation_time: any
+  /** Latest minting transaction metadata (aligns with CIP-25) */
+  minting_tx_metadata: /**
+   * A JSON array containing details about metadata within transaction
+   * @example
+   * {
+   *   "721": {
+   *     "version": 1,
+   *     "copyright": "...",
+   *     "publisher": [
+   *       "p...o"
+   *     ],
+   *     "4bf184e01e0f163296ab253edd60774e2d34367d0e7b6cbc689b567d": {}
+   *   }
+   * }
+   */
+  any
+  /** Asset metadata registered on the Cardano Token Registry */
+  token_registry_metadata: any
 }
 
 /**
  * Pool List
- * A list of all currently registered/retiring (not retired) pools
+ * List of brief info for all pools
  */
 export type PoolListResponse = IPoolList[]
 export interface IPoolList {
   /**
-   * Bech32 representation of pool ID
+   * Pool ID (bech32 format)
    * @example
-   * "pool1z5uqdk7dzdxaae5633fqfcu2eqzy3a3rgtuvy087fdld7yws0xt"
+   * "pool155efqn9xpcf73pphkk88cmlkdwx4ulkg606tne970qswczg3asc"
    */
-  pool_id_bech32: string | null
+  pool_id_bech32: string
+  /**
+   * Pool ID (Hex format)
+   * @example
+   * "a532904ca60e13e88437b58e7c6ff66b8d5e7ec8d3f4b9e4be7820ec"
+   */
+  pool_id_hex: string
+  active_epoch_no: {}
+  /**
+   * Margin (decimal format)
+   * @example
+   * 0.1
+   */
+  margin: any
+  /**
+   * Pool fixed cost per epoch
+   * @example
+   * "500000000"
+   */
+  fixed_cost: any
+  /**
+   * Pool pledge in lovelace
+   * @example
+   * "64000000000000"
+   */
+  pledge: any
+  /**
+   * Pool reward address
+   * @example
+   * "stake1uy6yzwsxxc28lfms0qmpxvyz9a7y770rtcqx9y96m42cttqwvp4m5"
+   */
+  reward_addr: any
+  owners: any
+  relays: {
+    /**
+     * DNS name of the relay (nullable)
+     * @example
+     * "relays-new.cardano-mainnet.iohk.io"
+     */
+    dns: any
+    /**
+     * DNS service name of the relay (nullable)
+     * @example
+     * "biostakingpool3.hopto.org"
+     */
+    srv: any
+    /**
+     * IPv4 address of the relay (nullable)
+     * @example
+     * "54.220.20.40"
+     */
+    ipv4: any
+    /**
+     * IPv6 address of the relay (nullable)
+     * @example
+     * "2604:ed40:1000:1711:6082:78ff:fe0c:ebf"
+     */
+    ipv6: any
+    /**
+     * Port number of the relay (nullable)
+     * @example
+     * 6000
+     */
+    port: any
+  }[]
   /**
    * Pool ticker
    * @example
-   * "JAZZ"
+   * "AHL"
    */
-  ticker: string | null
+  ticker: any
+  /**
+   * Pool metadata URL
+   * @example
+   * "https://pools.iohk.io/IOGP.json"
+   */
+  meta_url: any
+  /**
+   * Pool metadata hash
+   * @example
+   * "37eb004c0dd8a221ac3598ca1c6d6257fb5207ae9857b7c163ae0f39259d6cc0"
+   */
+  meta_hash: any
+  /**
+   * Pool status
+   * @example
+   * "registered"
+   */
+  pool_status: "registered" | "retiring" | "retired"
+  /**
+   * Announced retiring epoch (nullable)
+   * @example
+   * "null"
+   */
+  retiring_epoch: any
 }
 
 /**
@@ -3176,13 +2689,13 @@ export interface IPoolInfo {
    * @example
    * 324
    */
-  active_epoch_no: number
+  active_epoch_no: any
   /**
    * Pool VRF key hash
    * @example
    * "25efdad1bc12944d38e4e3c26c43565bec84973a812737b163b289e87d0d5ed3"
    */
-  vrf_key_hash: string
+  vrf_key_hash: any
   /**
    * Margin (decimal format)
    * @example
@@ -3194,157 +2707,131 @@ export interface IPoolInfo {
    * @example
    * "500000000"
    */
-  fixed_cost: string
+  fixed_cost: any
   /**
    * Pool pledge in lovelace
    * @example
    * "64000000000000"
    */
-  pledge: string
+  pledge: any
   /**
    * Pool reward address
    * @example
    * "stake1uy6yzwsxxc28lfms0qmpxvyz9a7y770rtcqx9y96m42cttqwvp4m5"
    */
-  reward_addr: string
-  owners: /**
-   * Pool (co)owner address
-   * @example
-   * "stake1u8088wvudd7dp3rxl0v9xgng8r3j50s65ge3l3jvgd94keqfm3nv3"
-   */
-  string[]
+  reward_addr: any
+  owners: any
   relays: {
     /**
      * DNS name of the relay (nullable)
      * @example
      * "relays-new.cardano-mainnet.iohk.io"
      */
-    dns: string | null
+    dns: any
     /**
      * DNS service name of the relay (nullable)
      * @example
      * "biostakingpool3.hopto.org"
      */
-    srv: string | null
+    srv: any
     /**
      * IPv4 address of the relay (nullable)
      * @example
      * "54.220.20.40"
      */
-    ipv4: string | null
+    ipv4: any
     /**
      * IPv6 address of the relay (nullable)
      * @example
      * "2604:ed40:1000:1711:6082:78ff:fe0c:ebf"
      */
-    ipv6: string | null
+    ipv6: any
     /**
      * Port number of the relay (nullable)
      * @example
      * 6000
      */
-    port: any | null
+    port: any
   }[]
   /**
    * Pool metadata URL
    * @example
    * "https://pools.iohk.io/IOGP.json"
    */
-  meta_url: string | null
+  meta_url: any
   /**
    * Pool metadata hash
    * @example
    * "37eb004c0dd8a221ac3598ca1c6d6257fb5207ae9857b7c163ae0f39259d6cc0"
    */
-  meta_hash: string | null
-  meta_json: {
-    /**
-     * Pool name
-     * @example
-     * "Input Output Global (IOHK) - Private"
-     */
-    name: string
-    /**
-     * Pool ticker
-     * @example
-     * "IOGP"
-     */
-    ticker: string
-    /**
-     * Pool homepage URL
-     * @example
-     * "https://iohk.io"
-     */
-    homepage: string
-    /**
-     * Pool description
-     * @example
-     * "Our mission is to provide economic identity to the billions of people who lack it. IOHK will not use the IOHK ticker."
-     */
-    description: string
-  } | null
+  meta_hash: any
+  meta_json: any
   /**
    * Pool status
    * @example
    * "registered"
    */
   pool_status: "registered" | "retiring" | "retired"
-  /** Announced retiring epoch (nullable) */
-  retiring_epoch: number | null
+  /**
+   * Announced retiring epoch (nullable)
+   * @example
+   * "null"
+   */
+  retiring_epoch: any
   /**
    * Pool latest operational certificate hash
    * @example
    * "37eb004c0dd8a221ac3598ca1c6d6257fb5207ae9857b7c163ae0f39259d6cc0"
    */
-  op_cert: string | null
+  op_cert: any
   /**
    * Pool latest operational certificate counter value
    * @example
    * 8
    */
-  op_cert_counter: number | null
+  op_cert_counter: any
   /**
    * Pool active stake (will be null post epoch transition until dbsync calculation is complete)
    * @example
    * "64328627680963"
    */
-  active_stake: string | null
+  active_stake: any
   /**
    * Pool relative active stake share
    * @example
    * 0.0034839235
    */
-  sigma: any | null
+  sigma: any
   /**
    * Total pool blocks on chain
    * @example
    * 4509
    */
-  block_count: number | null
+  block_count: any
   /**
    * Summary of account balance for all pool owner's
    * @example
    * "64328594406327"
    */
-  live_pledge: string | null
+  live_pledge: any
   /**
    * Pool live stake
    * @example
    * "64328627680963"
    */
-  live_stake: string | null
+  live_stake: any
   /**
    * Pool live delegator count
    * @example
    * 5
    */
-  live_delegators: number
+  live_delegators: any
   /**
    * Pool live saturation (decimal format)
    * @example
    * 94.52
    */
-  live_saturation: any | null
+  live_saturation: any
 }
 
 /**
@@ -3353,6 +2840,7 @@ export interface IPoolInfo {
  */
 export type PoolStakeSnapshotResponse = IPoolStakeSnapshot[]
 export interface IPoolStakeSnapshot {
+  /** Array of pool stake information for 3 snapshots */
   /**
    * Type of snapshot ("Mark", "Set" or "Go")
    * @example
@@ -3364,13 +2852,13 @@ export interface IPoolStakeSnapshot {
    * @example
    * 324
    */
-  epoch_no: number
+  epoch_no: any
   /**
    * The nonce value for this epoch
    * @example
    * "01304ddf5613166be96fce27be110747f2c8fcb38776618ee79225ccb59b81e2"
    */
-  nonce: string | null
+  nonce: any
   /**
    * Pool's Active Stake for the given epoch
    * @example
@@ -3408,7 +2896,7 @@ export interface IPoolDelegators {
    * @example
    * 324
    */
-  active_epoch_no: number
+  active_epoch_no: any
   /**
    * Latest transaction hash used for delegation by the account
    * @example
@@ -3440,7 +2928,7 @@ export interface IPoolDelegatorsHistory {
    * @example
    * 324
    */
-  epoch_no: number
+  epoch_no: any
 }
 
 /**
@@ -3454,25 +2942,25 @@ export interface IPoolBlocks {
    * @example
    * 294
    */
-  epoch_no: number
+  epoch_no: any
   /**
    * Slot number of the block in epoch
    * @example
    * 75442
    */
-  epoch_slot: number
+  epoch_slot: any
   /**
    * Absolute slot number of the block
    * @example
    * 53384242
    */
-  abs_slot: number
+  abs_slot: any
   /**
    * Block height
    * @example
    * 42325043
    */
-  block_height: number | null
+  block_height: any
   /**
    * Hash of the block
    * @example
@@ -3484,7 +2972,7 @@ export interface IPoolBlocks {
    * @example
    * 1506635091
    */
-  block_time: number
+  block_time: any
 }
 
 /**
@@ -3498,7 +2986,7 @@ export interface IPoolHistory {
    * @example
    * 312
    */
-  epoch_no: number
+  epoch_no: any
   /**
    * Amount of delegated stake to this pool at the time of epoch snapshot (in lovelaces)
    * @example
@@ -3522,13 +3010,13 @@ export interface IPoolHistory {
    * @example
    * 14
    */
-  block_cnt: number | null
+  block_cnt: any
   /**
    * Number of delegators to the pool for that epoch snapshot
    * @example
    * 1432
    */
-  delegator_cnt: number
+  delegator_cnt: any
   /**
    * Margin (decimal format)
    * @example
@@ -3554,6 +3042,12 @@ export interface IPoolHistory {
    */
   deleg_rewards: string
   /**
+   * Total amount of rewards earned by members (delegator - owner) in that epoch (in lovelaces)
+   * @example
+   * "123456780123"
+   */
+  member_rewards: string
+  /**
    * Annualized ROS (return on staking) for delegators for this epoch
    * @example
    * 3.000340466
@@ -3567,18 +3061,13 @@ export interface IPoolHistory {
  */
 export type PoolUpdatesResponse = IPoolUpdates[]
 export interface IPoolUpdates {
-  /**
-   * Hash identifier of the transaction
-   * @example
-   * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
-   */
-  tx_hash: string
+  tx_hash: {}
   /**
    * UNIX timestamp of the block
    * @example
    * 1506635091
    */
-  block_time: number
+  block_time: any
   /**
    * Pool ID (bech32 format)
    * @example
@@ -3596,13 +3085,13 @@ export interface IPoolUpdates {
    * @example
    * 324
    */
-  active_epoch_no: number
+  active_epoch_no: any
   /**
    * Pool VRF key hash
    * @example
    * "25efdad1bc12944d38e4e3c26c43565bec84973a812737b163b289e87d0d5ed3"
    */
-  vrf_key_hash: string
+  vrf_key_hash: any
   /**
    * Margin (decimal format)
    * @example
@@ -3614,108 +3103,172 @@ export interface IPoolUpdates {
    * @example
    * "500000000"
    */
-  fixed_cost: string
+  fixed_cost: any
   /**
    * Pool pledge in lovelace
    * @example
    * "64000000000000"
    */
-  pledge: string
+  pledge: any
   /**
    * Pool reward address
    * @example
    * "stake1uy6yzwsxxc28lfms0qmpxvyz9a7y770rtcqx9y96m42cttqwvp4m5"
    */
-  reward_addr: string
-  owners: /**
-   * Pool (co)owner address
-   * @example
-   * "stake1u8088wvudd7dp3rxl0v9xgng8r3j50s65ge3l3jvgd94keqfm3nv3"
-   */
-  string[]
+  reward_addr: any
+  owners: any
   relays: {
     /**
      * DNS name of the relay (nullable)
      * @example
      * "relays-new.cardano-mainnet.iohk.io"
      */
-    dns: string | null
+    dns: any
     /**
      * DNS service name of the relay (nullable)
      * @example
      * "biostakingpool3.hopto.org"
      */
-    srv: string | null
+    srv: any
     /**
      * IPv4 address of the relay (nullable)
      * @example
      * "54.220.20.40"
      */
-    ipv4: string | null
+    ipv4: any
     /**
      * IPv6 address of the relay (nullable)
      * @example
      * "2604:ed40:1000:1711:6082:78ff:fe0c:ebf"
      */
-    ipv6: string | null
+    ipv6: any
     /**
      * Port number of the relay (nullable)
      * @example
      * 6000
      */
-    port: any | null
+    port: any
   }[]
   /**
    * Pool metadata URL
    * @example
    * "https://pools.iohk.io/IOGP.json"
    */
-  meta_url: string | null
+  meta_url: any
   /**
    * Pool metadata hash
    * @example
    * "37eb004c0dd8a221ac3598ca1c6d6257fb5207ae9857b7c163ae0f39259d6cc0"
    */
-  meta_hash: string | null
-  meta_json: {
-    /**
-     * Pool name
-     * @example
-     * "Input Output Global (IOHK) - Private"
-     */
-    name: string
-    /**
-     * Pool ticker
-     * @example
-     * "IOGP"
-     */
-    ticker: string
-    /**
-     * Pool homepage URL
-     * @example
-     * "https://iohk.io"
-     */
-    homepage: string
-    /**
-     * Pool description
-     * @example
-     * "Our mission is to provide economic identity to the billions of people who lack it. IOHK will not use the IOHK ticker."
-     */
-    description: string
-  } | null
+  meta_hash: any
+  meta_json: any
   /**
-   * Pool status
+   * Type of update task
    * @example
    * "registered"
    */
-  pool_status: "registered" | "retiring" | "retired"
-  /** Announced retiring epoch (nullable) */
-  retiring_epoch: number | null
+  update_type: "registration" | "deregistration"
+  /**
+   * Announced retiring epoch (nullable)
+   * @example
+   * "null"
+   */
+  retiring_epoch: any
+}
+
+/**
+ * Pool Registrations
+ * Return all pool registrations initiated in the requested epoch
+ */
+export type PoolRegistrationsResponse = IPoolRegistrations[]
+export interface IPoolRegistrations {
+  /**
+   * Pool ID (bech32 format)
+   * @example
+   * "pool155efqn9xpcf73pphkk88cmlkdwx4ulkg606tne970qswczg3asc"
+   */
+  pool_id_bech32: string
+  tx_hash: {}
+  /**
+   * Hash of the block
+   * @example
+   * "e8c6992d52cd74b577b79251e0351be25070797a0dbc486b2c284d0bf7aeea9c"
+   */
+  block_hash: string
+  /**
+   * Block height
+   * @example
+   * 42325043
+   */
+  block_height: any
+  /**
+   * Epoch number
+   * @example
+   * 294
+   */
+  epoch_no: any
+  /**
+   * Slot number of the block in epoch
+   * @example
+   * 75442
+   */
+  epoch_slot: any
+  /**
+   * Epoch number in which the update becomes active
+   * @example
+   * 324
+   */
+  active_epoch_no: any
+}
+
+/**
+ * Pool Retirements
+ * Return all pool retirements initiated in the requested epoch
+ */
+export type PoolRetirementsResponse = IPoolRetirements[]
+export interface IPoolRetirements {
+  /**
+   * Pool ID (bech32 format)
+   * @example
+   * "pool155efqn9xpcf73pphkk88cmlkdwx4ulkg606tne970qswczg3asc"
+   */
+  pool_id_bech32: string
+  tx_hash: {}
+  /**
+   * Hash of the block
+   * @example
+   * "e8c6992d52cd74b577b79251e0351be25070797a0dbc486b2c284d0bf7aeea9c"
+   */
+  block_hash: string
+  /**
+   * Block height
+   * @example
+   * 42325043
+   */
+  block_height: any
+  /**
+   * Epoch number
+   * @example
+   * 294
+   */
+  epoch_no: any
+  /**
+   * Slot number of the block in epoch
+   * @example
+   * 75442
+   */
+  epoch_slot: any
+  /**
+   * Epoch number in which the update becomes active
+   * @example
+   * 324
+   */
+  active_epoch_no: any
 }
 
 /**
  * Pool Relays
- * A list of registered relays for all currently registered/retiring (not retired) pools
+ * A list of registered relays for all pools
  */
 export type PoolRelaysResponse = IPoolRelays[]
 export interface IPoolRelays {
@@ -3731,37 +3284,43 @@ export interface IPoolRelays {
      * @example
      * "relays-new.cardano-mainnet.iohk.io"
      */
-    dns: string | null
+    dns: any
     /**
      * DNS service name of the relay (nullable)
      * @example
      * "biostakingpool3.hopto.org"
      */
-    srv: string | null
+    srv: any
     /**
      * IPv4 address of the relay (nullable)
      * @example
      * "54.220.20.40"
      */
-    ipv4: string | null
+    ipv4: any
     /**
      * IPv6 address of the relay (nullable)
      * @example
      * "2604:ed40:1000:1711:6082:78ff:fe0c:ebf"
      */
-    ipv6: string | null
+    ipv6: any
     /**
      * Port number of the relay (nullable)
      * @example
      * 6000
      */
-    port: any | null
+    port: any
   }[]
+  /**
+   * Pool status
+   * @example
+   * "registered"
+   */
+  pool_status: "registered" | "retiring" | "retired"
 }
 
 /**
  * Pool Metadata
- * Metadata (on & off-chain) for all currently registered/retiring (not retired) pools
+ * Metadata (on & off-chain) for all pools
  */
 export type PoolMetadataResponse = IPoolMetadata[]
 export interface IPoolMetadata {
@@ -3776,39 +3335,65 @@ export interface IPoolMetadata {
    * @example
    * "https://pools.iohk.io/IOGP.json"
    */
-  meta_url: string | null
+  meta_url: any
   /**
    * Pool metadata hash
    * @example
    * "37eb004c0dd8a221ac3598ca1c6d6257fb5207ae9857b7c163ae0f39259d6cc0"
    */
-  meta_hash: string | null
-  meta_json: {
-    /**
-     * Pool name
-     * @example
-     * "Input Output Global (IOHK) - Private"
-     */
-    name: string
-    /**
-     * Pool ticker
-     * @example
-     * "IOGP"
-     */
-    ticker: string
-    /**
-     * Pool homepage URL
-     * @example
-     * "https://iohk.io"
-     */
-    homepage: string
-    /**
-     * Pool description
-     * @example
-     * "Our mission is to provide economic identity to the billions of people who lack it. IOHK will not use the IOHK ticker."
-     */
-    description: string
-  } | null
+  meta_hash: any
+  meta_json: any
+  /**
+   * Pool status
+   * @example
+   * "registered"
+   */
+  pool_status: "registered" | "retiring" | "retired"
+}
+
+/**
+ * Script Information
+ * List of script information for given script hashes
+ */
+export type ScriptInfoResponse = IScriptInfo[]
+export interface IScriptInfo {
+  /** Array of information for scripts */
+  /**
+   * Hash of a script
+   * @example
+   * "bfa7ffa9b2e164873db6ac6d0528c82e212963bc62e10fd1d81da4af"
+   */
+  script_hash: string
+  /**
+   * Hash of the script creation transaction
+   * @example
+   * "255f061502ad83230351fbcf2d9fade1b5d118d332f92c9861075010a1fe3fbe"
+   */
+  creation_tx_hash: string
+  /**
+   * Type of the script
+   * @example
+   * "plutusV1"
+   */
+  type: "plutusV1" | "plutusV2" | "timelock" | "multisig"
+  /**
+   * Data in JSON format
+   * @example
+   * "null"
+   */
+  value: any
+  /**
+   * Script bytes (cborSeq)
+   * @example
+   * "5907f4010000332323232323232323233223232323232332232323232322223232533532533533355300712001323212330012233350052200200200100235001220011233001225335002101710010142325335333573466e3cd400488008d4020880080580544ccd5cd19b873500122001350082200101601510153500122002353500122002222222222200a101413357389201115554784f206e6f7420636f6e73756d6564000133333573466e1cd55cea8012400046644246600200600464646464646464646464646666ae68cdc39aab9d500a480008cccccccccc888888888848cccccccccc00402c02802402001c01801401000c008cd40508c8c8cccd5cd19b8735573aa0049000119910919800801801180f9aba150023019357426ae8940088c98d4cd5ce01581501481409aab9e5001137540026ae854028cd4050054d5d0a804999aa80bbae501635742a010666aa02eeb94058d5d0a80399a80a0109aba15006335014335502402275a6ae854014c8c8c8cccd5cd19b8735573aa00490001199109198008018011919191999ab9a3370e6aae754009200023322123300100300233502575a6ae854008c098d5d09aba2500223263533573805e05c05a05826aae7940044dd50009aba150023232323333573466e1cd55cea8012400046644246600200600466a04aeb4d5d0a80118131aba135744a004464c6a66ae700bc0b80b40b04d55cf280089baa001357426ae8940088c98d4cd5ce01581501481409aab9e5001137540026ae854010cd4051d71aba15003335014335502475c40026ae854008c070d5d09aba2500223263533573804e04c04a04826ae8940044d5d1280089aba25001135744a00226ae8940044d5d1280089aba25001135744a00226aae7940044dd50009aba150023232323333573466e1d400520062321222230040053019357426aae79400c8cccd5cd19b875002480108c848888c008014c06cd5d09aab9e500423333573466e1d400d20022321222230010053015357426aae7940148cccd5cd19b875004480008c848888c00c014dd71aba135573ca00c464c6a66ae7008808408007c0780740704d55cea80089baa001357426ae8940088c98d4cd5ce00d80d00c80c080c89931a99ab9c4910350543500019018135573ca00226ea8004c8004d5405888448894cd40044d400c88004884ccd401488008c010008ccd54c01c4800401401000448c88c008dd6000990009aa80b111999aab9f00125009233500830043574200460066ae880080548c8c8c8cccd5cd19b8735573aa00690001199911091998008020018011919191999ab9a3370e6aae7540092000233221233001003002301735742a00466a01c02c6ae84d5d1280111931a99ab9c01b01a019018135573ca00226ea8004d5d0a801999aa803bae500635742a00466a014eb8d5d09aba2500223263533573802e02c02a02826ae8940044d55cf280089baa0011335500175ceb44488c88c008dd5800990009aa80a11191999aab9f0022500823350073355017300635573aa004600a6aae794008c010d5d100180a09aba100111220021221223300100400312232323333573466e1d4005200023212230020033005357426aae79400c8cccd5cd19b8750024800884880048c98d4cd5ce00980900880800789aab9d500113754002464646666ae68cdc39aab9d5002480008cc8848cc00400c008c014d5d0a8011bad357426ae8940088c98d4cd5ce00800780700689aab9e5001137540024646666ae68cdc39aab9d5001480008dd71aba135573ca004464c6a66ae7003803403002c4dd500089119191999ab9a3370ea00290021091100091999ab9a3370ea00490011190911180180218031aba135573ca00846666ae68cdc3a801a400042444004464c6a66ae7004404003c0380340304d55cea80089baa0012323333573466e1d40052002200523333573466e1d40092000200523263533573801a01801601401226aae74dd5000891001091000919191919191999ab9a3370ea002900610911111100191999ab9a3370ea004900510911111100211999ab9a3370ea00690041199109111111198008048041bae35742a00a6eb4d5d09aba2500523333573466e1d40112006233221222222233002009008375c6ae85401cdd71aba135744a00e46666ae68cdc3a802a400846644244444446600c01201060186ae854024dd71aba135744a01246666ae68cdc3a8032400446424444444600e010601a6ae84d55cf280591999ab9a3370ea00e900011909111111180280418071aba135573ca018464c6a66ae7004c04804404003c03803403002c0284d55cea80209aab9e5003135573ca00426aae7940044dd50009191919191999ab9a3370ea002900111999110911998008028020019bad35742a0086eb4d5d0a8019bad357426ae89400c8cccd5cd19b875002480008c8488c00800cc020d5d09aab9e500623263533573801801601401201026aae75400c4d5d1280089aab9e500113754002464646666ae68cdc3a800a400446424460020066eb8d5d09aab9e500323333573466e1d400920002321223002003375c6ae84d55cf280211931a99ab9c009008007006005135573aa00226ea800444888c8c8cccd5cd19b8735573aa0049000119aa80518031aba150023005357426ae8940088c98d4cd5ce00480400380309aab9e5001137540029309000a490350543100112212330010030021123230010012233003300200200133512233002489209366f09fe40eaaeb17d3cb6b0b61e087d664174c39a48a986f86b2b0ba6e2a7b00480008848cc00400c0088005"
+   */
+  bytes: string
+  /**
+   * The size of the CBOR serialised script (in bytes)
+   * @example
+   * 2039
+   */
+  size: any
 }
 
 /**
@@ -3820,21 +3405,27 @@ export interface INativeScriptList {
   /**
    * Hash of a script
    * @example
-   * "d8480dc869b94b80e81ec91b0abe307279311fe0e7001a9488f61ff8"
+   * "bfa7ffa9b2e164873db6ac6d0528c82e212963bc62e10fd1d81da4af"
    */
   script_hash: string
   /**
    * Hash of the script creation transaction
    * @example
-   * "fda6c7697009237975ffc30f36666addf4c6e2a2c6f90411a24431b700baaab1"
+   * "255f061502ad83230351fbcf2d9fade1b5d118d332f92c9861075010a1fe3fbe"
    */
   creation_tx_hash: string
   /**
    * Type of the script
    * @example
-   * "timelock"
+   * "plutusV1"
    */
-  type: "timelock" | "multisig"
+  type: "plutusV1" | "plutusV2" | "timelock" | "multisig"
+  /**
+   * The size of the CBOR serialised script (in bytes)
+   * @example
+   * 2039
+   */
+  size: any
 }
 
 /**
@@ -3846,15 +3437,27 @@ export interface IPlutusScriptList {
   /**
    * Hash of a script
    * @example
-   * "d8480dc869b94b80e81ec91b0abe307279311fe0e7001a9488f61ff8"
+   * "bfa7ffa9b2e164873db6ac6d0528c82e212963bc62e10fd1d81da4af"
    */
   script_hash: string
   /**
    * Hash of the script creation transaction
    * @example
-   * "fda6c7697009237975ffc30f36666addf4c6e2a2c6f90411a24431b700baaab1"
+   * "255f061502ad83230351fbcf2d9fade1b5d118d332f92c9861075010a1fe3fbe"
    */
   creation_tx_hash: string
+  /**
+   * Type of the script
+   * @example
+   * "plutusV1"
+   */
+  type: "plutusV1" | "plutusV2" | "timelock" | "multisig"
+  /**
+   * The size of the CBOR serialised script (in bytes)
+   * @example
+   * 2039
+   */
+  size: any
 }
 
 /**
@@ -3864,32 +3467,32 @@ export interface IPlutusScriptList {
 export type ScriptRedeemersResponse = IScriptRedeemers[]
 export interface IScriptRedeemers {
   /**
-   * Hash of Transaction for which details are being shown
+   * Hash of a script
    * @example
-   * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
+   * "bfa7ffa9b2e164873db6ac6d0528c82e212963bc62e10fd1d81da4af"
    */
   script_hash: string
   redeemers: {
     /**
-     * Hash of Transaction containing the redeemer
+     * Hash identifier of the transaction
      * @example
-     * "fda6c7697009237975ffc30f36666addf4c6e2a2c6f90411a24431b700baaab1"
+     * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
      */
     tx_hash: string
-    /** The index of the redeemer pointer in the transaction */
-    tx_index: number
+    /** Index of UTxO in the transaction */
+    tx_index: any
     /**
      * The budget in Memory to run a script
      * @example
      * 520448
      */
-    unit_mem: string | number | null
+    unit_mem: any
     /**
      * The budget in Cpu steps to run a script
      * @example
      * 211535239
      */
-    unit_steps: string | number | null
+    unit_steps: any
     /**
      * The budget in fees to run a script - the fees depend on the ExUnits and the current prices
      * @example
@@ -3907,16 +3510,85 @@ export interface IScriptRedeemers {
      * @example
      * "5a595ce795815e81d22a1a522cf3987d546dc5bb016de61b002edd63a5413ec4"
      */
-    datum_hash: string | null
+    datum_hash: any
     /**
-     * The actual data in json format
+     * Data in JSON format
      * @example
-     * {
-     *   "bytes": "3c33"
-     * }
+     * "null"
      */
-    datum_value: {}
+    datum_value: any
   }[]
+}
+
+/**
+ * Script UTXOs
+ * List of all UTXOs for a given script hash
+ */
+export type ScriptUtxosResponse = IScriptUtxos[]
+export interface IScriptUtxos {
+  /**
+   * Hash identifier of the transaction
+   * @example
+   * "f144a8264acf4bdfe2e1241170969c930d64ab6b0996a4a45237b623f1dd670e"
+   */
+  tx_hash: string
+  /** Index of UTxO in the transaction */
+  tx_index: any
+  /**
+   * A Cardano payment/base address (bech32 encoded)
+   * @example
+   * "addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp"
+   */
+  address: string
+  /**
+   * Total sum of ADA on the UTxO
+   * @example
+   * 157832856
+   */
+  value: string
+  stake_address: {}
+  /**
+   * Payment credential
+   * @example
+   * "de3c1c527e8826b9cd2030f88f75fc44cd4ce519b9ded9eb794b3794"
+   */
+  payment_cred: any
+  /**
+   * Epoch number of the block
+   * @example
+   * 321
+   */
+  epoch_no: any
+  /**
+   * Block height
+   * @example
+   * 42325043
+   */
+  block_height: any
+  /**
+   * UNIX timestamp of the block
+   * @example
+   * 1506635091
+   */
+  block_time: any
+  /**
+   * The Hash of the Plutus Data
+   * @example
+   * "5a595ce795815e81d22a1a522cf3987d546dc5bb016de61b002edd63a5413ec4"
+   */
+  datum_hash: any
+  /** Allows datums to be attached to UTxO (CIP-32) */
+  inline_datum: any
+  /** Allow reference scripts to be used to satisfy script requirements during validation, rather than requiring the spending transaction to do so. (CIP-33) */
+  reference_script: any
+  /** An array of assets on the UTxO */
+  asset_list: any
+  /**
+   * True if the UTXO has been spent
+   * @example
+   * true
+   */
+  is_spent: boolean
 }
 
 /**
@@ -3930,19 +3602,23 @@ export interface IDatumInfo {
    * @example
    * "5a595ce795815e81d22a1a522cf3987d546dc5bb016de61b002edd63a5413ec4"
    */
-  hash: string | null
+  datum_hash: any
   /**
-   * The actual data in json format
+   * Hash of the script creation transaction
    * @example
-   * {
-   *   "bytes": "3c33"
-   * }
+   * "255f061502ad83230351fbcf2d9fade1b5d118d332f92c9861075010a1fe3fbe"
    */
-  value: {}
+  creation_tx_hash: string
   /**
-   * Datum bytes (hex)
+   * Data in JSON format
    * @example
-   * "19029a"
+   * "null"
+   */
+  value: any
+  /**
+   * Script bytes (cborSeq)
+   * @example
+   * "5907f4010000332323232323232323233223232323232332232323232322223232533532533533355300712001323212330012233350052200200200100235001220011233001225335002101710010142325335333573466e3cd400488008d4020880080580544ccd5cd19b873500122001350082200101601510153500122002353500122002222222222200a101413357389201115554784f206e6f7420636f6e73756d6564000133333573466e1cd55cea8012400046644246600200600464646464646464646464646666ae68cdc39aab9d500a480008cccccccccc888888888848cccccccccc00402c02802402001c01801401000c008cd40508c8c8cccd5cd19b8735573aa0049000119910919800801801180f9aba150023019357426ae8940088c98d4cd5ce01581501481409aab9e5001137540026ae854028cd4050054d5d0a804999aa80bbae501635742a010666aa02eeb94058d5d0a80399a80a0109aba15006335014335502402275a6ae854014c8c8c8cccd5cd19b8735573aa00490001199109198008018011919191999ab9a3370e6aae754009200023322123300100300233502575a6ae854008c098d5d09aba2500223263533573805e05c05a05826aae7940044dd50009aba150023232323333573466e1cd55cea8012400046644246600200600466a04aeb4d5d0a80118131aba135744a004464c6a66ae700bc0b80b40b04d55cf280089baa001357426ae8940088c98d4cd5ce01581501481409aab9e5001137540026ae854010cd4051d71aba15003335014335502475c40026ae854008c070d5d09aba2500223263533573804e04c04a04826ae8940044d5d1280089aba25001135744a00226ae8940044d5d1280089aba25001135744a00226aae7940044dd50009aba150023232323333573466e1d400520062321222230040053019357426aae79400c8cccd5cd19b875002480108c848888c008014c06cd5d09aab9e500423333573466e1d400d20022321222230010053015357426aae7940148cccd5cd19b875004480008c848888c00c014dd71aba135573ca00c464c6a66ae7008808408007c0780740704d55cea80089baa001357426ae8940088c98d4cd5ce00d80d00c80c080c89931a99ab9c4910350543500019018135573ca00226ea8004c8004d5405888448894cd40044d400c88004884ccd401488008c010008ccd54c01c4800401401000448c88c008dd6000990009aa80b111999aab9f00125009233500830043574200460066ae880080548c8c8c8cccd5cd19b8735573aa00690001199911091998008020018011919191999ab9a3370e6aae7540092000233221233001003002301735742a00466a01c02c6ae84d5d1280111931a99ab9c01b01a019018135573ca00226ea8004d5d0a801999aa803bae500635742a00466a014eb8d5d09aba2500223263533573802e02c02a02826ae8940044d55cf280089baa0011335500175ceb44488c88c008dd5800990009aa80a11191999aab9f0022500823350073355017300635573aa004600a6aae794008c010d5d100180a09aba100111220021221223300100400312232323333573466e1d4005200023212230020033005357426aae79400c8cccd5cd19b8750024800884880048c98d4cd5ce00980900880800789aab9d500113754002464646666ae68cdc39aab9d5002480008cc8848cc00400c008c014d5d0a8011bad357426ae8940088c98d4cd5ce00800780700689aab9e5001137540024646666ae68cdc39aab9d5001480008dd71aba135573ca004464c6a66ae7003803403002c4dd500089119191999ab9a3370ea00290021091100091999ab9a3370ea00490011190911180180218031aba135573ca00846666ae68cdc3a801a400042444004464c6a66ae7004404003c0380340304d55cea80089baa0012323333573466e1d40052002200523333573466e1d40092000200523263533573801a01801601401226aae74dd5000891001091000919191919191999ab9a3370ea002900610911111100191999ab9a3370ea004900510911111100211999ab9a3370ea00690041199109111111198008048041bae35742a00a6eb4d5d09aba2500523333573466e1d40112006233221222222233002009008375c6ae85401cdd71aba135744a00e46666ae68cdc3a802a400846644244444446600c01201060186ae854024dd71aba135744a01246666ae68cdc3a8032400446424444444600e010601a6ae84d55cf280591999ab9a3370ea00e900011909111111180280418071aba135573ca018464c6a66ae7004c04804404003c03803403002c0284d55cea80209aab9e5003135573ca00426aae7940044dd50009191919191999ab9a3370ea002900111999110911998008028020019bad35742a0086eb4d5d0a8019bad357426ae89400c8cccd5cd19b875002480008c8488c00800cc020d5d09aab9e500623263533573801801601401201026aae75400c4d5d1280089aab9e500113754002464646666ae68cdc3a800a400446424460020066eb8d5d09aab9e500323333573466e1d400920002321223002003375c6ae84d55cf280211931a99ab9c009008007006005135573aa00226ea800444888c8c8cccd5cd19b8735573aa0049000119aa80518031aba150023005357426ae8940088c98d4cd5ce00480400380309aab9e5001137540029309000a490350543100112212330010030021123230010012233003300200200133512233002489209366f09fe40eaaeb17d3cb6b0b61e087d664174c39a48a986f86b2b0ba6e2a7b00480008848cc00400c0088005"
    */
   bytes: string
 }
