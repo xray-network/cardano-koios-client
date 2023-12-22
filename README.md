@@ -4,13 +4,10 @@
 <a href="https://github.com/ray-network/koios-tiny-client/actions">
   <img src="https://img.shields.io/github/actions/workflow/status/ray-network/koios-tiny-client/codeql.yml?label=CodeQL&style=for-the-badge"
 </a>
-<a href="https://discord.gg/WhZmm46APN">
-  <img src="https://img.shields.io/discord/852538978946383893?label=Discord&style=for-the-badge"
-</a>
   
 # Koios Tiny TypeScript Client
 
-Automatically generated Axios-based client for [Koios](https://koios.rest) Cardano RESTful API based on [koiosapi.yaml](https://api.koios.rest/koiosapi.yaml) schema. Works great with [raygraph-output](https://github.com/ray-network/raygraph-output) (a dockered Koios-based & DB Sync Cardano API solution extended by Postgraphile) and the original Koios. Visit [RayGraph.io](https://raygraph.io) for more information.
+Automatically generated Axios-based client for [Koios](https://koios.rest) Cardano RESTful API based on [koiosapi.yaml](https://api.koios.rest/koiosapi.yaml) schema. Works great with [XRAY | Graph | Output](https://github.com/ray-network/xray-graph-output) (a dockered Koios-based & DB Sync Cardano API solution) and the original [Koios](https://koios.rest/).
 
 ## Installation
 
@@ -39,7 +36,7 @@ const { client, methods: Koios } = new KoiosTinyClient("https://api.koios.rest/a
 // async call
 const app = async () => {
   const Tip = await Koios.Tip()
-  if (Tip.success) {
+  if (Tip.ok) {
     console.log(Tip.success.data[0].block_no)
   }
   if (Tip.error) {
@@ -98,6 +95,9 @@ if (PoolListFirst5Items.success) {
 
 ```TypeScript
 const { client, methods: Koios } = new KoiosTinyClient("https://api.koios.rest/api/v0")
+
+// clear interceptors
+client.interceptors.response.clear()
 
 // your response interceptor, used as default shown in the example below
 client.interceptors.response.use(
@@ -168,38 +168,54 @@ const wrongItem: KoiosTypes.IAssetTokenRegistry = {
 Managed by Cardano Community (Koios Elastic Query Layer / HAproxy Balancer)
 
 ```
-https://api.koios.rest/api/v0
+https://api.koios.rest/api/v1
 ```
 
 ```
-https://preprod.koios.rest/api/v0
+https://preprod.koios.rest/api/v1
 ```
 
 ```
-https://preview.koios.rest/api/v0
+https://preview.koios.rest/api/v1
 ```
 
 ```
-https://guild.koios.rest/api/v0
+https://guild.koios.rest/api/v1
 ```
 
 Managed by Ray Network (RayGraph-Output Cluster / Cloudflare WAF & Load Balancer)
 
 ```
-https://mainnet.blockchain.raygraph.io
+https://graph.xray.app/output/mainnet/koios/api/v1
 ```
 
 ```
-https://preprod.blockchain.raygraph.io
+https://graph.xray.app/output/preprod/koios/api/v1
 ```
 
 ```
-https://preview.blockchain.raygraph.io
+https://graph.xray.app/output/preview/koios/api/v1
+```
+
+
+## Code Generation & Build
+
+Downloads the YAML schema and generates library methods and types
+
+```sh
+yarn codegen && yarn build
 ```
 
 ## Methods
 
 Use the https://api.koios.rest/ sandbox to explore and live query all available API methods
+
+Differences with the original Koios:
+
+* `/submittx` endpoint: not available, use XRAY | Graph | Tx Turbo Send API
+* `/ogmios` endpoint: not available, use XRAY | Graph | Output | Ogmios API
+
+<br />
 
 <!-- START -->
 <table>
@@ -807,11 +823,3 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
   </tbody>
 </table>
  <!-- END -->
-
-## Code Generation & Build
-
-Downloads the YAML schema and generates library methods and types
-
-```sh
-yarn codegen && yarn build
-```
