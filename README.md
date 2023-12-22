@@ -7,7 +7,7 @@
   
 # Koios Tiny TypeScript Client
 
-Automatically generated Axios-based client for [Koios](https://koios.rest) Cardano RESTful API based on [koiosapi.yaml](https://api.koios.rest/koiosapi.yaml) schema. Works great with [XRAY | Graph | Output](https://github.com/ray-network/xray-graph-output) (a dockered Koios-based & DB Sync Cardano API solution) and the original [Koios](https://koios.rest/).
+Automatically generated Axios-based client for [Koios](https://koios.rest) Cardano RESTful API based on [koiosapi.yaml](https://api.koios.rest/koiosapi.yaml) schema. Works great with [XRAY | Graph | Koios API](https://github.com/ray-network/xray-graph-output) (a dockered Koios-based & DB Sync Cardano API solution) and the original [Koios](https://koios.rest/).
 
 ## Installation
 
@@ -213,7 +213,7 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
 Differences with the original Koios:
 
 * `/submittx` endpoint: not available, use XRAY | Graph | Tx Turbo Send API
-* `/ogmios` endpoint: not available, use XRAY | Graph | Output | Ogmios API
+* `/ogmios` endpoint: not available, use XRAY | Graph | Ogmios API
 
 <br />
 
