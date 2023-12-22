@@ -37,7 +37,7 @@ const { client, methods: Koios } = new KoiosTinyClient("https://api.koios.rest/a
 const app = async () => {
   const Tip = await Koios.Tip()
   if (Tip.ok) {
-    console.log(Tip.success.data[0].block_no)
+    console.log(Tip.ok.data[0].block_no)
   }
   if (Tip.error) {
     console.error(Tip.error)
@@ -79,8 +79,8 @@ console.log(Blocks)
 // advanced pagination
 const headers = { Prefer: "count=estimated" } // get the exact "content-range" header in the request
 const PoolListFirst5Items = await Koios.PoolList("&limit=5", headers)
-if (PoolListFirst5Items.success) {
-  const contentRange = PoolListFirst5Items.success.headers?.["content-range"] || ""
+if (PoolListFirst5Items.ok) {
+  const contentRange = PoolListFirst5Items.ok.headers?.["content-range"] || ""
   const [currentPosition, totalItems] = contentRange.split('/')
   const queryRange = `${Number(totalItems) - 5}-${Number(totalItems)}`
   const PoolListLast5Items = await Koios.PoolList(undefined, { ...headers, Range: queryRange})
@@ -103,10 +103,10 @@ client.interceptors.response.clear()
 client.interceptors.response.use(
   (response: AxiosResponse): any => {
     return {
-      success: response,
+      ok: response,
     }
   },
-  (error: AxiosError): { error: AxiosError } => {
+  (error: AxiosError): any => {
     return {
       error,
     }
