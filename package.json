@@ -1,9 +1,9 @@
 {
   "name": "koios-tiny-client",
   "version": "v1.1.0",
-  "description": "TypeScript client fot KOIOS Elastic Cardano Query Layer",
-  "author": "Ray Network <hello@raynetwork.io>",
-  "homepage": "https://raygraph.io",
+  "description": "TypeScript client for XRAY | Graph | Koios API and original Koios API",
+  "author": "XRAY | Network <hello@xray.app>",
+  "homepage": "https://xray.app",
   "license": "MIT",
   "repository": {
     "type": "git",
