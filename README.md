@@ -7,7 +7,7 @@
   
 # Koios Tiny TypeScript Client
 
-Automatically generated Axios-based client for [Koios](https://koios.rest) Cardano RESTful API based on [koiosapi.yaml](https://api.koios.rest/koiosapi.yaml) schema. Works great with [XRAY | Graph | Koios API](https://github.com/ray-network/xray-graph-output) (a dockered Koios-based & DB Sync Cardano API solution) and the original [Koios](https://koios.rest/).
+Automatically generated Axios-based client for [Koios](https://koios.rest) Cardano RESTful API based on [koiosapi.yaml](https://api.koios.rest/koiosapi.yaml) schema. Works great with [XRAY | Graph | Koios Tiny](https://github.com/xray-network/xray-graph-koios-tiny) (a dockered Koios-based & DB Sync Cardano API solution) and the original [Koios](https://koios.rest/).
 
 ## Installation
 
@@ -25,8 +25,8 @@ npm i koios-tiny-client
 
 ## Usage
 
-![Request Types](https://github.com/ray-network/koios-tiny-client/assets/38279597/4bc0cdee-a75c-4547-bbe9-994707bb7814)
-![Response Types](https://github.com/ray-network/koios-tiny-client/assets/38279597/53d238a3-46dd-4722-8aaa-3516b702f795)
+![Request Types](https://github.com/xray-network/koios-tiny-client/assets/38279597/4bc0cdee-a75c-4547-bbe9-994707bb7814)
+![Response Types](https://github.com/xray-network/koios-tiny-client/assets/38279597/53d238a3-46dd-4722-8aaa-3516b702f795)
 
 ```TypeScript
 import KoiosTinyClient from "koios-tiny-client"
@@ -183,7 +183,7 @@ https://preview.koios.rest/api/v1
 https://guild.koios.rest/api/v1
 ```
 
-Managed by Ray Network (RayGraph-Output Cluster / Cloudflare WAF & Load Balancer)
+Managed by XRAY | Network (XRAY | Graph Cluster / Cloudflare WAF & Load Balancer)
 
 ```
 https://graph.xray.app/output/mainnet/koios/api/v1
@@ -212,7 +212,7 @@ Use the https://api.koios.rest/ sandbox to explore and live query all available 
 
 Differences with the original Koios:
 
-* `/submittx` endpoint: not available, use XRAY | Graph | Tx Turbo Send API
+* `/submittx` endpoint: not available, use XRAY | Graph | Turbo TX Send API
 * `/ogmios` endpoint: not available, use XRAY | Graph | Ogmios API
 
 <br />
