@@ -1,33 +1,37 @@
 {
   "name": "koios-tiny-client",
-  "version": "v1.1.0",
-  "description": "TypeScript client for XRAY | Graph | Koios API and original Koios API",
-  "author": "XRAY | Network <hello@xray.app>",
+  "version": "1.1.1-0",
+  "description": "TypeScript client for XRAY/Graph Koios Tiny API and original Koios API",
+  "author": "XRAY/Network <hello@xray.app>",
   "homepage": "https://xray.app",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/ray-network/koios-tiny-client.git"
   },
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
-    "generate": "node codegen/_generator.mjs",
-    "prepare": "curl \"https://api.koios.rest/koiosapi.yaml\" > codegen/koiosapi.yaml && node codegen/_prepare.mjs",
-    "codegen": "npm run prepare && npm run generate",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md,scss,css}\" && prettier --write \"codegen/**/*.mjs\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "schema": "tsx src/schema/generate.ts",
+    "tt": "npx openapicmd typegen https://raw.githubusercontent.com/cardano-community/koios-artifacts/main/specs/results/koiosapi-mainnet.yaml",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md,scss,css}\"",
+    "test": "vitest --run"
   },
   "devDependencies": {
-    "dereference-json-schema": "^0.2.1",
+    "@types/node": "^20.12.11",
+    "openapi": "^1.0.1",
+    "openapi-typescript": "^6.7.5",
     "prettier": "^2.8.8",
-    "typescript": "^5.0.4",
-    "yaml": "^2.2.2"
+    "tsx": "^4.9.4",
+    "typescript": "^5.0.4"
   },
   "dependencies": {
-    "axios": "^1.4.0"
+    "openapi-fetch": "^0.9.5",
+    "vitest": "^1.6.0"
   }
 }
