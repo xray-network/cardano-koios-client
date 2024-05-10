@@ -26,8 +26,8 @@ test("/credential_utxos", async () => {
 
 test("/submittx", async () => {
   const submittx = await client.POST("/submittx", {
-    body: "wrong_cbor_tx______________________________________________________",
-    headers: { "Content-Type": "text/plain" },
+    body: "84a40081825820c8da3848010af1728d19555c9864dd4ace97ad56972b6bb352bbdc0f8ffb0d5200018282581d617a6a5ccbaf3e6308d8c09ccfa45b34cc7cccaa242dc2dc05ba2a72201a00d2eee782583901d07f6a9dc8cba4b368d04225c4cd36ce21b1800bc54e7924e65689d9ddbe7a587e6bdd2674bf53fc093226bbd43af035f4ea07d7811679661b000000037d3c3680021a0002b099031a047d9ea2a0f5f6",
+    headers: { "Content-Type": "application/cbor" },
   })
   expect(submittx.error).exist
 })
