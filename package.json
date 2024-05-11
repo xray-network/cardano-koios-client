@@ -1,13 +1,13 @@
 {
-  "name": "koios-tiny-client",
+  "name": "cardano-koios-client",
   "version": "1.1.1-0",
-  "description": "TypeScript client for XRAY/Graph Koios Tiny API and original Koios API",
+  "description": "TypeScript client for XRAY/Graph Koios Tiny API and original Koios.REST API",
   "author": "XRAY/Network <hello@xray.app>",
   "homepage": "https://xray.app",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xray-network/koios-tiny-client.git"
+    "url": "git+https://github.com/xray-network/cardano-koios-client.git"
   },
   "files": [
     "dist/"
