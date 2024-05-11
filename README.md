@@ -4,7 +4,7 @@
   
 # Cardano Koios TypeScript Client
 
-Automatically generated Openapi-fetch (Axios) client for [Koios](https://koios.rest) Cardano RESTful API based on [koiosapi.yaml](https://api.koios.rest/koiosapi.yaml) schema. Works great with [XRAY/Graph Koios Tiny](https://github.com/xray-network/xray-graph-koios-tiny) (a dockered Koios-based & DB Sync Cardano API solution) and the original [Koios](https://koios.rest/)
+Automatically generated Openapi-fetch (Axios) client for [Koios](https://koios.rest) Cardano RESTful API based on [koiosapi-mainnet.yaml](https://raw.githubusercontent.com/cardano-community/koios-artifacts/main/specs/results/koiosapi-mainnet.yaml) schema. Works great with XRAY/Graph Koios Tiny and the original Koios.
 
 ## Installation
 
