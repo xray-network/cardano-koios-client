@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "strict": true,
     "module": "ESNext",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -7,7 +8,6 @@
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": false,
-    "strictNullChecks": true,
     "baseUrl": ".",
     "declaration": true,
     "outDir": "dist/esm",
