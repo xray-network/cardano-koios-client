@@ -24,14 +24,13 @@
   },
   "devDependencies": {
     "@types/node": "^20.12.11",
-    "openapi": "^1.0.1",
     "openapi-typescript": "^6.7.5",
     "prettier": "^2.8.8",
     "tsx": "^4.9.4",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
   },
   "dependencies": {
-    "openapi-fetch": "^0.9.5",
-    "vitest": "^1.6.0"
+    "openapi-fetch": "^0.9.5"
   }
 }
