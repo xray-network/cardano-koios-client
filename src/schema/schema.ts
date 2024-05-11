@@ -4,7 +4,7 @@
  */
 
 
-export interface paths {
+export type paths = {
   "/tip": {
     /**
      * Query Chain Tip
@@ -494,11 +494,11 @@ export interface paths {
      */
     post: operations["ogmios"];
   };
-}
+};
 
 export type webhooks = Record<string, never>;
 
-export interface components {
+export type components = {
   schemas: {
     /** @description Current tip of the chain */
     tip: {
@@ -1408,7 +1408,7 @@ export interface components {
         outputs?: components["schemas"]["tx_info"][number]["outputs"];
         withdrawals?: components["schemas"]["tx_info"][number]["withdrawals"];
         assets_minted?: components["schemas"]["tx_info"][number]["assets_minted"];
-        metadata?: components["schemas"]["tx_metadata"][number]["metadata"];
+        metadata?: NonNullable<components["schemas"]["tx_metadata"]>[number]["metadata"];
         certificates?: components["schemas"]["tx_info"][number]["certificates"];
         native_scripts?: components["schemas"]["tx_info"][number]["native_scripts"];
         plutus_contracts?: components["schemas"]["tx_info"][number]["plutus_contracts"];
@@ -1432,10 +1432,10 @@ export interface components {
             tx_index?: components["schemas"]["utxo_infos"][number]["tx_index"];
             block_height?: components["schemas"]["blocks"][number]["block_height"];
             block_time?: components["schemas"]["blocks"][number]["block_time"];
-            value?: components["schemas"]["tx_info"][number]["outputs"][number]["value"];
-            datum_hash?: components["schemas"]["script_redeemers"][number]["redeemers"][number]["datum_hash"];
-            inline_datum?: components["schemas"]["tx_info"][number]["outputs"][number]["inline_datum"];
-            reference_script?: components["schemas"]["tx_info"][number]["outputs"][number]["reference_script"];
+            value?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["value"];
+            datum_hash?: NonNullable<components["schemas"]["script_redeemers"][number]["redeemers"]>[number]["datum_hash"];
+            inline_datum?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["inline_datum"];
+            reference_script?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["reference_script"];
             asset_list?: components["schemas"]["utxo_infos"][number]["asset_list"];
           }[];
       })[];
@@ -1452,7 +1452,7 @@ export interface components {
         policy_id?: components["schemas"]["asset_info"][number]["policy_id"];
         asset_name?: components["schemas"]["asset_info"][number]["asset_name"];
         fingerprint?: components["schemas"]["asset_info"][number]["fingerprint"];
-        decimals?: components["schemas"]["asset_info"][number]["token_registry_metadata"]["decimals"];
+        decimals?: NonNullable<components["schemas"]["asset_info"][number]["token_registry_metadata"]>["decimals"];
         quantity?: components["schemas"]["asset_addresses"][number]["quantity"];
       }[];
     /** @description Array of account (stake address) IDs */
@@ -1532,7 +1532,7 @@ export interface components {
          * @example addr1qxkfe8s6m8qt5436lec3f0320hrmpppwqgs2gah4360krvyssntpwjcz303mx3h4avg7p29l3zd8u3jyglmewds9ezrqdc3cxp
          */
         address?: string;
-        value?: components["schemas"]["tx_info"][number]["outputs"][number]["value"];
+        value?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["value"];
         stake_address?: components["schemas"]["address_info"][number]["stake_address"];
         /**
          * @description Payment credential
@@ -1542,15 +1542,15 @@ export interface components {
         epoch_no?: components["schemas"]["blocks"][number]["epoch_no"];
         block_height?: components["schemas"]["blocks"][number]["block_height"];
         block_time?: components["schemas"]["blocks"][number]["block_time"];
-        datum_hash?: components["schemas"]["script_redeemers"][number]["redeemers"][number]["datum_hash"];
-        inline_datum?: components["schemas"]["tx_info"][number]["outputs"][number]["inline_datum"];
-        reference_script?: components["schemas"]["tx_info"][number]["outputs"][number]["reference_script"];
+        datum_hash?: NonNullable<components["schemas"]["script_redeemers"][number]["redeemers"]>[number]["datum_hash"];
+        inline_datum?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["inline_datum"];
+        reference_script?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["reference_script"];
         /** @description An array of assets on the UTxO */
         asset_list?: {
             policy_id?: components["schemas"]["asset_info"][number]["policy_id"];
             asset_name?: components["schemas"]["asset_info"][number]["asset_name"];
             fingerprint?: components["schemas"]["asset_info"][number]["fingerprint"];
-            decimals?: components["schemas"]["asset_info"][number]["token_registry_metadata"]["decimals"];
+            decimals?: NonNullable<components["schemas"]["asset_info"][number]["token_registry_metadata"]>["decimals"];
             /**
              * @description Quantity of assets on the UTxO
              * @example 1
@@ -1608,7 +1608,7 @@ export interface components {
         policy_id?: components["schemas"]["asset_info"][number]["policy_id"];
         asset_name?: components["schemas"]["asset_info"][number]["asset_name"];
         fingerprint?: components["schemas"]["asset_info"][number]["fingerprint"];
-        decimals?: components["schemas"]["asset_info"][number]["token_registry_metadata"]["decimals"];
+        decimals?: NonNullable<components["schemas"]["asset_info"][number]["token_registry_metadata"]>["decimals"];
         quantity?: components["schemas"]["asset_addresses"][number]["quantity"];
       }[];
     /** @description Array of active stake values per epoch */
@@ -1684,7 +1684,7 @@ export interface components {
         /** @description An array of collateral inputs needed for smart contracts in case of contract failure */
         collateral_inputs?: null | components["schemas"]["tx_info"][number]["outputs"];
         /** @description A collateral output for change if the smart contract fails to execute and collateral inputs are spent. (CIP-40) */
-        collateral_output?: null | components["schemas"]["tx_info"][number]["outputs"][number];
+        collateral_output?: null | NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number];
         /** @description An array of reference inputs. A reference input allows looking at an output without spending it. (CIP-31) */
         reference_inputs?: null | components["schemas"]["tx_info"][number]["outputs"];
         inputs?: components["schemas"]["tx_info"][number]["outputs"];
@@ -1774,14 +1774,14 @@ export interface components {
             policy_id?: components["schemas"]["asset_info"][number]["policy_id"];
             asset_name?: components["schemas"]["asset_info"][number]["asset_name"];
             fingerprint?: components["schemas"]["asset_info"][number]["fingerprint"];
-            decimals?: components["schemas"]["asset_info"][number]["token_registry_metadata"]["decimals"];
+            decimals?: NonNullable<components["schemas"]["asset_info"][number]["token_registry_metadata"]>["decimals"];
             /**
              * @description Quantity of minted assets (negative on burn)
              * @example 1
              */
             quantity?: string;
           }[] | null;
-        metadata?: components["schemas"]["tx_metadata"][number]["metadata"];
+        metadata?: NonNullable<components["schemas"]["tx_metadata"]>[number]["metadata"];
         /** @description Certificates present with-in a transaction (if any) */
         certificates?: (({
             /**
@@ -1850,20 +1850,20 @@ export interface components {
             valid_contract?: boolean;
             input?: {
               redeemer?: {
-                purpose?: components["schemas"]["script_redeemers"][number]["redeemers"][number]["purpose"];
-                fee?: components["schemas"]["script_redeemers"][number]["redeemers"][number]["fee"];
+                purpose?: NonNullable<components["schemas"]["script_redeemers"][number]["redeemers"]>[number]["purpose"];
+                fee?: NonNullable<components["schemas"]["script_redeemers"][number]["redeemers"]>[number]["fee"];
                 unit?: {
-                  steps?: components["schemas"]["script_redeemers"][number]["redeemers"][number]["unit_steps"];
-                  mem?: components["schemas"]["script_redeemers"][number]["redeemers"][number]["unit_mem"];
+                  steps?: NonNullable<components["schemas"]["script_redeemers"][number]["redeemers"]>[number]["unit_steps"];
+                  mem?: NonNullable<components["schemas"]["script_redeemers"][number]["redeemers"]>[number]["unit_mem"];
                 };
                 datum?: {
-                  hash?: components["schemas"]["script_redeemers"][number]["redeemers"][number]["datum_hash"];
-                  value?: components["schemas"]["script_redeemers"][number]["redeemers"][number]["datum_value"];
+                  hash?: NonNullable<components["schemas"]["script_redeemers"][number]["redeemers"]>[number]["datum_hash"];
+                  value?: NonNullable<components["schemas"]["script_redeemers"][number]["redeemers"]>[number]["datum_value"];
                 };
               };
               datum?: {
-                hash?: components["schemas"]["script_redeemers"][number]["redeemers"][number]["datum_hash"];
-                value?: components["schemas"]["script_redeemers"][number]["redeemers"][number]["datum_value"];
+                hash?: NonNullable<components["schemas"]["script_redeemers"][number]["redeemers"]>[number]["datum_hash"];
+                value?: NonNullable<components["schemas"]["script_redeemers"][number]["redeemers"]>[number]["datum_value"];
               };
             };
           })[]) | null;
@@ -1944,11 +1944,11 @@ export interface components {
         policy_id?: components["schemas"]["asset_info"][number]["policy_id"];
         asset_name?: components["schemas"]["asset_info"][number]["asset_name"];
         asset_name_ascii?: components["schemas"]["asset_info"][number]["asset_name_ascii"];
-        ticker?: components["schemas"]["asset_info"][number]["token_registry_metadata"]["ticker"];
-        description?: components["schemas"]["asset_info"][number]["token_registry_metadata"]["description"];
-        url?: components["schemas"]["asset_info"][number]["token_registry_metadata"]["url"];
-        decimals?: components["schemas"]["asset_info"][number]["token_registry_metadata"]["decimals"];
-        logo?: components["schemas"]["asset_info"][number]["token_registry_metadata"]["logo"];
+        ticker?: NonNullable<components["schemas"]["asset_info"][number]["token_registry_metadata"]>["ticker"];
+        description?: NonNullable<components["schemas"]["asset_info"][number]["token_registry_metadata"]>["description"];
+        url?: NonNullable<components["schemas"]["asset_info"][number]["token_registry_metadata"]>["url"];
+        decimals?: NonNullable<components["schemas"]["asset_info"][number]["token_registry_metadata"]>["decimals"];
+        logo?: NonNullable<components["schemas"]["asset_info"][number]["token_registry_metadata"]>["logo"];
       }[];
     /** @description An array of payment addresses holding the given token (including balances) */
     asset_addresses: {
@@ -2039,7 +2039,7 @@ export interface components {
          */
         creation_time?: number;
         /** @description Latest minting transaction metadata (aligns with CIP-25) */
-        minting_tx_metadata?: components["schemas"]["tx_metadata"][number]["metadata"];
+        minting_tx_metadata?: NonNullable<components["schemas"]["tx_metadata"]>[number]["metadata"];
         /** @description Asset metadata registered on the Cardano Token Registry */
         token_registry_metadata?: {
           /** @example Rackmob */
@@ -2135,14 +2135,14 @@ export interface components {
         burn_cnt?: components["schemas"]["asset_info"][number]["burn_cnt"];
         creation_time?: components["schemas"]["asset_info"][number]["creation_time"];
         minting_tx_metadata?: components["schemas"]["asset_info"][number]["minting_tx_metadata"];
-        decimals?: components["schemas"]["asset_info"][number]["token_registry_metadata"]["decimals"];
+        decimals?: NonNullable<components["schemas"]["asset_info"][number]["token_registry_metadata"]>["decimals"];
       }[];
     /** @description Array of brief information of assets under the same policy */
     policy_asset_list: {
         asset_name?: components["schemas"]["asset_info"][number]["asset_name"];
         fingerprint?: components["schemas"]["asset_info"][number]["fingerprint"];
         total_supply?: components["schemas"]["asset_info"][number]["total_supply"];
-        decimals?: components["schemas"]["asset_info"][number]["token_registry_metadata"]["decimals"];
+        decimals?: NonNullable<components["schemas"]["asset_info"][number]["token_registry_metadata"]>["decimals"];
       }[];
     script_info: ({
         /**
@@ -2221,7 +2221,7 @@ export interface components {
       })[];
     /** @description Array of datum information for given datum hashes */
     datum_info: {
-        datum_hash?: components["schemas"]["script_redeemers"][number]["redeemers"][number]["datum_hash"];
+        datum_hash?: NonNullable<components["schemas"]["script_redeemers"][number]["redeemers"]>[number]["datum_hash"];
         creation_tx_hash?: components["schemas"]["script_info"][number]["creation_tx_hash"];
         value?: components["schemas"]["script_info"][number]["value"];
         bytes?: components["schemas"]["script_info"][number]["bytes"];
@@ -2679,13 +2679,13 @@ export interface components {
   headers: {
   };
   pathItems: never;
-}
+};
 
 export type $defs = Record<string, never>;
 
 export type external = Record<string, never>;
 
-export interface operations {
+export type operations = {
 
   /**
    * Query Chain Tip
@@ -4028,4 +4028,4 @@ export interface operations {
       400: components["responses"]["BadRequest"];
     };
   };
-}
+};

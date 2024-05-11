@@ -7,6 +7,7 @@
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": false,
+    "strictNullChecks": true,
     "baseUrl": ".",
     "declaration": true,
     "outDir": "dist/esm",
