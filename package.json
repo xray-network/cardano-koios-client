@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ray-network/koios-tiny-client.git"
+    "url": "git+https://github.com/xray-network/koios-tiny-client.git"
   },
   "files": [
     "dist/"
@@ -28,7 +28,7 @@
     "openapi-typescript": "^6.7.5",
     "prettier": "^2.8.8",
     "tsx": "^4.9.4",
-    "typescript": "^5.0.4"
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "openapi-fetch": "^0.9.5",

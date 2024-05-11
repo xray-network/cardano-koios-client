@@ -1,21 +1,22 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "node",
-    "lib": ["ESNext", "DOM"],
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ESNext",
     "noImplicitAny": true,
-    "strictPropertyInitialization": false,
-    "strictNullChecks": false,
-    "baseUrl": ".",
-    "rootDir": "src/",
-    "outDir": "dist/esm",
+    "moduleResolution": "node",
     "sourceMap": false,
+    "baseUrl": ".",
     "declaration": true,
-    "downlevelIteration": true,
-    "allowSyntheticDefaultImports": true
+    "outDir": "dist/esm",
+    "paths": {
+      "*": [
+        "node_modules/*",
+        "src/types/*"
+      ]
+    }
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/tests"],
 }

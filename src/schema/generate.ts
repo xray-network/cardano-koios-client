@@ -7,7 +7,7 @@ const run = async () => {
       "https://raw.githubusercontent.com/cardano-community/koios-artifacts/main/specs/results/koiosapi-mainnet.yaml"
     )
   )) as string
-  fs.writeFileSync("./src/schema.ts", schema.replaceAll('["items"]', "[number]"))
+  fs.writeFileSync("./src/schema/schema.ts", schema.replaceAll('["items"]', "[number]"))
 }
 
 run()

@@ -6,22 +6,22 @@ const headers = {}
 const client = KoiosTinyClient(baseUrl, headers)
 
 test("/tip", async () => {
-  const tip = await client.GET("/tip", {})
-  expect(tip.data[0]).toHaveProperty("block_no")
+  const tip = await client.GET("/tip")
+  expect(tip.data?.[0]).toHaveProperty("block_no")
 })
 
 test("/credential_txs", async () => {
   const credential_txs = await client.POST("/credential_txs", {
     body: { _payment_credentials: ["025b0a8f85cb8a46e1dda3fae5d22f07e2d56abb4019a2129c5d6c52"] },
   })
-  expect(credential_txs.data[0]).toHaveProperty("tx_hash")
+  expect(credential_txs.data?.[0]).toHaveProperty("tx_hash")
 })
 
 test("/credential_utxos", async () => {
   const credential_utxos = await client.POST("/credential_utxos", {
     body: { _payment_credentials: ["025b0a8f85cb8a46e1dda3fae5d22f07e2d56abb4019a2129c5d6c52"], _extended: true },
   })
-  expect(credential_utxos.data[0]).toHaveProperty("value")
+  expect(credential_utxos.data?.[0]).toHaveProperty("value")
 })
 
 test("/submittx", async () => {
