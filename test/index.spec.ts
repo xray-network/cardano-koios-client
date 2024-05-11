@@ -1,5 +1,5 @@
 import { expect, test, vi } from "vitest"
-import KoiosTinyClient from ".."
+import KoiosTinyClient from "../src"
 
 const baseUrl = "https://graph.xray.app/output/koios/mainnet/api/v1"
 const headers = {}
