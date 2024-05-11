@@ -19,7 +19,8 @@
     "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "schema": "tsx src/schema/generate.ts",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md,scss,css}\"",
-    "test": "vitest --run"
+    "test": "vitest --run",
+    "publish": "npm publish --access public"
   },
   "devDependencies": {
     "@types/node": "^20.12.11",
