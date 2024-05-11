@@ -18,7 +18,6 @@
   "scripts": {
     "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "schema": "tsx src/schema/generate.ts",
-    "tt": "npx openapicmd typegen https://raw.githubusercontent.com/cardano-community/koios-artifacts/main/specs/results/koiosapi-mainnet.yaml",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md,scss,css}\"",
     "test": "vitest --run"
   },
