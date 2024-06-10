@@ -9,7 +9,7 @@ const run = async () => {
     {
       exportType: true,
     }
-  )) as string
+  ))
   fs.writeFileSync("./src/schema/schema.ts", schema.replaceAll('["items"]', "[number]"))
 }
 

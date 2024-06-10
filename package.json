@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts",
-    "schema": "tsx src/schema/generate.ts",
+    "schema": "node src/schema/generate.mjs",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md,scss,css}\"",
     "test": "vitest --run",
     "publish": "yarn build && npm publish --access public"
