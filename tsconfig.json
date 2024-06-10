@@ -10,8 +10,7 @@
     "sourceMap": false,
     "baseUrl": ".",
     "declaration": true,
-    "outDir": "dist/esm",
+    "outDir": "dist",
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["test"],
+  "include": ["src/**/*.ts"]
 }
