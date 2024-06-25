@@ -2,10 +2,9 @@
 <a href="https://www.npmjs.com/package/cardano-koios-client"><img alt="NPM" src="https://img.shields.io/npm/v/cardano-koios-client/latest?style=for-the-badge&logo=npm&labelColor=%231940ED&color=%233FCB9B"></a>
 <a href="https://github.com/xray-network/cardano-koios-client/actions"><img alt="CODEQL" src="https://img.shields.io/github/actions/workflow/status/xray-network/cardano-koios-client/codeql.yml?label=CodeQL&logo=github&style=for-the-badge&labelColor=%231940ED&color=%233FCB9B"></a>
   
-# Cardano Koios TypeScript Client
+# TypeScript Client for XRAY/Graph Koios Tiny and Koios.REST API
 
-> [!NOTE]
-> Automatically generated Openapi-fetch (Axios) client for [Koios Cardano RESTful API](https://koios.rest) based on [schema.yaml](https://raw.githubusercontent.com/cardano-community/koios-artifacts/main/specs/results/koiosapi-mainnet.yaml) OpenAPI schema. Works great with XRAY/Graph Koios Tiny and the original Koios
+Automatically generated Openapi-fetch (Axios) client for [Koios Cardano RESTful API](https://koios.rest) based on [schema.yaml](https://raw.githubusercontent.com/cardano-community/koios-artifacts/main/specs/results/koiosapi-mainnet.yaml) OpenAPI schema. Works great with XRAY/Graph Koios Tiny and the original Koios
 
 ## Installation
 
