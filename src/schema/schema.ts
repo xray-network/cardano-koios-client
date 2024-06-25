@@ -1684,7 +1684,18 @@ export type components = {
         /** @description An array of collateral inputs needed for smart contracts in case of contract failure */
         collateral_inputs?: null | components["schemas"]["tx_info"][number]["outputs"];
         /** @description A collateral output for change if the smart contract fails to execute and collateral inputs are spent. (CIP-40) */
-        collateral_output?: null | NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number];
+        collateral_output?: {
+            payment_addr?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["payment_addr"];
+            stake_addr?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["stake_addr"];
+            tx_hash?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["tx_hash"];
+            tx_index?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["tx_index"];
+            value?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["value"];
+            datum_hash?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["datum_hash"];
+            inline_datum?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["inline_datum"];
+            reference_script?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["reference_script"];
+            /** @description Brief asset description from ledger */
+            asset_list?: unknown[];
+          }[];
         /** @description An array of reference inputs. A reference input allows looking at an output without spending it. (CIP-31) */
         reference_inputs?: null | components["schemas"]["tx_info"][number]["outputs"];
         inputs?: components["schemas"]["tx_info"][number]["outputs"];
@@ -2014,7 +2025,7 @@ export type components = {
          */
         fingerprint?: string;
         /**
-         * @description Hash of the latest mint transaction
+         * @description Hash of the latest mint transaction (with metadata if found for asset)
          * @example cb07b7e51b77079776c4a78f2daf8f14f9945d2b047da7bfcb71d7fbb9f86712
          */
         minting_tx_hash?: string;
