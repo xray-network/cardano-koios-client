@@ -1,16 +1,16 @@
 import fs from "fs"
-import openapiTS from "openapi-typescript"
+import openapiTS, { astToString } from "openapi-typescript"
 
 const run = async () => {
   const schema = (await openapiTS(
     new URL(
-      "https://raw.githubusercontent.com/cardano-community/koios-artifacts/main/specs/results/koiosapi-mainnet.yaml"
+      "https://api.koios.rest/koiosapi.yaml"
     ),
     {
       exportType: true,
     }
   ))
-  fs.writeFileSync("./src/schema/schema.ts", schema.replaceAll('["items"]', "[number]"))
+  fs.writeFileSync("./src/schema/schema.ts", astToString(schema).replaceAll('["items"]', "[number]"))
 }
 
 run()
