@@ -1872,6 +1872,7 @@ export type components = {
             meta_url?: components["schemas"]["pool_info"][number]["meta_url"];
             meta_hash?: components["schemas"]["pool_info"][number]["meta_hash"];
             pool_status?: components["schemas"]["pool_info"][number]["pool_status"];
+            active_stake?: components["schemas"]["pool_info"][number]["active_stake"];
             retiring_epoch?: components["schemas"]["pool_info"][number]["retiring_epoch"];
         }[];
         /** @description Array of pool history information */
@@ -1881,16 +1882,12 @@ export type components = {
              * @example 312
              */
             epoch_no?: number;
-            /**
-             * @description Amount of delegated stake to this pool at the time of epoch snapshot (in numbers)
-             * @example 31235800000
-             */
-            active_stake?: string;
+            active_stake?: components["schemas"]["pool_info"][number]["active_stake"];
             /**
              * @description Active stake for the pool, expressed as a percentage of total active stake on network
              * @example 13.512182543475783
              */
-            active_stake_pct?: string | null;
+            active_stake_pct?: number | null;
             /**
              * @description Saturation percentage of a pool at the time of snapshot (2 decimals)
              * @example 45.32
@@ -1980,6 +1977,11 @@ export type components = {
              * @example stake1uy6yzwsxxc28lfms0qmpxvyz9a7y770rtcqx9y96m42cttqwvp4m5
              */
             reward_addr?: string | null;
+            /**
+             * @description Reward address' current delegation status to DRep ID in CIP-129 Bech32 format
+             * @example drep1yfhyq6tztjksqqpd5lglc3zr2tn8vylgjh9xzz7n2p4l4lgk3qam3
+             */
+            reward_addr_delegated_drep?: null | string;
             owners?: string[] | null;
             relays?: {
                 /**
@@ -2062,7 +2064,7 @@ export type components = {
              */
             op_cert_counter?: number | null;
             /**
-             * @description Pool active stake (will be null post epoch transition until dbsync calculation is complete)
+             * @description Amount of delegated stake to this pool at the time of epoch snapshot
              * @example 64328627680963
              */
             active_stake?: string | null;
@@ -2096,6 +2098,11 @@ export type components = {
              * @example 94.52
              */
             live_saturation?: number | null;
+            /**
+             * @description Current voting power (lovelaces) of this stake pool
+             * @example 123456789
+             */
+            voting_power?: string | null;
         }[];
         pool_snapshot: {
             /**
@@ -2892,7 +2899,7 @@ export type components = {
                  * @enum {string}
                  */
                 type?: "member" | "leader" | "treasury" | "reserves";
-                pool_id?: components["schemas"]["pool_list"][number]["pool_id_bech32"];
+                pool_id?: null | components["schemas"]["pool_list"][number]["pool_id_bech32"];
             }[];
         }[];
         /** @description Array of account updates information */
@@ -3215,8 +3222,8 @@ export type components = {
                 deposit?: components["schemas"]["drep_info"][number]["deposit"];
                 return_address?: components["schemas"]["proposal_list"][number]["return_address"];
                 expiration?: components["schemas"]["proposal_list"][number]["expiration"];
-                meta_url?: components["schemas"]["drep_metadata"][number]["url"];
-                meta_hash?: components["schemas"]["drep_metadata"][number]["hash"];
+                meta_url?: components["schemas"]["drep_metadata"][number]["meta_url"];
+                meta_hash?: components["schemas"]["drep_metadata"][number]["meta_hash"];
                 withdrawal?: components["schemas"]["proposal_list"][number]["withdrawal"];
                 param_proposal?: components["schemas"]["proposal_list"][number]["param_proposal"];
             }[] | null;
@@ -3545,12 +3552,12 @@ export type components = {
              * @description A URL to a JSON payload of metadata
              * @example https://hornan7.github.io/Vote_Context.jsonld
              */
-            url?: null | string;
+            meta_url?: null | string;
             /**
              * @description A hash of the contents of the metadata URL
              * @example dc208474e195442d07a5b6d42af19bb2db02229427dfb53ab23122e6b0e2487d
              */
-            hash?: null | string;
+            meta_hash?: null | string;
         }[];
         /** @description Summary of voting power and DRep count for each epoch */
         drep_epoch_summary: {
@@ -3587,8 +3594,8 @@ export type components = {
             drep_id?: components["schemas"]["drep_info"][number]["drep_id"];
             hex?: components["schemas"]["drep_info"][number]["hex"];
             has_script?: components["schemas"]["drep_info"][number]["has_script"];
-            url?: components["schemas"]["drep_info"][number]["url"];
-            hash?: components["schemas"]["drep_info"][number]["hash"];
+            meta_url?: components["schemas"]["drep_info"][number]["meta_url"];
+            meta_hash?: components["schemas"]["drep_info"][number]["meta_hash"];
             /**
              * @description The payload as JSON
              * @example {
@@ -3663,7 +3670,7 @@ export type components = {
              *       "hashAlgorithm": "blake2b-256"
              *     }
              */
-            json?: null | Record<string, never>;
+            meta_json?: null | Record<string, never>;
             /**
              * @description The raw bytes of the payload
              * @example 7b0a20202240636f6e74657874223a207b0a2020202022406c616e6775616765223a2022656e2d7573222c0a2020202022434950313030223a202268747470733a2f2f6769746875622e636f6d2f63617264616e6f2d666f756e646174696f6e2f434950732f626c6f622f6d61737465722f4349502d303130302f524541444d452e6d6423222c0a2020202022434950313038223a202268747470733a2f2f6769746875622e636f6d2f63617264616e6f2d666f756e646174696f6e2f434950732f626c6f622f6d61737465722f4349502d303130382f524541444d452e6d6423222c0a202020202268617368416c676f726974686d223a20224349503130303a68617368416c676f726974686d222c0a2020202022626f6479223a207b0a20202020202022406964223a20224349503130383a626f6479222c0a2020202020202240636f6e74657874223a207b0a2020202020202020227265666572656e636573223a207b0a2020202020202020202022406964223a20224349503130383a7265666572656e636573222c0a202020202020202020202240636f6e7461696e6572223a202240736574222c0a202020202020202020202240636f6e74657874223a207b0a20202020202020202020202022476f7665726e616e63654d65746164617461223a20224349503130303a476f7665726e616e63654d657461646174615265666572656e6365222c0a202020202020202020202020224f74686572223a20224349503130303a4f746865725265666572656e6365222c0a202020202020202020202020226c6162656c223a20224349503130303a7265666572656e63652d6c6162656c222c0a20202020202020202020202022757269223a20224349503130303a7265666572656e63652d757269222c0a202020202020202020202020227265666572656e636548617368223a207b0a202020202020202020202020202022406964223a20224349503130383a7265666572656e636548617368222c0a20202020202020202020202020202240636f6e74657874223a207b0a202020202020202020202020202020202268617368446967657374223a20224349503130383a68617368446967657374222c0a202020202020202020202020202020202268617368416c676f726974686d223a20224349503130303a68617368416c676f726974686d220a20202020202020202020202020207d0a2020202020202020202020207d0a202020202020202020207d0a20202020202020207d2c0a2020202020202020227469746c65223a20224349503130383a7469746c65222c0a2020202020202020226162737472616374223a20224349503130383a6162737472616374222c0a2020202020202020226d6f7469766174696f6e223a20224349503130383a6d6f7469766174696f6e222c0a202020202020202022726174696f6e616c65223a20224349503130383a726174696f6e616c65220a2020202020207d0a202020207d2c0a2020202022617574686f7273223a207b0a20202020202022406964223a20224349503130303a617574686f7273222c0a2020202020202240636f6e7461696e6572223a202240736574222c0a2020202020202240636f6e74657874223a207b0a2020202020202020226e616d65223a2022687474703a2f2f786d6c6e732e636f6d2f666f61662f302e312f6e616d65222c0a2020202020202020227769746e657373223a207b0a2020202020202020202022406964223a20224349503130303a7769746e657373222c0a202020202020202020202240636f6e74657874223a207b0a202020202020202020202020227769746e657373416c676f726974686d223a20224349503130303a7769746e657373416c676f726974686d222c0a202020202020202020202020227075626c69634b6579223a20224349503130303a7075626c69634b6579222c0a202020202020202020202020227369676e6174757265223a20224349503130303a7369676e6174757265220a202020202020202020207d0a20202020202020207d0a2020202020207d0a202020207d0a20207d2c0a20202268617368416c676f726974686d223a2022626c616b6532622d323536222c0a202022626f6479223a207b0a20202020227469746c65223a202248617264666f726b20746f2050726f746f636f6c2076657273696f6e203130222c0a20202020226162737472616374223a20224c6574277320686176652073616e63686f4e657420696e2066756c6c20676f7665726e616e636520617320736f6f6e20617320706f737369626c65222c0a20202020226d6f7469766174696f6e223a2022505639206973206e6f742061732066756e2061732050563130222c0a2020202022726174696f6e616c65223a20224c65742773206b6565702074657374696e67207374756666222c0a20202020227265666572656e636573223a205b0a2020202020207b0a2020202020202020224074797065223a20224f74686572222c0a2020202020202020226c6162656c223a202248617264666f726b20746f2050563130222c0a202020202020202022757269223a2022220a2020202020207d0a202020205d0a20207d2c0a202022617574686f7273223a205b0a202020207b0a202020202020226e616d65223a20224361726c6f73222c0a202020202020227769746e657373223a207b0a2020202020202020227769746e657373416c676f726974686d223a202265643235353139222c0a2020202020202020227075626c69634b6579223a202237656130396133346165626231336339383431633731333937623163616266656335646466393530343035323933646565343936636163326634333734383061222c0a2020202020202020227369676e6174757265223a20226134373639383562346363306434353766323437373937363131373939613666366138306663386362376563396463623561383232333838386430363138653330646531363566336438363963346130643931303764386135623631326164376335653432343431393037663562393137393666306437313837643634613031220a2020202020207d0a202020207d0a20205d0a7d
@@ -3682,7 +3689,7 @@ export type components = {
              * @description Indicate whether data is invalid
              * @example true
              */
-            is_valid?: boolean;
+            is_valid?: null | boolean;
         }[];
         /** @description List of updates for requested (or all) delegated representatives (DReps) */
         drep_updates: {
@@ -3703,9 +3710,9 @@ export type components = {
              */
             action?: "updated" | "registered" | "deregistered";
             deposit?: components["schemas"]["drep_info"][number]["deposit"];
-            meta_url?: components["schemas"]["drep_metadata"][number]["url"];
-            meta_hash?: components["schemas"]["drep_metadata"][number]["hash"];
-            meta_json?: components["schemas"]["drep_metadata"][number]["json"];
+            meta_url?: components["schemas"]["drep_metadata"][number]["meta_url"];
+            meta_hash?: components["schemas"]["drep_metadata"][number]["meta_hash"];
+            meta_json?: components["schemas"]["drep_metadata"][number]["meta_json"];
         }[];
         /** @description List of all votes casted by requested delegated representative (DRep) */
         drep_votes: {
@@ -3720,8 +3727,8 @@ export type components = {
              * @enum {string}
              */
             vote?: "Yes" | "No" | "Abstain";
-            meta_url?: components["schemas"]["drep_metadata"][number]["url"];
-            meta_hash?: components["schemas"]["drep_metadata"][number]["hash"];
+            meta_url?: components["schemas"]["drep_metadata"][number]["meta_url"];
+            meta_hash?: components["schemas"]["drep_metadata"][number]["meta_hash"];
         }[];
         /** @description List of all votes casted by requested pool */
         pool_votes: components["schemas"]["drep_votes"][number][];
@@ -3785,9 +3792,9 @@ export type components = {
             expired_epoch?: number | null;
             /** @description Shows the epoch at which this governance action is expected to expire. */
             expiration?: number | null;
-            meta_url?: components["schemas"]["drep_metadata"][number]["url"];
-            meta_hash?: components["schemas"]["drep_metadata"][number]["hash"];
-            meta_json?: components["schemas"]["drep_metadata"][number]["json"];
+            meta_url?: components["schemas"]["drep_metadata"][number]["meta_url"];
+            meta_hash?: components["schemas"]["drep_metadata"][number]["meta_hash"];
+            meta_json?: components["schemas"]["drep_metadata"][number]["meta_json"];
             meta_comment?: components["schemas"]["drep_metadata"][number]["comment"];
             meta_language?: components["schemas"]["drep_metadata"][number]["language"];
             meta_is_valid?: components["schemas"]["drep_metadata"][number]["is_valid"];
@@ -3846,6 +3853,16 @@ export type components = {
              */
             drep_no_pct?: number;
             /**
+             * @description Number of active 'abstain' votes from dreps
+             * @example 5
+             */
+            drep_abstain_votes_cast?: number;
+            /**
+             * @description Power of votes delegated to 'always_no_confidence' predefined drep
+             * @example 9999
+             */
+            drep_always_no_confidence_vote_power?: number;
+            /**
              * @description Number of 'yes' votes casted by pools
              * @example 1
              */
@@ -3876,6 +3893,31 @@ export type components = {
              */
             pool_no_pct?: number;
             /**
+             * @description Percentage of 'abstain' votes from pools
+             * @example 0
+             */
+            pool_abstain_votes_cast?: number;
+            /**
+             * @description Number of non-voting SPO pool reward addresses delegating to 'always_abstain' drep
+             * @example 1
+             */
+            pool_passive_always_abstain_votes_assigned?: number;
+            /**
+             * @description Combined power of non-voting SPO pool votes where reward addresses delegate to 'always_abstain'
+             * @example 12312312
+             */
+            pool_passive_always_abstain_vote_power?: number;
+            /**
+             * @description Number of non-voting SPO pool reward addresses delegating to 'always_no_confidence' drep
+             * @example 10
+             */
+            pool_passive_always_no_confidence_votes_assigned?: number;
+            /**
+             * @description Combined power of non-voting SPO pool votes where reward addresses delegate to 'always_no_confidence'
+             * @example 321321
+             */
+            pool_passive_always_no_confidence_vote_power?: number;
+            /**
              * @description Number of 'yes' votes casted by committee
              * @example 5
              */
@@ -3895,6 +3937,8 @@ export type components = {
              * @example 28.57
              */
             committee_no_pct?: number;
+            /** @description Percentage of 'abstain' votes from committee */
+            committee_abstain_votes_cast?: number;
         }[];
         /** @description List of all votes cast on specified governance action */
         proposal_votes: {
@@ -3917,8 +3961,8 @@ export type components = {
             voter_hex?: string;
             voter_has_script?: components["schemas"]["drep_info"][number]["has_script"];
             vote?: components["schemas"]["drep_votes"][number]["vote"];
-            meta_url?: components["schemas"]["drep_metadata"][number]["url"];
-            meta_hash?: components["schemas"]["drep_metadata"][number]["hash"];
+            meta_url?: components["schemas"]["drep_metadata"][number]["meta_url"];
+            meta_hash?: components["schemas"]["drep_metadata"][number]["meta_hash"];
         }[];
         /** @description Current governance committee */
         committee_info: {

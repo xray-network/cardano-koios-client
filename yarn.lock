@@ -342,23 +342,22 @@
     require-from-string "^2.0.2"
     uri-js-replace "^1.0.1"
 
-"@redocly/config@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@redocly/config/-/config-0.11.0.tgz#e5a6c48768d9d2d8a9db618ee585ae1ec0b890cb"
-  integrity sha512-vAc77vCuWsVgLx2LN02P6jqLBhHuot6O1LsSJEAAkWEvXARSGSQVon50QW7jlbCMg9OFTYYYRPN4W6K/YmnM3w==
+"@redocly/config@^0.17.0":
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/@redocly/config/-/config-0.17.1.tgz#2def04cecf440dd78c0f102f53f3444fac050768"
+  integrity sha512-CEmvaJuG7pm2ylQg53emPmtgm4nW2nxBgwXzbVEHpGas/lGnMyN8Zlkgiz6rPw0unASg6VW3wlz27SOL5XFHYQ==
 
-"@redocly/openapi-core@^1.25.3":
-  version "1.25.3"
-  resolved "https://registry.yarnpkg.com/@redocly/openapi-core/-/openapi-core-1.25.3.tgz#65bc901f310bd15845660ed57b78ecb76adf40df"
-  integrity sha512-dqJkyydgagW3FXX5cjtSUAnabsld4K6yq7RFgQ+ngI1m43PkEoSQt8pp+SfQDszSEoMbc7QKj8afbe7mZw17TA==
+"@redocly/openapi-core@^1.25.9":
+  version "1.26.1"
+  resolved "https://registry.yarnpkg.com/@redocly/openapi-core/-/openapi-core-1.26.1.tgz#d84299f09a3b4f8ca59bafcada7b4d4a040cf26b"
+  integrity sha512-xRuVZqMVRFzqjbUCpOTra4tbnmQMWsya996omZMV3WgD084Z6OWB3FXflhAp93E/yAmbWlWZpddw758AyoaLSw==
   dependencies:
     "@redocly/ajv" "^8.11.2"
-    "@redocly/config" "^0.11.0"
+    "@redocly/config" "^0.17.0"
     colorette "^1.2.0"
     https-proxy-agent "^7.0.4"
     js-levenshtein "^1.1.6"
     js-yaml "^4.1.0"
-    lodash.isequal "^4.5.0"
     minimatch "^5.0.1"
     node-fetch "^2.6.1"
     pluralize "^8.0.0"
@@ -1200,11 +1199,6 @@ local-pkg@^0.5.0:
     mlly "^1.4.2"
     pkg-types "^1.0.3"
 
-lodash.isequal@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
-  integrity sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==
-
 lodash.sortby@^4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
@@ -1355,24 +1349,24 @@ onetime@^6.0.0:
   dependencies:
     mimic-fn "^4.0.0"
 
-openapi-fetch@^0.9.7:
-  version "0.9.7"
-  resolved "https://registry.yarnpkg.com/openapi-fetch/-/openapi-fetch-0.9.7.tgz#e224d1176e11ec68671caf0df6b736d649be97ed"
-  integrity sha512-NMp/GEmWSGO0b2d731IdGXcMP2PF85Rk1q+oy2Mx/DYMdP3pgTZTRamKxgZpkHhM4iOVsyD1iP5HKL9Fr6CH2Q==
+openapi-fetch@^0.13.3:
+  version "0.13.3"
+  resolved "https://registry.yarnpkg.com/openapi-fetch/-/openapi-fetch-0.13.3.tgz#afae4441c28af4a48438f45c62f92accb8279d06"
+  integrity sha512-M1THnPkNOXUPsQKZfqunhW/wqH8l3/W3Vlj4lemQynf4mTaTwBTvL2pgjBe0zerL/GFT5ttCHu9fYvanUI3tOw==
   dependencies:
-    openapi-typescript-helpers "^0.0.8"
+    openapi-typescript-helpers "^0.0.15"
 
-openapi-typescript-helpers@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.npmjs.org/openapi-typescript-helpers/-/openapi-typescript-helpers-0.0.8.tgz"
-  integrity sha512-1eNjQtbfNi5Z/kFhagDIaIRj6qqDzhjNJKz8cmMW0CVdGwT6e1GLbAfgI0d28VTJa1A8jz82jm/4dG8qNoNS8g==
+openapi-typescript-helpers@^0.0.15:
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/openapi-typescript-helpers/-/openapi-typescript-helpers-0.0.15.tgz#96ffa762a5e01ef66a661b163d5f1109ed1967ed"
+  integrity sha512-opyTPaunsklCBpTK8JGef6mfPhLSnyy5a0IN9vKtx3+4aExf+KxEqYwIy3hqkedXIB97u357uLMJsOnm3GVjsw==
 
-openapi-typescript@^7.4.1:
-  version "7.4.1"
-  resolved "https://registry.yarnpkg.com/openapi-typescript/-/openapi-typescript-7.4.1.tgz#1e42ecbd286ea62f6f8dc994b9aeccaa8b31c537"
-  integrity sha512-HrRoWveViADezHCNgQqZmPKmQ74q7nuH/yg9ursFucZaYQNUqsX38fE/V2sKBHVM+pws4tAHpuh/ext2UJ/AoQ==
+openapi-typescript@^7.4.4:
+  version "7.4.4"
+  resolved "https://registry.yarnpkg.com/openapi-typescript/-/openapi-typescript-7.4.4.tgz#77fd70c275d40cf98fb4a68a96e09dc38859cbb9"
+  integrity sha512-7j3nktnRzlQdlHnHsrcr6Gqz8f80/RhfA2I8s1clPI+jkY0hLNmnYVKBfuUEli5EEgK1B6M+ibdS5REasPlsUw==
   dependencies:
-    "@redocly/openapi-core" "^1.25.3"
+    "@redocly/openapi-core" "^1.25.9"
     ansi-colors "^4.1.3"
     change-case "^5.4.4"
     parse-json "^8.1.0"
@@ -1636,8 +1630,16 @@ std-env@^3.5.0:
   resolved "https://registry.yarnpkg.com/std-env/-/std-env-3.7.0.tgz#c9f7386ced6ecf13360b6c6c55b8aaa4ef7481d2"
   integrity sha512-JPbdCEQLj1w5GilpiHAx3qJvFndqybBysA3qUOnznweH4QbNYUsW/ea8QzSrnh0vNsezMMw5bcVool8lM0gwzg==
 
-"string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
-  name string-width-cjs
+"string-width-cjs@npm:string-width@^4.2.0":
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
+  integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
+  dependencies:
+    emoji-regex "^8.0.0"
+    is-fullwidth-code-point "^3.0.0"
+    strip-ansi "^6.0.1"
+
+string-width@^4.1.0:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -1655,8 +1657,14 @@ string-width@^5.0.1, string-width@^5.1.2:
     emoji-regex "^9.2.2"
     strip-ansi "^7.0.1"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
-  name strip-ansi-cjs
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
+  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
+  dependencies:
+    ansi-regex "^5.0.1"
+
+strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
