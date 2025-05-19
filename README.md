@@ -147,3 +147,8 @@ https://graph.xray.app/output/koios/preprod/api/v1
 ```
 https://graph.xray.app/output/koios/preview/api/v1
 ```
+
+## Manual Edits
+
+* Be sure all non nullables are wrapped in `<NonNullable>`
+* Find "asset_list?:", and replace `never[]` with correct values (from )
