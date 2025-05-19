@@ -3216,7 +3216,17 @@ export type components = {
             inline_datum?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["inline_datum"];
             reference_script?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["reference_script"];
             /** @description An array of assets on the UTxO */
-            asset_list?: unknown[] | null;
+            asset_list?: {
+                policy_id?: components["schemas"]["asset_info"][number]["policy_id"];
+                asset_name?: components["schemas"]["asset_info"][number]["asset_name"];
+                fingerprint?: components["schemas"]["asset_info"][number]["fingerprint"];
+                decimals?: NonNullable<components["schemas"]["asset_info"][number]["token_registry_metadata"]>["decimals"];
+                /**
+                 * @description Quantity of assets on the UTxO
+                 * @example 1
+                 */
+                quantity?: string;
+            }[] | null;
             /**
              * @description True if the UTXO has been spent
              * @example true
