@@ -25,7 +25,7 @@ npm i cardano-koios-client
 ```TypeScript
 import KoiosClient from "cardano-koios-client"
 
-const client = KoiosClient("https://api.koios.rest/api/v1")
+const client = KoiosClient("https://graph.xray.app/output/services/koios/mainnet/api/v1")
 
 const app = async () => {
   const tip = await client.GET("/tip")
@@ -50,7 +50,7 @@ Read https://api.koios.rest/#overview--api-usage for more information
 ``` TypeScript
 import KoiosClient from "cardano-koios-client"
 
-const baseUrl = "https://api.koios.rest/api/v1"
+const baseUrl = "https://graph.xray.app/output/services/koios/mainnet/api/v1"
 const headers = {} // rest headers
 const client = KoiosClient(baseUrl, headers)
 
@@ -80,7 +80,7 @@ app()
 ```TypeScript
 import KoiosClient from "cardano-koios-client"
 
-const client = KoiosClient("https://api.koios.rest/api/v1")
+const client = KoiosClient("https://graph.xray.app/output/services/koios/mainnet/api/v1")
 
 const app = async () => {
   const abortController = new AbortController()
