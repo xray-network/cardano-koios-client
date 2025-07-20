@@ -137,15 +137,15 @@ https://guild.koios.rest/api/v1
 Managed by XRAY/Network (XRAY/Graph, Cloudflare WAF & Load Balancer)
 
 ```
-https://graph.xray.app/output/koios/mainnet/api/v1
+https://graph.xray.app/output/services/koios/mainnet/api/v1
 ```
 
 ```
-https://graph.xray.app/output/koios/preprod/api/v1
+https://graph.xray.app/output/services/koios/preprod/api/v1
 ```
 
 ```
-https://graph.xray.app/output/koios/preview/api/v1
+https://graph.xray.app/output/services/koios/preview/api/v1
 ```
 
 ## Manual Edits
