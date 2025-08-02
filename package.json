@@ -1,6 +1,6 @@
 {
   "name": "cardano-koios-client",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "TypeScript client for XRAY/Graph Koios Tiny API and original Koios.REST API",
   "author": "XRAY/Network <hello@xray.app>",
   "homepage": "https://xray.app",
