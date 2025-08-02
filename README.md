@@ -11,7 +11,7 @@ Automatically generated Openapi-fetch (Axios) client for Koios API. Works great 
 To install the client with Yarn, run:
 
 ```TypeScript
-yarn install cardano-koios-client
+yarn add cardano-koios-client
 ```
 
 To install the client with NPM, run:
