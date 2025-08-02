@@ -4,7 +4,7 @@
   
 # TypeScript Client for XRAY/Graph Koios Tiny and Koios.REST API
 
-Automatically generated Openapi-fetch (Axios) client for [Koios Cardano RESTful API](https://koios.rest) based on [schema.yaml](https://raw.githubusercontent.com/cardano-community/koios-artifacts/main/specs/results/koiosapi-mainnet.yaml) OpenAPI schema. Works great with XRAY/Graph Koios Tiny and the original Koios
+Automatically generated Openapi-fetch (Axios) client for Koios API. Works great with XRAY/Graph Koios Tiny and the original Koios.
 
 ## Installation
 
@@ -91,7 +91,7 @@ const app = async () => {
   }, 200)
 
   const tip = await client.GET("/tip", {
-    signal: abortController.signl,
+    signal: abortController.signal,
   })
 
   if (tip.data) {
@@ -107,14 +107,41 @@ app()
 
 </details>
 
-## Endpoints
+<details>
+<summary>Updating Schema</summary>
 
-* Check OpenAPI fetch documentations for available endpoint parameters: https://openapi-ts.pages.dev/openapi-fetch/
-* The client uses OpenAPI definitions from the Koios configuration: [koiosapi-mainnet.yaml](https://raw.githubusercontent.com/cardano-community/koios-artifacts/main/specs/results/koiosapi-mainnet.yaml)
-* A complete list of endpoints can be found here (RapiDoc): https://api.koios.rest
+Run schema update:
+```console
+yarn schema
+```
+
+Fix types:
+* Be sure all non nullables are wrapped in `<NonNullable>`
+* Find `unknown` type errors and fix them
+
+</details>
+
+## Playground
+
+* XRAY/Graph Koios Tiny — https://graph.xray.app/output/services/koios/mainnet/api/v1/
+* Original Koios — https://api.koios.rest
 
 
 ## API URLs
+
+Managed by XRAY/Network (XRAY/Graph, Cloudflare WAF & Load Balancer)
+
+```
+https://graph.xray.app/output/services/koios/mainnet/api/v1
+```
+
+```
+https://graph.xray.app/output/services/koios/preprod/api/v1
+```
+
+```
+https://graph.xray.app/output/services/koios/preview/api/v1
+```
 
 Managed by Cardano Community (Koios Elastic Query Layer, HAproxy Balancer)
 
@@ -133,22 +160,3 @@ https://preview.koios.rest/api/v1
 ```
 https://guild.koios.rest/api/v1
 ```
-
-Managed by XRAY/Network (XRAY/Graph, Cloudflare WAF & Load Balancer)
-
-```
-https://graph.xray.app/output/services/koios/mainnet/api/v1
-```
-
-```
-https://graph.xray.app/output/services/koios/preprod/api/v1
-```
-
-```
-https://graph.xray.app/output/services/koios/preview/api/v1
-```
-
-## Manual Edits
-
-* Be sure all non nullables are wrapped in `<NonNullable>`
-* Find "asset_list?:", and replace `never[]` with correct values (from )
