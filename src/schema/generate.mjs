@@ -4,7 +4,7 @@ import openapiTS, { astToString } from "openapi-typescript"
 const run = async () => {
   const schema = (await openapiTS(
     new URL(
-      "https://api.koios.rest/koiosapi.yaml"
+      "https://graph.xray.app/output/services/koios/mainnet/api/v1/openapi.json"
     ),
     {
       exportType: true,

@@ -1920,7 +1920,7 @@ export type paths = {
          * @description Query the current tip of the Network.
          *
          *     <br>
-         *     <div style="background-color: #222; padding: 12px 0px 12px 12px;border-left: 5px solid  rgb(173, 44, 44);font-size: var(--font-size-regular);">
+         *     <div style="background-color: #f0f0f0b3; padding: 12px 0px 12px 12px;border-left: 5px solid  rgb(173, 44, 44);font-size: var(--font-size-regular);">
          *     We do support transparent forwarding for various methods from Ogmios, you can read about those <a href="#tag--Ogmios">here</a>.
          *     </div>
          *
@@ -3078,7 +3078,7 @@ export type components = {
                 datum_hash?: NonNullable<components["schemas"]["script_redeemers"][number]["redeemers"]>[number]["datum_hash"];
                 inline_datum?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["inline_datum"];
                 reference_script?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["reference_script"];
-                asset_list?: components["schemas"]["utxo_infos"][number]["asset_list"];
+                asset_list?: NonNullable<components["schemas"]["utxo_infos"][number]["asset_list"]>;
             }[];
         }[];
         /** @description Array of transaction hashes */
@@ -3216,17 +3216,7 @@ export type components = {
             inline_datum?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["inline_datum"];
             reference_script?: NonNullable<components["schemas"]["tx_info"][number]["outputs"]>[number]["reference_script"];
             /** @description An array of assets on the UTxO */
-            asset_list?: {
-                policy_id?: components["schemas"]["asset_info"][number]["policy_id"];
-                asset_name?: components["schemas"]["asset_info"][number]["asset_name"];
-                fingerprint?: components["schemas"]["asset_info"][number]["fingerprint"];
-                decimals?: NonNullable<components["schemas"]["asset_info"][number]["token_registry_metadata"]>["decimals"];
-                /**
-                 * @description Quantity of assets on the UTxO
-                 * @example 1
-                 */
-                quantity?: string;
-            }[] | null;
+            asset_list?: unknown[] | null;
             /**
              * @description True if the UTXO has been spent
              * @example true
