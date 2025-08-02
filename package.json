@@ -1,6 +1,6 @@
 {
   "name": "cardano-koios-client",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "TypeScript client for XRAY/Graph Koios Tiny API and original Koios.REST API",
   "author": "XRAY/Network <hello@xray.app>",
   "homepage": "https://xray.app",
@@ -27,7 +27,7 @@
     "schema": "node src/schema/generate.mjs",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md,scss,css}\"",
     "test": "vitest --run",
-    "publish": "yarn build && npm publish --access public"
+    "pub": "yarn build && yarn publish"
   },
   "devDependencies": {
     "@types/node": "^20.12.11",
